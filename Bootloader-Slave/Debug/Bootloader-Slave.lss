@@ -1,0 +1,1656 @@
+
+Bootloader-Slave.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000814  00007000  00007000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000888  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000188  00800060  00800060  00000888  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000888  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000008b8  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000158  00000000  00000000  000008f4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000123c  00000000  00000000  00000a4c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000718  00000000  00000000  00001c88  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000710  00000000  00000000  000023a0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000035c  00000000  00000000  00002ab0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000006ed  00000000  00000000  00002e0c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000876  00000000  00000000  000034f9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000118  00000000  00000000  00003d6f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00007000 <__vectors>:
+    7000:	0c 94 35 38 	jmp	0x706a	; 0x706a <__ctors_end>
+    7004:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    7008:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    700c:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    7010:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    7014:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    7018:	0c 94 67 3b 	jmp	0x76ce	; 0x76ce <__vector_6>
+    701c:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    7020:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    7024:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    7028:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    702c:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    7030:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    7034:	0c 94 f4 39 	jmp	0x73e8	; 0x73e8 <__vector_13>
+    7038:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    703c:	0c 94 22 3a 	jmp	0x7444	; 0x7444 <__vector_15>
+    7040:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    7044:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    7048:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    704c:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    7050:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
+    7054:	4c 3b       	cpi	r20, 0xBC	; 188
+    7056:	4e 3b       	cpi	r20, 0xBE	; 190
+    7058:	60 3b       	cpi	r22, 0xB0	; 176
+    705a:	50 3b       	cpi	r21, 0xB0	; 176
+    705c:	52 3b       	cpi	r21, 0xB2	; 178
+    705e:	54 3b       	cpi	r21, 0xB4	; 180
+    7060:	56 3b       	cpi	r21, 0xB6	; 182
+    7062:	58 3b       	cpi	r21, 0xB8	; 184
+    7064:	5a 3b       	cpi	r21, 0xBA	; 186
+    7066:	5c 3b       	cpi	r21, 0xBC	; 188
+    7068:	5e 3b       	cpi	r21, 0xBE	; 190
+
+0000706a <__ctors_end>:
+    706a:	11 24       	eor	r1, r1
+    706c:	1f be       	out	0x3f, r1	; 63
+    706e:	cf e5       	ldi	r28, 0x5F	; 95
+    7070:	d8 e0       	ldi	r29, 0x08	; 8
+    7072:	de bf       	out	0x3e, r29	; 62
+    7074:	cd bf       	out	0x3d, r28	; 61
+
+00007076 <__do_copy_data>:
+    7076:	10 e0       	ldi	r17, 0x00	; 0
+    7078:	a0 e6       	ldi	r26, 0x60	; 96
+    707a:	b0 e0       	ldi	r27, 0x00	; 0
+    707c:	e4 e1       	ldi	r30, 0x14	; 20
+    707e:	f8 e7       	ldi	r31, 0x78	; 120
+    7080:	02 c0       	rjmp	.+4      	; 0x7086 <__do_copy_data+0x10>
+    7082:	05 90       	lpm	r0, Z+
+    7084:	0d 92       	st	X+, r0
+    7086:	a0 36       	cpi	r26, 0x60	; 96
+    7088:	b1 07       	cpc	r27, r17
+    708a:	d9 f7       	brne	.-10     	; 0x7082 <__do_copy_data+0xc>
+
+0000708c <__do_clear_bss>:
+    708c:	21 e0       	ldi	r18, 0x01	; 1
+    708e:	a0 e6       	ldi	r26, 0x60	; 96
+    7090:	b0 e0       	ldi	r27, 0x00	; 0
+    7092:	01 c0       	rjmp	.+2      	; 0x7096 <.do_clear_bss_start>
+
+00007094 <.do_clear_bss_loop>:
+    7094:	1d 92       	st	X+, r1
+
+00007096 <.do_clear_bss_start>:
+    7096:	a8 3e       	cpi	r26, 0xE8	; 232
+    7098:	b2 07       	cpc	r27, r18
+    709a:	e1 f7       	brne	.-8      	; 0x7094 <.do_clear_bss_loop>
+    709c:	0e 94 a4 3b 	call	0x7748	; 0x7748 <main>
+    70a0:	0c 94 08 3c 	jmp	0x7810	; 0x7810 <_exit>
+
+000070a4 <__bad_interrupt>:
+    70a4:	0c 94 00 38 	jmp	0x7000	; 0x7000 <__vectors>
+
+000070a8 <timer_init>:
+
+  // * Timer 1 - system timer and 2× PWM
+  // 14745600 / 256 / 576 = 100 Hz
+  //   Xtal  /presca/ TOP
+  
+  OCR1A = 0;
+    70a8:	1b bc       	out	0x2b, r1	; 43
+    70aa:	1a bc       	out	0x2a, r1	; 42
+  OCR1B = 0;
+    70ac:	19 bc       	out	0x29, r1	; 41
+    70ae:	18 bc       	out	0x28, r1	; 40
+  ICR1 = 575; 
+    70b0:	8f e3       	ldi	r24, 0x3F	; 63
+    70b2:	92 e0       	ldi	r25, 0x02	; 2
+    70b4:	97 bd       	out	0x27, r25	; 39
+    70b6:	86 bd       	out	0x26, r24	; 38
+  TCCR1A = BV(WGM11) | BV(COM1A1) | BV(COM1B1); // Fast PWM
+    70b8:	82 ea       	ldi	r24, 0xA2	; 162
+    70ba:	8f bd       	out	0x2f, r24	; 47
+  TCCR1B = BV(WGM12) | BV(WGM13) | 4; // Fast PWM + presca = 1024
+    70bc:	8c e1       	ldi	r24, 0x1C	; 28
+    70be:	8e bd       	out	0x2e, r24	; 46
+  TIMSK |= BV(TICIE1); // capt int enabled
+    70c0:	89 b7       	in	r24, 0x39	; 57
+    70c2:	80 62       	ori	r24, 0x20	; 32
+    70c4:	89 bf       	out	0x39, r24	; 57
+    70c6:	08 95       	ret
+
+000070c8 <TB_Send>:
+/******************************************************/
+// private functions
+/******************************************************/
+void TB_Send(void)
+{
+  if (TB_Callback_TX != NULL) TB_Callback_TX();
+    70c8:	e0 91 62 00 	lds	r30, 0x0062
+    70cc:	f0 91 63 00 	lds	r31, 0x0063
+    70d0:	30 97       	sbiw	r30, 0x00	; 0
+    70d2:	09 f0       	breq	.+2      	; 0x70d6 <TB_Send+0xe>
+    70d4:	09 94       	ijmp
+    70d6:	08 95       	ret
+
+000070d8 <TB_calcSum>:
+}
+
+
+/******************************************************/
+void TB_calcSum(void)
+{
+    70d8:	e3 e9       	ldi	r30, 0x93	; 147
+    70da:	f0 e0       	ldi	r31, 0x00	; 0
+  byte i, sum;
+  sum = 0;
+    70dc:	80 e0       	ldi	r24, 0x00	; 0
+    70de:	98 e0       	ldi	r25, 0x08	; 8
+    70e0:	9e 0f       	add	r25, r30
+  for(i=0; i<8; i++) {
+    sum += TB_bufOut[i];
+    70e2:	21 91       	ld	r18, Z+
+    70e4:	82 0f       	add	r24, r18
+/******************************************************/
+void TB_calcSum(void)
+{
+  byte i, sum;
+  sum = 0;
+  for(i=0; i<8; i++) {
+    70e6:	9e 13       	cpse	r25, r30
+    70e8:	fc cf       	rjmp	.-8      	; 0x70e2 <TB_calcSum+0xa>
+    sum += TB_bufOut[i];
+  }
+  TB_bufOut[TB_BUF_SUM] = sum;
+    70ea:	80 93 9b 00 	sts	0x009B, r24
+    70ee:	08 95       	ret
+
+000070f0 <TB_Init>:
+/******************************************************/
+// public functions
+/******************************************************/
+// initialize
+void TB_Init(void * setting_in_eeprom)
+{
+    70f0:	cf 93       	push	r28
+    70f2:	df 93       	push	r29
+    70f4:	ec 01       	movw	r28, r24
+  addr_setting_in_eeprom = setting_in_eeprom;
+    70f6:	90 93 ad 00 	sts	0x00AD, r25
+    70fa:	80 93 ac 00 	sts	0x00AC, r24
+  //                 DST,   SRC, size
+  eeprom_read_block((void *) &TB_gbparam, setting_in_eeprom, sizeof(struct TB_GBPARAM));
+    70fe:	45 e0       	ldi	r20, 0x05	; 5
+    7100:	50 e0       	ldi	r21, 0x00	; 0
+    7102:	bc 01       	movw	r22, r24
+    7104:	8c e9       	ldi	r24, 0x9C	; 156
+    7106:	90 e0       	ldi	r25, 0x00	; 0
+    7108:	0e 94 d0 3b 	call	0x77a0	; 0x77a0 <eeprom_read_block>
+  if (TB_gbparam.eemagic != 65) {
+    710c:	80 91 9c 00 	lds	r24, 0x009C
+    7110:	81 34       	cpi	r24, 0x41	; 65
+    7112:	a9 f0       	breq	.+42     	; 0x713e <TB_Init+0x4e>
+    // not valid data in eeprom
+    TB_gbparam.eemagic = 66;
+    7114:	82 e4       	ldi	r24, 0x42	; 66
+    7116:	80 93 9c 00 	sts	0x009C, r24
+    TB_gbparam.baud = 4;
+    711a:	84 e0       	ldi	r24, 0x04	; 4
+    711c:	80 93 9d 00 	sts	0x009D, r24
+    TB_gbparam.address = SC_MODUL;
+    7120:	86 e0       	ldi	r24, 0x06	; 6
+    7122:	80 93 9e 00 	sts	0x009E, r24
+    TB_gbparam.telegram_pause_time = 0;
+    7126:	10 92 9f 00 	sts	0x009F, r1
+    TB_gbparam.host_address = 2;
+    712a:	82 e0       	ldi	r24, 0x02	; 2
+    712c:	80 93 a0 00 	sts	0x00A0, r24
+    // save default setting to eeprom
+    eeprom_write_block((void *) &TB_gbparam, setting_in_eeprom, sizeof(struct TB_GBPARAM));
+    7130:	45 e0       	ldi	r20, 0x05	; 5
+    7132:	50 e0       	ldi	r21, 0x00	; 0
+    7134:	be 01       	movw	r22, r28
+    7136:	8c e9       	ldi	r24, 0x9C	; 156
+    7138:	90 e0       	ldi	r25, 0x00	; 0
+    713a:	0e 94 f1 3b 	call	0x77e2	; 0x77e2 <eeprom_write_block>
+  }
+  // ted mame funkèni konfiguraci naètenou
+
+  // zvolíme správnou komunikaèní rychlost:
+  if (TB_Callback_setBaud != NULL) TB_Callback_setBaud(TB_gbparam.baud);
+    713e:	e0 91 60 00 	lds	r30, 0x0060
+    7142:	f0 91 61 00 	lds	r31, 0x0061
+    7146:	30 97       	sbiw	r30, 0x00	; 0
+    7148:	19 f0       	breq	.+6      	; 0x7150 <TB_Init+0x60>
+    714a:	80 91 9d 00 	lds	r24, 0x009D
+    714e:	09 95       	icall
+
+  // poznaèíme si adresy
+  TB_AddrReply = TB_gbparam.host_address;
+    7150:	80 91 a0 00 	lds	r24, 0x00A0
+    7154:	80 93 ae 00 	sts	0x00AE, r24
+  TB_AddrModule= TB_gbparam.address;
+    7158:	80 91 9e 00 	lds	r24, 0x009E
+    715c:	80 93 a2 00 	sts	0x00A2, r24
+}
+    7160:	df 91       	pop	r29
+    7162:	cf 91       	pop	r28
+    7164:	08 95       	ret
+
+00007166 <TB_SendAck>:
+
+/******************************************************/
+// send response from module
+void TB_SendAck(byte status, long int value)
+{
+  TB_bufOut[0] = TB_AddrReply;
+    7166:	e3 e9       	ldi	r30, 0x93	; 147
+    7168:	f0 e0       	ldi	r31, 0x00	; 0
+    716a:	90 91 ae 00 	lds	r25, 0x00AE
+    716e:	90 83       	st	Z, r25
+  TB_bufOut[1] = TB_AddrModule;
+    7170:	90 91 a2 00 	lds	r25, 0x00A2
+    7174:	91 83       	std	Z+1, r25	; 0x01
+  TB_bufOut[2] = status;
+    7176:	82 83       	std	Z+2, r24	; 0x02
+  TB_bufOut[3] = TB_bufIn[TB_BUF_COMMAND]; //command;
+    7178:	80 91 a4 00 	lds	r24, 0x00A4
+    717c:	83 83       	std	Z+3, r24	; 0x03
+  TB_bufOut[4] = value >> 24;
+    717e:	74 83       	std	Z+4, r23	; 0x04
+  TB_bufOut[5] = value >> 16;
+    7180:	65 83       	std	Z+5, r22	; 0x05
+  TB_bufOut[6] = value >> 8;
+    7182:	56 83       	std	Z+6, r21	; 0x06
+  TB_bufOut[7] = value >> 0;
+    7184:	47 83       	std	Z+7, r20	; 0x07
+  TB_calcSum();
+    7186:	0e 94 6c 38 	call	0x70d8	; 0x70d8 <TB_calcSum>
+  TB_Send();
+    718a:	0c 94 64 38 	jmp	0x70c8	; 0x70c8 <TB_Send>
+
+0000718e <TB_Read>:
+{
+  byte i;
+  byte sum;
+
+  // check address
+  if (TB_bufIn[TB_BUF_ADDRESS] != TB_AddrModule) return 2;
+    718e:	90 91 a3 00 	lds	r25, 0x00A3
+    7192:	80 91 a2 00 	lds	r24, 0x00A2
+    7196:	98 13       	cpse	r25, r24
+    7198:	15 c0       	rjmp	.+42     	; 0x71c4 <TB_Read+0x36>
+    719a:	e3 ea       	ldi	r30, 0xA3	; 163
+    719c:	f0 e0       	ldi	r31, 0x00	; 0
+    719e:	80 e0       	ldi	r24, 0x00	; 0
+    71a0:	98 e0       	ldi	r25, 0x08	; 8
+    71a2:	9e 0f       	add	r25, r30
+  
+  // check SUM byte
+  sum = 0;
+  for( i=0; i<8; i++) {
+    sum += TB_bufIn[i];
+    71a4:	21 91       	ld	r18, Z+
+    71a6:	82 0f       	add	r24, r18
+  // check address
+  if (TB_bufIn[TB_BUF_ADDRESS] != TB_AddrModule) return 2;
+  
+  // check SUM byte
+  sum = 0;
+  for( i=0; i<8; i++) {
+    71a8:	9e 13       	cpse	r25, r30
+    71aa:	fc cf       	rjmp	.-8      	; 0x71a4 <TB_Read+0x16>
+    sum += TB_bufIn[i];
+  }
+  if (sum != TB_bufIn[TB_BUF_SUM]) {
+    71ac:	90 91 ab 00 	lds	r25, 0x00AB
+    71b0:	89 17       	cp	r24, r25
+    71b2:	51 f0       	breq	.+20     	; 0x71c8 <TB_Read+0x3a>
+    TB_SendAck(1, 0); // wrong checksum
+    71b4:	40 e0       	ldi	r20, 0x00	; 0
+    71b6:	50 e0       	ldi	r21, 0x00	; 0
+    71b8:	ba 01       	movw	r22, r20
+    71ba:	81 e0       	ldi	r24, 0x01	; 1
+    71bc:	0e 94 b3 38 	call	0x7166	; 0x7166 <TB_SendAck>
+    return 3; // bad checksum
+    71c0:	83 e0       	ldi	r24, 0x03	; 3
+    71c2:	08 95       	ret
+{
+  byte i;
+  byte sum;
+
+  // check address
+  if (TB_bufIn[TB_BUF_ADDRESS] != TB_AddrModule) return 2;
+    71c4:	82 e0       	ldi	r24, 0x02	; 2
+    71c6:	08 95       	ret
+    TB_SendAck(1, 0); // wrong checksum
+    return 3; // bad checksum
+  }
+
+  // we have valid data in TB_bufIn
+  return 0;
+    71c8:	80 e0       	ldi	r24, 0x00	; 0
+}
+    71ca:	08 95       	ret
+
+000071cc <TB_Decode>:
+
+/******************************************************/
+// decode incoming command
+// return = unhandled command number, 0=handled or unknown
+byte TB_Decode(void)
+{
+    71cc:	cf 92       	push	r12
+    71ce:	df 92       	push	r13
+    71d0:	ef 92       	push	r14
+    71d2:	ff 92       	push	r15
+    71d4:	1f 93       	push	r17
+    71d6:	cf 93       	push	r28
+    71d8:	df 93       	push	r29
+    71da:	1f 92       	push	r1
+    71dc:	cd b7       	in	r28, 0x3d	; 61
+    71de:	de b7       	in	r29, 0x3e	; 62
+	volatile byte b;
+	TB_Value = (((int32_t) TB_bufIn[4]) << 24) |
+    71e0:	20 91 a7 00 	lds	r18, 0x00A7
+			   (((int32_t) TB_bufIn[5]) << 16) |
+    71e4:	60 91 a8 00 	lds	r22, 0x00A8
+    71e8:	86 2f       	mov	r24, r22
+    71ea:	90 e0       	ldi	r25, 0x00	; 0
+    71ec:	a0 e0       	ldi	r26, 0x00	; 0
+    71ee:	b0 e0       	ldi	r27, 0x00	; 0
+    71f0:	dc 01       	movw	r26, r24
+    71f2:	99 27       	eor	r25, r25
+    71f4:	88 27       	eor	r24, r24
+// decode incoming command
+// return = unhandled command number, 0=handled or unknown
+byte TB_Decode(void)
+{
+	volatile byte b;
+	TB_Value = (((int32_t) TB_bufIn[4]) << 24) |
+    71f6:	b2 2b       	or	r27, r18
+			   (((int32_t) TB_bufIn[5]) << 16) |
+               (((int32_t) TB_bufIn[6]) <<  8) |
+               (((int32_t) TB_bufIn[7])      ) ;
+    71f8:	20 91 aa 00 	lds	r18, 0x00AA
+    71fc:	82 2b       	or	r24, r18
+byte TB_Decode(void)
+{
+	volatile byte b;
+	TB_Value = (((int32_t) TB_bufIn[4]) << 24) |
+			   (((int32_t) TB_bufIn[5]) << 16) |
+               (((int32_t) TB_bufIn[6]) <<  8) |
+    71fe:	20 91 a9 00 	lds	r18, 0x00A9
+    7202:	bc 01       	movw	r22, r24
+    7204:	cd 01       	movw	r24, r26
+    7206:	72 2b       	or	r23, r18
+// decode incoming command
+// return = unhandled command number, 0=handled or unknown
+byte TB_Decode(void)
+{
+	volatile byte b;
+	TB_Value = (((int32_t) TB_bufIn[4]) << 24) |
+    7208:	60 93 8f 00 	sts	0x008F, r22
+    720c:	70 93 90 00 	sts	0x0090, r23
+    7210:	80 93 91 00 	sts	0x0091, r24
+    7214:	90 93 92 00 	sts	0x0092, r25
+			   (((int32_t) TB_bufIn[5]) << 16) |
+               (((int32_t) TB_bufIn[6]) <<  8) |
+               (((int32_t) TB_bufIn[7])      ) ;
+
+	switch (TB_bufIn[TB_BUF_COMMAND])
+    7218:	10 91 a4 00 	lds	r17, 0x00A4
+    721c:	1a 30       	cpi	r17, 0x0A	; 10
+    721e:	09 f4       	brne	.+2      	; 0x7222 <TB_Decode+0x56>
+    7220:	6a c0       	rjmp	.+212    	; 0x72f6 <TB_Decode+0x12a>
+    7222:	30 f4       	brcc	.+12     	; 0x7230 <TB_Decode+0x64>
+    7224:	11 30       	cpi	r17, 0x01	; 1
+    7226:	09 f4       	brne	.+2      	; 0x722a <TB_Decode+0x5e>
+    7228:	93 c0       	rjmp	.+294    	; 0x7350 <TB_Decode+0x184>
+    722a:	19 30       	cpi	r17, 0x09	; 9
+    722c:	41 f0       	breq	.+16     	; 0x723e <TB_Decode+0x72>
+    722e:	89 c0       	rjmp	.+274    	; 0x7342 <TB_Decode+0x176>
+    7230:	1c 31       	cpi	r17, 0x1C	; 28
+    7232:	08 f4       	brcc	.+2      	; 0x7236 <TB_Decode+0x6a>
+    7234:	8d c0       	rjmp	.+282    	; 0x7350 <TB_Decode+0x184>
+    7236:	1f 3f       	cpi	r17, 0xFF	; 255
+    7238:	09 f4       	brne	.+2      	; 0x723c <TB_Decode+0x70>
+    723a:	8a c0       	rjmp	.+276    	; 0x7350 <TB_Decode+0x184>
+    723c:	82 c0       	rjmp	.+260    	; 0x7342 <TB_Decode+0x176>
+			break;
+		case READ_EEPROM:
+			return READ_EEPROM;
+			break;
+		case TB_CMD_SGP:
+			if (TB_bufIn[TB_BUF_MOTOR] != 0)
+    723e:	10 91 a6 00 	lds	r17, 0x00A6
+    7242:	11 23       	and	r17, r17
+    7244:	29 f0       	breq	.+10     	; 0x7250 <TB_Decode+0x84>
+			{
+				TB_SendAck(TB_ERR_VALUE, 0); // invalid value
+    7246:	40 e0       	ldi	r20, 0x00	; 0
+    7248:	50 e0       	ldi	r21, 0x00	; 0
+    724a:	ba 01       	movw	r22, r20
+    724c:	84 e0       	ldi	r24, 0x04	; 4
+    724e:	7d c0       	rjmp	.+250    	; 0x734a <TB_Decode+0x17e>
+			}
+			else
+			{
+				switch (TB_bufIn[TB_BUF_TYPE])
+    7250:	20 91 a5 00 	lds	r18, 0x00A5
+    7254:	21 34       	cpi	r18, 0x41	; 65
+    7256:	21 f1       	breq	.+72     	; 0x72a0 <TB_Decode+0xd4>
+    7258:	18 f4       	brcc	.+6      	; 0x7260 <TB_Decode+0x94>
+    725a:	20 34       	cpi	r18, 0x40	; 64
+    725c:	31 f0       	breq	.+12     	; 0x726a <TB_Decode+0x9e>
+    725e:	6c c0       	rjmp	.+216    	; 0x7338 <TB_Decode+0x16c>
+    7260:	22 34       	cpi	r18, 0x42	; 66
+    7262:	61 f1       	breq	.+88     	; 0x72bc <TB_Decode+0xf0>
+    7264:	2c 34       	cpi	r18, 0x4C	; 76
+    7266:	c1 f1       	breq	.+112    	; 0x72d8 <TB_Decode+0x10c>
+    7268:	67 c0       	rjmp	.+206    	; 0x7338 <TB_Decode+0x16c>
+				{
+					case TB_GBPARAM_EEMAGIC:
+						if (TB_Value != TB_gbparam.eemagic)
+    726a:	c0 90 9c 00 	lds	r12, 0x009C
+    726e:	d1 2c       	mov	r13, r1
+    7270:	e1 2c       	mov	r14, r1
+    7272:	f1 2c       	mov	r15, r1
+    7274:	6c 15       	cp	r22, r12
+    7276:	7d 05       	cpc	r23, r13
+    7278:	8e 05       	cpc	r24, r14
+    727a:	9f 05       	cpc	r25, r15
+    727c:	69 f0       	breq	.+26     	; 0x7298 <TB_Decode+0xcc>
+						{
+							TB_gbparam.eemagic = TB_Value;
+    727e:	60 93 9c 00 	sts	0x009C, r22
+							b = (void *) &(TB_gbparam.eemagic) - (void *) &(TB_gbparam);
+    7282:	19 82       	std	Y+1, r1	; 0x01
+							eeprom_update_byte(b+addr_setting_in_eeprom, TB_gbparam.eemagic);
+    7284:	49 81       	ldd	r20, Y+1	; 0x01
+    7286:	20 91 ac 00 	lds	r18, 0x00AC
+    728a:	30 91 ad 00 	lds	r19, 0x00AD
+    728e:	c9 01       	movw	r24, r18
+    7290:	84 0f       	add	r24, r20
+    7292:	91 1d       	adc	r25, r1
+    7294:	0e 94 e0 3b 	call	0x77c0	; 0x77c0 <eeprom_update_byte>
+						}
+						TB_SendAck(TB_ERR_OK, 0);
+    7298:	40 e0       	ldi	r20, 0x00	; 0
+    729a:	50 e0       	ldi	r21, 0x00	; 0
+    729c:	ba 01       	movw	r22, r20
+    729e:	48 c0       	rjmp	.+144    	; 0x7330 <TB_Decode+0x164>
+						break;
+					case TB_GBPARAM_BAUD:
+						if (TB_Value != TB_gbparam.baud)
+    72a0:	c0 90 9d 00 	lds	r12, 0x009D
+    72a4:	d1 2c       	mov	r13, r1
+    72a6:	e1 2c       	mov	r14, r1
+    72a8:	f1 2c       	mov	r15, r1
+    72aa:	6c 15       	cp	r22, r12
+    72ac:	7d 05       	cpc	r23, r13
+    72ae:	8e 05       	cpc	r24, r14
+    72b0:	9f 05       	cpc	r25, r15
+    72b2:	91 f3       	breq	.-28     	; 0x7298 <TB_Decode+0xcc>
+						{
+							TB_gbparam.baud = TB_Value;
+    72b4:	60 93 9d 00 	sts	0x009D, r22
+							b = (void *) &(TB_gbparam.baud) - (void *) &(TB_gbparam);
+    72b8:	21 e0       	ldi	r18, 0x01	; 1
+    72ba:	1b c0       	rjmp	.+54     	; 0x72f2 <TB_Decode+0x126>
+							eeprom_update_byte(b+addr_setting_in_eeprom, TB_gbparam.baud);
+						}
+						TB_SendAck(TB_ERR_OK, 0);
+						break;
+					case TB_GBPARAM_ADDRESS:
+						if (TB_Value != TB_gbparam.address)
+    72bc:	c0 90 9e 00 	lds	r12, 0x009E
+    72c0:	d1 2c       	mov	r13, r1
+    72c2:	e1 2c       	mov	r14, r1
+    72c4:	f1 2c       	mov	r15, r1
+    72c6:	6c 15       	cp	r22, r12
+    72c8:	7d 05       	cpc	r23, r13
+    72ca:	8e 05       	cpc	r24, r14
+    72cc:	9f 05       	cpc	r25, r15
+    72ce:	21 f3       	breq	.-56     	; 0x7298 <TB_Decode+0xcc>
+						{
+							TB_gbparam.address = TB_Value;
+    72d0:	60 93 9e 00 	sts	0x009E, r22
+					        b = (void *) &(TB_gbparam.address) - (void *) &(TB_gbparam);
+    72d4:	22 e0       	ldi	r18, 0x02	; 2
+    72d6:	0d c0       	rjmp	.+26     	; 0x72f2 <TB_Decode+0x126>
+							eeprom_update_byte(b+addr_setting_in_eeprom, TB_gbparam.address);
+						}
+						TB_SendAck(TB_ERR_OK, 0);
+						break;
+					case TB_GBPARAM_HOST_ADDR:
+						if (TB_Value != TB_gbparam.host_address)
+    72d8:	c0 90 a0 00 	lds	r12, 0x00A0
+    72dc:	d1 2c       	mov	r13, r1
+    72de:	e1 2c       	mov	r14, r1
+    72e0:	f1 2c       	mov	r15, r1
+    72e2:	6c 15       	cp	r22, r12
+    72e4:	7d 05       	cpc	r23, r13
+    72e6:	8e 05       	cpc	r24, r14
+    72e8:	9f 05       	cpc	r25, r15
+    72ea:	b1 f2       	breq	.-84     	; 0x7298 <TB_Decode+0xcc>
+						{
+							TB_gbparam.host_address = TB_Value;
+    72ec:	60 93 a0 00 	sts	0x00A0, r22
+							b = (void *) &(TB_gbparam.host_address) - (void *) &(TB_gbparam);
+    72f0:	24 e0       	ldi	r18, 0x04	; 4
+    72f2:	29 83       	std	Y+1, r18	; 0x01
+    72f4:	c7 cf       	rjmp	.-114    	; 0x7284 <TB_Decode+0xb8>
+						break;
+				}
+			}
+			break;
+		case TB_CMD_GGP:
+			if (TB_bufIn[TB_BUF_MOTOR] != 0)
+    72f6:	10 91 a6 00 	lds	r17, 0x00A6
+    72fa:	11 11       	cpse	r17, r1
+    72fc:	a4 cf       	rjmp	.-184    	; 0x7246 <TB_Decode+0x7a>
+			{
+				TB_SendAck(TB_ERR_VALUE, 0); // invalid value
+			}
+			else
+			{
+		        switch (TB_bufIn[TB_BUF_TYPE])
+    72fe:	80 91 a5 00 	lds	r24, 0x00A5
+    7302:	81 34       	cpi	r24, 0x41	; 65
+    7304:	69 f0       	breq	.+26     	; 0x7320 <TB_Decode+0x154>
+    7306:	28 f4       	brcc	.+10     	; 0x7312 <TB_Decode+0x146>
+    7308:	80 34       	cpi	r24, 0x40	; 64
+    730a:	b1 f4       	brne	.+44     	; 0x7338 <TB_Decode+0x16c>
+						break;
+					case TB_GBPARAM_HOST_ADDR:
+						TB_SendAck(TB_ERR_OK, TB_gbparam.host_address);
+						break;
+					case TB_GBPARAM_EEMAGIC:
+						TB_SendAck(TB_ERR_OK, TB_gbparam.eemagic);
+    730c:	40 91 9c 00 	lds	r20, 0x009C
+    7310:	0c c0       	rjmp	.+24     	; 0x732a <TB_Decode+0x15e>
+			{
+				TB_SendAck(TB_ERR_VALUE, 0); // invalid value
+			}
+			else
+			{
+		        switch (TB_bufIn[TB_BUF_TYPE])
+    7312:	82 34       	cpi	r24, 0x42	; 66
+    7314:	41 f0       	breq	.+16     	; 0x7326 <TB_Decode+0x15a>
+    7316:	8c 34       	cpi	r24, 0x4C	; 76
+    7318:	79 f4       	brne	.+30     	; 0x7338 <TB_Decode+0x16c>
+						break;
+					case TB_GBPARAM_ADDRESS:
+						TB_SendAck(TB_ERR_OK, TB_gbparam.address);
+						break;
+					case TB_GBPARAM_HOST_ADDR:
+						TB_SendAck(TB_ERR_OK, TB_gbparam.host_address);
+    731a:	40 91 a0 00 	lds	r20, 0x00A0
+    731e:	05 c0       	rjmp	.+10     	; 0x732a <TB_Decode+0x15e>
+			else
+			{
+		        switch (TB_bufIn[TB_BUF_TYPE])
+				{
+					case TB_GBPARAM_BAUD:
+						TB_SendAck(TB_ERR_OK, TB_gbparam.baud);
+    7320:	40 91 9d 00 	lds	r20, 0x009D
+    7324:	02 c0       	rjmp	.+4      	; 0x732a <TB_Decode+0x15e>
+						break;
+					case TB_GBPARAM_ADDRESS:
+						TB_SendAck(TB_ERR_OK, TB_gbparam.address);
+    7326:	40 91 9e 00 	lds	r20, 0x009E
+						break;
+					case TB_GBPARAM_HOST_ADDR:
+						TB_SendAck(TB_ERR_OK, TB_gbparam.host_address);
+						break;
+					case TB_GBPARAM_EEMAGIC:
+						TB_SendAck(TB_ERR_OK, TB_gbparam.eemagic);
+    732a:	50 e0       	ldi	r21, 0x00	; 0
+    732c:	60 e0       	ldi	r22, 0x00	; 0
+    732e:	70 e0       	ldi	r23, 0x00	; 0
+    7330:	84 e6       	ldi	r24, 0x64	; 100
+    7332:	0e 94 b3 38 	call	0x7166	; 0x7166 <TB_SendAck>
+						break;
+    7336:	0c c0       	rjmp	.+24     	; 0x7350 <TB_Decode+0x184>
+					default:
+						TB_SendAck(TB_ERR_VALUE, 0); // invalid value
+    7338:	40 e0       	ldi	r20, 0x00	; 0
+    733a:	50 e0       	ldi	r21, 0x00	; 0
+    733c:	ba 01       	movw	r22, r20
+    733e:	84 e0       	ldi	r24, 0x04	; 4
+    7340:	f8 cf       	rjmp	.-16     	; 0x7332 <TB_Decode+0x166>
+			break;
+		case EXIT_BOOTLOADER:
+			return EXIT_BOOTLOADER;
+			break;
+		default:
+			TB_SendAck(TB_ERR_COMMAND, 0); // invalid command
+    7342:	40 e0       	ldi	r20, 0x00	; 0
+    7344:	50 e0       	ldi	r21, 0x00	; 0
+    7346:	ba 01       	movw	r22, r20
+    7348:	82 e0       	ldi	r24, 0x02	; 2
+    734a:	0e 94 b3 38 	call	0x7166	; 0x7166 <TB_SendAck>
+			return 0;
+    734e:	10 e0       	ldi	r17, 0x00	; 0
+	}
+	return 0;
+}
+    7350:	81 2f       	mov	r24, r17
+    7352:	0f 90       	pop	r0
+    7354:	df 91       	pop	r29
+    7356:	cf 91       	pop	r28
+    7358:	1f 91       	pop	r17
+    735a:	ff 90       	pop	r15
+    735c:	ef 90       	pop	r14
+    735e:	df 90       	pop	r13
+    7360:	cf 90       	pop	r12
+    7362:	08 95       	ret
+
+00007364 <uart_pac_rx_size>:
+  return (uart0_buf_pac_rx_ptr_e == uart0_buf_pac_rx_ptr_b);
+}
+
+inline byte uart_pac_rx_size(void)
+{
+  return ((uart0_buf_pac_rx_ptr_e - uart0_buf_pac_rx_ptr_b) & UART0_BUFFER_PACKET_SIZE_MAX);
+    7364:	80 91 68 00 	lds	r24, 0x0068
+    7368:	90 91 69 00 	lds	r25, 0x0069
+    736c:	89 1b       	sub	r24, r25
+}
+    736e:	8f 70       	andi	r24, 0x0F	; 15
+    7370:	08 95       	ret
+
+00007372 <uart_get_char>:
+  return 9;
+}
+
+inline byte uart_rx_empty(void)
+{
+  return (uart0_buf_rx_ptr_e == uart0_buf_rx_ptr_b);
+    7372:	90 91 6d 00 	lds	r25, 0x006D
+    7376:	80 91 6e 00 	lds	r24, 0x006E
+  // read     -> b++, read *b
+  // interrupt safe -> read *(b+1); b++
+  byte ptr;
+  byte res;
+  
+  if (uart_rx_empty()) return 0;
+    737a:	98 17       	cp	r25, r24
+    737c:	61 f0       	breq	.+24     	; 0x7396 <uart_get_char+0x24>
+
+  ptr = (uart0_buf_rx_ptr_b+1) & UART0_BUFFER_LINEAR_SIZE_MAX;
+    737e:	90 91 6e 00 	lds	r25, 0x006E
+    7382:	9f 5f       	subi	r25, 0xFF	; 255
+    7384:	9f 70       	andi	r25, 0x0F	; 15
+  res = uart0_buf_rx[ptr];
+    7386:	e9 2f       	mov	r30, r25
+    7388:	f0 e0       	ldi	r31, 0x00	; 0
+    738a:	e8 5b       	subi	r30, 0xB8	; 184
+    738c:	fe 4f       	sbci	r31, 0xFE	; 254
+    738e:	80 81       	ld	r24, Z
+  uart0_buf_rx_ptr_b = ptr;
+    7390:	90 93 6e 00 	sts	0x006E, r25
+  return res;
+    7394:	08 95       	ret
+  // read     -> b++, read *b
+  // interrupt safe -> read *(b+1); b++
+  byte ptr;
+  byte res;
+  
+  if (uart_rx_empty()) return 0;
+    7396:	80 e0       	ldi	r24, 0x00	; 0
+  ptr = (uart0_buf_rx_ptr_b+1) & UART0_BUFFER_LINEAR_SIZE_MAX;
+  res = uart0_buf_rx[ptr];
+  uart0_buf_rx_ptr_b = ptr;
+  return res;
+  
+}
+    7398:	08 95       	ret
+
+0000739a <uart_receive_char>:
+{
+  // write    -> e++, write *e
+  // interrupt safe -> write *(e+1); e++
+  byte ptr;
+
+  ptr = (uart0_buf_rx_ptr_e+1) & UART0_BUFFER_LINEAR_SIZE_MAX;
+    739a:	90 91 6d 00 	lds	r25, 0x006D
+    739e:	9f 5f       	subi	r25, 0xFF	; 255
+    73a0:	9f 70       	andi	r25, 0x0F	; 15
+  uart0_buf_rx[ptr] = dat;
+    73a2:	e9 2f       	mov	r30, r25
+    73a4:	f0 e0       	ldi	r31, 0x00	; 0
+    73a6:	e8 5b       	subi	r30, 0xB8	; 184
+    73a8:	fe 4f       	sbci	r31, 0xFE	; 254
+    73aa:	80 83       	st	Z, r24
+  uart0_buf_rx_ptr_e = ptr;
+    73ac:	90 93 6d 00 	sts	0x006D, r25
+    73b0:	08 95       	ret
+
+000073b2 <uart_send_char>:
+char uart_send_char(void)
+{
+  byte ptr;
+  byte res;
+
+  ptr = uart0_buf_tx_ptr;
+    73b2:	90 91 6c 00 	lds	r25, 0x006C
+  res = uart0_buf_tx[ptr];
+    73b6:	e9 2f       	mov	r30, r25
+    73b8:	f0 e0       	ldi	r31, 0x00	; 0
+    73ba:	e1 55       	subi	r30, 0x51	; 81
+    73bc:	ff 4f       	sbci	r31, 0xFF	; 255
+    73be:	80 81       	ld	r24, Z
+  uart0_buf_tx_ptr = ptr+1;
+    73c0:	9f 5f       	subi	r25, 0xFF	; 255
+    73c2:	90 93 6c 00 	sts	0x006C, r25
+  return res;
+}
+    73c6:	08 95       	ret
+
+000073c8 <uart_send>:
+/******************************************************/
+// start sending TX buffer
+/******************************************************/
+void uart_send(void)
+{
+  if (uart0_flags.txing == FALSE) {
+    73c8:	80 91 65 00 	lds	r24, 0x0065
+    73cc:	80 fd       	sbrc	r24, 0
+    73ce:	0b c0       	rjmp	.+22     	; 0x73e6 <uart_send+0x1e>
+    // is some data in buffer ?
+    uart0_flags.txing = TRUE;
+    73d0:	80 91 65 00 	lds	r24, 0x0065
+    73d4:	81 60       	ori	r24, 0x01	; 1
+    73d6:	80 93 65 00 	sts	0x0065, r24
+    //uart0_tx_timeout = UART0_TX_TIMEOUT;
+    UART0_TX_ENA;  // tx mode
+    73da:	92 9a       	sbi	0x12, 2	; 18
+    uart0_buf_tx_ptr = 0; // send first byte from buffer
+    73dc:	10 92 6c 00 	sts	0x006C, r1
+    UART0_PROC_UDR = uart_send_char();
+    73e0:	0e 94 d9 39 	call	0x73b2	; 0x73b2 <uart_send_char>
+    73e4:	8c b9       	out	0x0c, r24	; 12
+    73e6:	08 95       	ret
+
+000073e8 <__vector_13>:
+
+/******************************************************/
+//
+/******************************************************/
+ISR(UART0_PROC_RX_vect)
+{
+    73e8:	1f 92       	push	r1
+    73ea:	0f 92       	push	r0
+    73ec:	0f b6       	in	r0, 0x3f	; 63
+    73ee:	0f 92       	push	r0
+    73f0:	11 24       	eor	r1, r1
+    73f2:	2f 93       	push	r18
+    73f4:	3f 93       	push	r19
+    73f6:	4f 93       	push	r20
+    73f8:	5f 93       	push	r21
+    73fa:	6f 93       	push	r22
+    73fc:	7f 93       	push	r23
+    73fe:	8f 93       	push	r24
+    7400:	9f 93       	push	r25
+    7402:	af 93       	push	r26
+    7404:	bf 93       	push	r27
+    7406:	ef 93       	push	r30
+    7408:	ff 93       	push	r31
+  byte tmpDat;
+  byte tmpStatus;
+  
+  uart0_rx_timeout = UART0_TIMEOUT;
+    740a:	85 e0       	ldi	r24, 0x05	; 5
+    740c:	80 93 67 00 	sts	0x0067, r24
+  tmpStatus = UART0_PROC_UCSRA;
+    7410:	8b b1       	in	r24, 0x0b	; 11
+  uart0_status |= tmpStatus;
+    7412:	90 91 66 00 	lds	r25, 0x0066
+    7416:	89 2b       	or	r24, r25
+    7418:	80 93 66 00 	sts	0x0066, r24
+  tmpDat = UART0_PROC_UDR;
+    741c:	8c b1       	in	r24, 0x0c	; 12
+  uart_receive_char(tmpDat);
+    741e:	0e 94 cd 39 	call	0x739a	; 0x739a <uart_receive_char>
+}
+    7422:	ff 91       	pop	r31
+    7424:	ef 91       	pop	r30
+    7426:	bf 91       	pop	r27
+    7428:	af 91       	pop	r26
+    742a:	9f 91       	pop	r25
+    742c:	8f 91       	pop	r24
+    742e:	7f 91       	pop	r23
+    7430:	6f 91       	pop	r22
+    7432:	5f 91       	pop	r21
+    7434:	4f 91       	pop	r20
+    7436:	3f 91       	pop	r19
+    7438:	2f 91       	pop	r18
+    743a:	0f 90       	pop	r0
+    743c:	0f be       	out	0x3f, r0	; 63
+    743e:	0f 90       	pop	r0
+    7440:	1f 90       	pop	r1
+    7442:	18 95       	reti
+
+00007444 <__vector_15>:
+
+/******************************************************/
+//
+/******************************************************/
+ISR(UART0_PROC_TX_vect)
+{
+    7444:	1f 92       	push	r1
+    7446:	0f 92       	push	r0
+    7448:	0f b6       	in	r0, 0x3f	; 63
+    744a:	0f 92       	push	r0
+    744c:	11 24       	eor	r1, r1
+    744e:	2f 93       	push	r18
+    7450:	3f 93       	push	r19
+    7452:	4f 93       	push	r20
+    7454:	5f 93       	push	r21
+    7456:	6f 93       	push	r22
+    7458:	7f 93       	push	r23
+    745a:	8f 93       	push	r24
+    745c:	9f 93       	push	r25
+    745e:	af 93       	push	r26
+    7460:	bf 93       	push	r27
+    7462:	ef 93       	push	r30
+    7464:	ff 93       	push	r31
+  byte tmpDat;
+
+  // ???
+  if (uart0_flags.txing == FALSE) return;
+    7466:	80 91 65 00 	lds	r24, 0x0065
+    746a:	80 ff       	sbrs	r24, 0
+    746c:	0e c0       	rjmp	.+28     	; 0x748a <__vector_15+0x46>
+
+  // is next data in buffer?
+  if (uart0_buf_tx_ptr > 8) {
+    746e:	80 91 6c 00 	lds	r24, 0x006C
+    7472:	89 30       	cpi	r24, 0x09	; 9
+    7474:	38 f0       	brcs	.+14     	; 0x7484 <__vector_15+0x40>
+    // whole buffer was sended
+    uart0_flags.txing = FALSE;
+    7476:	80 91 65 00 	lds	r24, 0x0065
+    747a:	8e 7f       	andi	r24, 0xFE	; 254
+    747c:	80 93 65 00 	sts	0x0065, r24
+    // if whole packed was send, wait for response
+    //uart0_flags.wait_tx = TRUE;
+    UART0_TX_DIS;   // rx mode
+    7480:	92 98       	cbi	0x12, 2	; 18
+    return;
+    7482:	03 c0       	rjmp	.+6      	; 0x748a <__vector_15+0x46>
+  } else {
+    // send next byte
+    tmpDat = uart_send_char();
+    7484:	0e 94 d9 39 	call	0x73b2	; 0x73b2 <uart_send_char>
+    UART0_PROC_UDR = tmpDat;
+    7488:	8c b9       	out	0x0c, r24	; 12
+  }
+}
+    748a:	ff 91       	pop	r31
+    748c:	ef 91       	pop	r30
+    748e:	bf 91       	pop	r27
+    7490:	af 91       	pop	r26
+    7492:	9f 91       	pop	r25
+    7494:	8f 91       	pop	r24
+    7496:	7f 91       	pop	r23
+    7498:	6f 91       	pop	r22
+    749a:	5f 91       	pop	r21
+    749c:	4f 91       	pop	r20
+    749e:	3f 91       	pop	r19
+    74a0:	2f 91       	pop	r18
+    74a2:	0f 90       	pop	r0
+    74a4:	0f be       	out	0x3f, r0	; 63
+    74a6:	0f 90       	pop	r0
+    74a8:	1f 90       	pop	r1
+    74aa:	18 95       	reti
+
+000074ac <uart0_init>:
+// Initialization
+void uart0_init(void)
+{
+  // UART port
+
+  UART0_PROC_UBRRL = (F_CPU / (16UL * UART0_DEFAULT_BAUD)) - 1;
+    74ac:	87 e0       	ldi	r24, 0x07	; 7
+    74ae:	89 b9       	out	0x09, r24	; 9
+
+  UART0_PROC_UCSRB |= BV(UART0_PROC_TXEN) | BV(UART0_PROC_RXEN); /* tx/rx enable */
+    74b0:	8a b1       	in	r24, 0x0a	; 10
+    74b2:	88 61       	ori	r24, 0x18	; 24
+    74b4:	8a b9       	out	0x0a, r24	; 10
+// Enable/disable interrupts
+/******************************************************/
+void uart_interrupt_rx(byte enable)
+{
+  if (enable)
+    UART0_PROC_UCSRB |= BV(UART0_PROC_RXCIE);
+    74b6:	57 9a       	sbi	0x0a, 7	; 10
+}
+
+void uart_interrupt_tx(byte enable)
+{
+  if (enable)
+    UART0_PROC_UCSRB |= BV(UART0_PROC_TXCIE);
+    74b8:	56 9a       	sbi	0x0a, 6	; 10
+
+  UART0_PROC_UCSRB |= BV(UART0_PROC_TXEN) | BV(UART0_PROC_RXEN); /* tx/rx enable */
+
+  uart_interrupt_rx(TRUE);
+  uart_interrupt_tx(TRUE);
+  uart0_status = 0;
+    74ba:	10 92 66 00 	sts	0x0066, r1
+    74be:	08 95       	ret
+
+000074c0 <uart0_process>:
+}
+
+//----------------------------------------------------------
+// process internal logic
+void uart0_process(void)
+{
+    74c0:	cf 92       	push	r12
+    74c2:	df 92       	push	r13
+    74c4:	ef 92       	push	r14
+    74c6:	ff 92       	push	r15
+    74c8:	0f 93       	push	r16
+    74ca:	1f 93       	push	r17
+    74cc:	cf 93       	push	r28
+  return ((uart0_buf_pac_rx_ptr_e - uart0_buf_pac_rx_ptr_b) & UART0_BUFFER_PACKET_SIZE_MAX);
+}
+
+inline byte uart_pac_tx_empty(void)
+{
+  return (uart0_buf_pac_tx_ptr_e == uart0_buf_pac_tx_ptr_b);
+    74ce:	90 91 6a 00 	lds	r25, 0x006A
+    74d2:	80 91 6b 00 	lds	r24, 0x006B
+  byte iptr;
+  byte sum;
+  byte *ptr;
+
+  // pøedává zpravy na odvysílání z paketového do lineárního bufferu
+  if (!uart_pac_tx_empty()) {
+    74d6:	98 17       	cp	r25, r24
+    74d8:	01 f1       	breq	.+64     	; 0x751a <uart0_process+0x5a>
+    // jsou data k odesláni ?
+    if ((!uart0_flags.txing)) {
+    74da:	80 91 65 00 	lds	r24, 0x0065
+    74de:	80 fd       	sbrc	r24, 0
+    74e0:	1c c0       	rjmp	.+56     	; 0x751a <uart0_process+0x5a>
+      // nevysíláme ?
+      // zaèneme vysílat další zprávu
+      iptr = (uart0_buf_pac_tx_ptr_b+1) & UART0_BUFFER_PACKET_SIZE_MAX;
+    74e2:	80 91 6b 00 	lds	r24, 0x006B
+    74e6:	8f 5f       	subi	r24, 0xFF	; 255
+    74e8:	8f 70       	andi	r24, 0x0F	; 15
+      ptr = (byte *) &(uart0_buf_pac_tx[iptr].b[0]);
+    74ea:	99 e0       	ldi	r25, 0x09	; 9
+    74ec:	89 9f       	mul	r24, r25
+    74ee:	f0 01       	movw	r30, r0
+    74f0:	11 24       	eor	r1, r1
+    74f2:	e8 5a       	subi	r30, 0xA8	; 168
+    74f4:	fe 4f       	sbci	r31, 0xFE	; 254
+    74f6:	20 e0       	ldi	r18, 0x00	; 0
+    74f8:	30 e0       	ldi	r19, 0x00	; 0
+      for (i=0; i<9; i++) {
+        uart0_buf_tx[i] = *ptr;
+    74fa:	91 91       	ld	r25, Z+
+    74fc:	d9 01       	movw	r26, r18
+    74fe:	a1 55       	subi	r26, 0x51	; 81
+    7500:	bf 4f       	sbci	r27, 0xFF	; 255
+    7502:	9c 93       	st	X, r25
+    7504:	2f 5f       	subi	r18, 0xFF	; 255
+    7506:	3f 4f       	sbci	r19, 0xFF	; 255
+    if ((!uart0_flags.txing)) {
+      // nevysíláme ?
+      // zaèneme vysílat další zprávu
+      iptr = (uart0_buf_pac_tx_ptr_b+1) & UART0_BUFFER_PACKET_SIZE_MAX;
+      ptr = (byte *) &(uart0_buf_pac_tx[iptr].b[0]);
+      for (i=0; i<9; i++) {
+    7508:	29 30       	cpi	r18, 0x09	; 9
+    750a:	31 05       	cpc	r19, r1
+    750c:	b1 f7       	brne	.-20     	; 0x74fa <uart0_process+0x3a>
+        uart0_buf_tx[i] = *ptr;
+        ptr++;
+      }
+      uart0_buf_pac_tx_ptr_b = iptr;
+    750e:	80 93 6b 00 	sts	0x006B, r24
+      uart0_buf_tx_ptr = 0;
+    7512:	10 92 6c 00 	sts	0x006C, r1
+      uart_send();
+    7516:	0e 94 e4 39 	call	0x73c8	; 0x73c8 <uart_send>
+    }
+  }
+
+  // kontroluje pøijatá data
+  if ((!uart0_flags.data_received) && (uart_rx_size() > 8)) {
+    751a:	80 91 65 00 	lds	r24, 0x0065
+    751e:	83 fd       	sbrc	r24, 3
+    7520:	4b c0       	rjmp	.+150    	; 0x75b8 <uart0_process+0xf8>
+/******************************************************/
+// Useful functions
+/******************************************************/
+inline byte uart_rx_size(void)
+{
+  return ((uart0_buf_rx_ptr_e - uart0_buf_rx_ptr_b) & UART0_BUFFER_LINEAR_SIZE_MAX);
+    7522:	80 91 6d 00 	lds	r24, 0x006D
+    7526:	90 91 6e 00 	lds	r25, 0x006E
+    752a:	89 1b       	sub	r24, r25
+    752c:	8f 70       	andi	r24, 0x0F	; 15
+      uart_send();
+    }
+  }
+
+  // kontroluje pøijatá data
+  if ((!uart0_flags.data_received) && (uart_rx_size() > 8)) {
+    752e:	89 30       	cpi	r24, 0x09	; 9
+    7530:	08 f4       	brcc	.+2      	; 0x7534 <uart0_process+0x74>
+    7532:	42 c0       	rjmp	.+132    	; 0x75b8 <uart0_process+0xf8>
+    // máme alespoò 9 bytù dat a nejsou nezpracovaná data?
+
+
+    // zjístíme adresu volného místa v paketovém pøijímacm bufferu
+    iptr = (uart0_buf_pac_rx_ptr_e+1) & UART0_BUFFER_PACKET_SIZE_MAX;
+    7534:	c0 91 68 00 	lds	r28, 0x0068
+    7538:	cf 5f       	subi	r28, 0xFF	; 255
+    753a:	cf 70       	andi	r28, 0x0F	; 15
+    ptr = (byte *) &(uart0_buf_pac_rx[iptr].b[0]);
+    753c:	ec 2e       	mov	r14, r28
+    753e:	f1 2c       	mov	r15, r1
+    7540:	e9 e0       	ldi	r30, 0x09	; 9
+    7542:	ce 9f       	mul	r28, r30
+    7544:	80 01       	movw	r16, r0
+    7546:	11 24       	eor	r1, r1
+    7548:	08 54       	subi	r16, 0x48	; 72
+    754a:	1f 4f       	sbci	r17, 0xFF	; 255
+    754c:	68 01       	movw	r12, r16
+    754e:	f9 e0       	ldi	r31, 0x09	; 9
+    7550:	cf 0e       	add	r12, r31
+    7552:	d1 1c       	adc	r13, r1
+
+    // pøedáme do paketového pøijímacího bufferu
+    for(i=0; i<9; i++) {
+      *ptr = uart_get_char();
+    7554:	0e 94 b9 39 	call	0x7372	; 0x7372 <uart_get_char>
+    7558:	f8 01       	movw	r30, r16
+    755a:	81 93       	st	Z+, r24
+    755c:	8f 01       	movw	r16, r30
+    // zjístíme adresu volného místa v paketovém pøijímacm bufferu
+    iptr = (uart0_buf_pac_rx_ptr_e+1) & UART0_BUFFER_PACKET_SIZE_MAX;
+    ptr = (byte *) &(uart0_buf_pac_rx[iptr].b[0]);
+
+    // pøedáme do paketového pøijímacího bufferu
+    for(i=0; i<9; i++) {
+    755e:	ec 15       	cp	r30, r12
+    7560:	fd 05       	cpc	r31, r13
+    7562:	c1 f7       	brne	.-16     	; 0x7554 <uart0_process+0x94>
+    7564:	f9 e0       	ldi	r31, 0x09	; 9
+    7566:	cf 9f       	mul	r28, r31
+    7568:	a0 01       	movw	r20, r0
+    756a:	11 24       	eor	r1, r1
+    756c:	80 e0       	ldi	r24, 0x00	; 0
+    756e:	90 e0       	ldi	r25, 0x00	; 0
+    7570:	20 e0       	ldi	r18, 0x00	; 0
+    7572:	fc 01       	movw	r30, r24
+    7574:	e4 0f       	add	r30, r20
+    7576:	f5 1f       	adc	r31, r21
+    7578:	e8 54       	subi	r30, 0x48	; 72
+    757a:	ff 4f       	sbci	r31, 0xFF	; 255
+    }
+    
+    // odpovídá kontrolní souèet?
+    sum = 0;
+    for(i=0; i<8; i++) {
+      sum += uart0_buf_pac_rx[iptr].b[i];
+    757c:	30 81       	ld	r19, Z
+    757e:	23 0f       	add	r18, r19
+    7580:	01 96       	adiw	r24, 0x01	; 1
+      //uart0_buf_pac_rx[0].b[i] = uart_get_char(); 
+    }
+    
+    // odpovídá kontrolní souèet?
+    sum = 0;
+    for(i=0; i<8; i++) {
+    7582:	88 30       	cpi	r24, 0x08	; 8
+    7584:	91 05       	cpc	r25, r1
+    7586:	a9 f7       	brne	.-22     	; 0x7572 <uart0_process+0xb2>
+      sum += uart0_buf_pac_rx[iptr].b[i];
+    }
+    if (sum == uart0_buf_pac_rx[iptr].b[8]) {
+    7588:	89 e0       	ldi	r24, 0x09	; 9
+    758a:	8e 9d       	mul	r24, r14
+    758c:	f0 01       	movw	r30, r0
+    758e:	8f 9d       	mul	r24, r15
+    7590:	f0 0d       	add	r31, r0
+    7592:	11 24       	eor	r1, r1
+    7594:	e8 54       	subi	r30, 0x48	; 72
+    7596:	ff 4f       	sbci	r31, 0xFF	; 255
+    7598:	80 85       	ldd	r24, Z+8	; 0x08
+    759a:	28 13       	cpse	r18, r24
+    759c:	08 c0       	rjmp	.+16     	; 0x75ae <uart0_process+0xee>
+      // souèet v poøádku
+      uart0_flags.data_received = TRUE; 
+    759e:	80 91 65 00 	lds	r24, 0x0065
+    75a2:	88 60       	ori	r24, 0x08	; 8
+    75a4:	80 93 65 00 	sts	0x0065, r24
+      uart0_buf_pac_rx_ptr_e = iptr;
+    75a8:	c0 93 68 00 	sts	0x0068, r28
+    75ac:	05 c0       	rjmp	.+10     	; 0x75b8 <uart0_process+0xf8>
+
+     } else {
+      uart0_flags.data_receive_error = TRUE;
+    75ae:	80 91 65 00 	lds	r24, 0x0065
+    75b2:	80 61       	ori	r24, 0x10	; 16
+    75b4:	80 93 65 00 	sts	0x0065, r24
+    }
+  }
+
+}
+    75b8:	cf 91       	pop	r28
+    75ba:	1f 91       	pop	r17
+    75bc:	0f 91       	pop	r16
+    75be:	ff 90       	pop	r15
+    75c0:	ef 90       	pop	r14
+    75c2:	df 90       	pop	r13
+    75c4:	cf 90       	pop	r12
+    75c6:	08 95       	ret
+
+000075c8 <uart0_ISR_timer>:
+void uart0_ISR_timer(void)
+{
+  static byte uart0_rx_timeout_flag = 0;
+  
+  // smazání náhodnì pøijatých dat
+  if (uart0_rx_timeout > 0) {
+    75c8:	80 91 67 00 	lds	r24, 0x0067
+    75cc:	88 23       	and	r24, r24
+    75ce:	41 f0       	breq	.+16     	; 0x75e0 <uart0_ISR_timer+0x18>
+    uart0_rx_timeout--;
+    75d0:	80 91 67 00 	lds	r24, 0x0067
+    75d4:	81 50       	subi	r24, 0x01	; 1
+    75d6:	80 93 67 00 	sts	0x0067, r24
+    uart0_rx_timeout_flag = FALSE;
+    75da:	10 92 64 00 	sts	0x0064, r1
+    75de:	08 95       	ret
+    } else {
+    if (!uart0_rx_timeout_flag) {
+    75e0:	80 91 64 00 	lds	r24, 0x0064
+    75e4:	81 11       	cpse	r24, r1
+    75e6:	07 c0       	rjmp	.+14     	; 0x75f6 <uart0_ISR_timer+0x2e>
+      uart0_buf_rx_ptr_b = uart0_buf_rx_ptr_e;
+    75e8:	80 91 6d 00 	lds	r24, 0x006D
+    75ec:	80 93 6e 00 	sts	0x006E, r24
+      uart0_rx_timeout_flag = TRUE;
+    75f0:	81 e0       	ldi	r24, 0x01	; 1
+    75f2:	80 93 64 00 	sts	0x0064, r24
+    75f6:	08 95       	ret
+
+000075f8 <uart0_get_data_begin>:
+// must be called uart0_get_data_end() at end of handling data
+byte * uart0_get_data_begin(void)
+{
+  byte iptr;
+  
+  iptr = (uart0_buf_pac_rx_ptr_b+1) & UART0_BUFFER_PACKET_SIZE_MAX;
+    75f8:	80 91 69 00 	lds	r24, 0x0069
+    75fc:	8f 5f       	subi	r24, 0xFF	; 255
+    75fe:	8f 70       	andi	r24, 0x0F	; 15
+  return (byte *) &uart0_buf_pac_rx[iptr].b[0];
+    7600:	29 e0       	ldi	r18, 0x09	; 9
+    7602:	82 9f       	mul	r24, r18
+    7604:	c0 01       	movw	r24, r0
+    7606:	11 24       	eor	r1, r1
+}
+    7608:	88 54       	subi	r24, 0x48	; 72
+    760a:	9f 4f       	sbci	r25, 0xFF	; 255
+    760c:	08 95       	ret
+
+0000760e <uart0_get_data_end>:
+// must be called after uart0_get_data_begin()
+byte uart0_get_data_end(void)
+{
+  byte i;
+  
+  i = (uart0_buf_pac_rx_ptr_b+1) & UART0_BUFFER_PACKET_SIZE_MAX;
+    760e:	80 91 69 00 	lds	r24, 0x0069
+    7612:	8f 5f       	subi	r24, 0xFF	; 255
+    7614:	8f 70       	andi	r24, 0x0F	; 15
+  uart0_buf_pac_rx_ptr_b = i;
+    7616:	80 93 69 00 	sts	0x0069, r24
+  
+  i = uart_pac_rx_size();
+    761a:	0e 94 b2 39 	call	0x7364	; 0x7364 <uart_pac_rx_size>
+  if (i == 0) {
+    761e:	81 11       	cpse	r24, r1
+    7620:	05 c0       	rjmp	.+10     	; 0x762c <uart0_get_data_end+0x1e>
+    uart0_flags.data_received = FALSE;
+    7622:	90 91 65 00 	lds	r25, 0x0065
+    7626:	97 7f       	andi	r25, 0xF7	; 247
+    7628:	90 93 65 00 	sts	0x0065, r25
+  }
+  return i;
+}
+    762c:	08 95       	ret
+
+0000762e <uart0_put_data>:
+
+
+//----------------------------------------------------------
+// send packet pointed by dataptr
+void uart0_put_data(byte * dataptr)
+{
+    762e:	cf 93       	push	r28
+    7630:	df 93       	push	r29
+    7632:	fc 01       	movw	r30, r24
+  byte i;
+  byte iptr;
+  byte sum;
+
+  iptr = (uart0_buf_pac_tx_ptr_e+1) & UART0_BUFFER_PACKET_SIZE_MAX;
+    7634:	90 91 6a 00 	lds	r25, 0x006A
+    7638:	9f 5f       	subi	r25, 0xFF	; 255
+    763a:	9f 70       	andi	r25, 0x0F	; 15
+    763c:	89 e0       	ldi	r24, 0x09	; 9
+    763e:	98 9f       	mul	r25, r24
+    7640:	e0 01       	movw	r28, r0
+    7642:	11 24       	eor	r1, r1
+    7644:	20 e0       	ldi	r18, 0x00	; 0
+    7646:	30 e0       	ldi	r19, 0x00	; 0
+
+  sum = 0;
+    7648:	40 e0       	ldi	r20, 0x00	; 0
+  // copy data with sum
+  for(i=0; i<8; i++) {
+    uart0_buf_pac_tx[iptr].b[i] = *dataptr;
+    764a:	69 2f       	mov	r22, r25
+    764c:	70 e0       	ldi	r23, 0x00	; 0
+    764e:	80 81       	ld	r24, Z
+    7650:	d9 01       	movw	r26, r18
+    7652:	ac 0f       	add	r26, r28
+    7654:	bd 1f       	adc	r27, r29
+    7656:	a8 5a       	subi	r26, 0xA8	; 168
+    7658:	be 4f       	sbci	r27, 0xFE	; 254
+    765a:	8c 93       	st	X, r24
+    sum += *dataptr;
+    765c:	81 91       	ld	r24, Z+
+    765e:	48 0f       	add	r20, r24
+    7660:	2f 5f       	subi	r18, 0xFF	; 255
+    7662:	3f 4f       	sbci	r19, 0xFF	; 255
+
+  iptr = (uart0_buf_pac_tx_ptr_e+1) & UART0_BUFFER_PACKET_SIZE_MAX;
+
+  sum = 0;
+  // copy data with sum
+  for(i=0; i<8; i++) {
+    7664:	28 30       	cpi	r18, 0x08	; 8
+    7666:	31 05       	cpc	r19, r1
+    7668:	91 f7       	brne	.-28     	; 0x764e <uart0_put_data+0x20>
+    uart0_buf_pac_tx[iptr].b[i] = *dataptr;
+    sum += *dataptr;
+    dataptr++;
+  }
+  uart0_buf_pac_tx[iptr].n.sum = sum; // save calculated sum
+    766a:	89 e0       	ldi	r24, 0x09	; 9
+    766c:	86 9f       	mul	r24, r22
+    766e:	f0 01       	movw	r30, r0
+    7670:	87 9f       	mul	r24, r23
+    7672:	f0 0d       	add	r31, r0
+    7674:	11 24       	eor	r1, r1
+    7676:	e8 5a       	subi	r30, 0xA8	; 168
+    7678:	fe 4f       	sbci	r31, 0xFE	; 254
+    767a:	40 87       	std	Z+8, r20	; 0x08
+
+  uart0_buf_pac_tx_ptr_e = iptr;
+    767c:	90 93 6a 00 	sts	0x006A, r25
+}
+    7680:	df 91       	pop	r29
+    7682:	cf 91       	pop	r28
+    7684:	08 95       	ret
+
+00007686 <uart0_set_baud>:
+// Set from default baud rates
+#define MACRO_BAUDRATE(BAUDRATE) (UART0_PROC_UBRRL = (F_CPU / (16UL * BAUDRATE)) - 1)
+void uart0_set_baud(byte baud)
+{
+  // UART port
+  switch (baud) {
+    7686:	90 e0       	ldi	r25, 0x00	; 0
+    7688:	8b 30       	cpi	r24, 0x0B	; 11
+    768a:	91 05       	cpc	r25, r1
+    768c:	c8 f4       	brcc	.+50     	; 0x76c0 <uart0_set_baud+0x3a>
+    768e:	fc 01       	movw	r30, r24
+    7690:	e6 5d       	subi	r30, 0xD6	; 214
+    7692:	f7 4c       	sbci	r31, 0xC7	; 199
+    7694:	0c 94 ca 3b 	jmp	0x7794	; 0x7794 <__tablejump2__>
+    case 0:  
+      MACRO_BAUDRATE(9600);
+    7698:	8f e5       	ldi	r24, 0x5F	; 95
+    769a:	13 c0       	rjmp	.+38     	; 0x76c2 <uart0_set_baud+0x3c>
+      break;
+    case 1:  
+      MACRO_BAUDRATE(14400);
+    769c:	8f e3       	ldi	r24, 0x3F	; 63
+    769e:	11 c0       	rjmp	.+34     	; 0x76c2 <uart0_set_baud+0x3c>
+      break;
+    case 2:  
+      MACRO_BAUDRATE(19200);
+      break;
+    case 3:  
+      MACRO_BAUDRATE(28800);
+    76a0:	8f e1       	ldi	r24, 0x1F	; 31
+    76a2:	0f c0       	rjmp	.+30     	; 0x76c2 <uart0_set_baud+0x3c>
+      break;
+    case 4:  
+      MACRO_BAUDRATE(38400);
+    76a4:	87 e1       	ldi	r24, 0x17	; 23
+    76a6:	0d c0       	rjmp	.+26     	; 0x76c2 <uart0_set_baud+0x3c>
+      break;
+    case 5:  
+      MACRO_BAUDRATE(57600);
+    76a8:	8f e0       	ldi	r24, 0x0F	; 15
+    76aa:	0b c0       	rjmp	.+22     	; 0x76c2 <uart0_set_baud+0x3c>
+      break;
+    case 6:  
+      MACRO_BAUDRATE(76800);
+    76ac:	8b e0       	ldi	r24, 0x0B	; 11
+    76ae:	09 c0       	rjmp	.+18     	; 0x76c2 <uart0_set_baud+0x3c>
+      break;
+    case 7:  
+      MACRO_BAUDRATE(115200);
+    76b0:	87 e0       	ldi	r24, 0x07	; 7
+    76b2:	07 c0       	rjmp	.+14     	; 0x76c2 <uart0_set_baud+0x3c>
+      break;
+    case 8:  
+      MACRO_BAUDRATE(230400);
+    76b4:	83 e0       	ldi	r24, 0x03	; 3
+    76b6:	05 c0       	rjmp	.+10     	; 0x76c2 <uart0_set_baud+0x3c>
+      break;
+    case 9:  
+      MACRO_BAUDRATE(250000);
+    76b8:	82 e0       	ldi	r24, 0x02	; 2
+    76ba:	03 c0       	rjmp	.+6      	; 0x76c2 <uart0_set_baud+0x3c>
+      break;
+    case 10:  
+      MACRO_BAUDRATE(500000);
+    76bc:	19 b8       	out	0x09, r1	; 9
+      break;
+    76be:	08 95       	ret
+    default:  
+      MACRO_BAUDRATE(19200);
+    76c0:	8f e2       	ldi	r24, 0x2F	; 47
+    76c2:	89 b9       	out	0x09, r24	; 9
+    76c4:	08 95       	ret
+
+000076c6 <send_data>:
+
+
+
+void send_data(void)
+{
+	uart0_put_data((byte *) &TB_bufOut);
+    76c6:	83 e9       	ldi	r24, 0x93	; 147
+    76c8:	90 e0       	ldi	r25, 0x00	; 0
+    76ca:	0c 94 17 3b 	jmp	0x762e	; 0x762e <uart0_put_data>
+
+000076ce <__vector_6>:
+}
+
+//----------------------------------------------------------
+ISR(TIMER1_CAPT_vect) {
+    76ce:	1f 92       	push	r1
+    76d0:	0f 92       	push	r0
+    76d2:	0f b6       	in	r0, 0x3f	; 63
+    76d4:	0f 92       	push	r0
+    76d6:	11 24       	eor	r1, r1
+    76d8:	8f 93       	push	r24
+	// T = 10ms
+	
+	timer0_flag = TRUE;
+    76da:	81 e0       	ldi	r24, 0x01	; 1
+    76dc:	80 93 70 00 	sts	0x0070, r24
+	
+}
+    76e0:	8f 91       	pop	r24
+    76e2:	0f 90       	pop	r0
+    76e4:	0f be       	out	0x3f, r0	; 63
+    76e6:	0f 90       	pop	r0
+    76e8:	1f 90       	pop	r1
+    76ea:	18 95       	reti
+
+000076ec <process_timer_100Hz>:
+
+//----------------------------------------------------------
+void process_timer_100Hz(void)
+{
+	if (timer0_flag) { // T = 10ms
+    76ec:	80 91 70 00 	lds	r24, 0x0070
+    76f0:	88 23       	and	r24, r24
+    76f2:	59 f0       	breq	.+22     	; 0x770a <process_timer_100Hz+0x1e>
+		timer0_flag = FALSE;
+    76f4:	10 92 70 00 	sts	0x0070, r1
+		uart0_ISR_timer();
+    76f8:	0e 94 e4 3a 	call	0x75c8	; 0x75c8 <uart0_ISR_timer>
+		if (led_timer > 0) {
+    76fc:	80 91 6f 00 	lds	r24, 0x006F
+    7700:	88 23       	and	r24, r24
+    7702:	19 f0       	breq	.+6      	; 0x770a <process_timer_100Hz+0x1e>
+			led_timer--;
+    7704:	81 50       	subi	r24, 0x01	; 1
+    7706:	80 93 6f 00 	sts	0x006F, r24
+    770a:	08 95       	ret
+
+0000770c <try_receive_data>:
+void try_receive_data(void)
+{
+	byte i;
+	byte *ptr;
+	
+	if (uart0_flags.data_received)
+    770c:	80 91 65 00 	lds	r24, 0x0065
+    7710:	83 ff       	sbrs	r24, 3
+    7712:	19 c0       	rjmp	.+50     	; 0x7746 <try_receive_data+0x3a>
+	{
+		ptr = uart0_get_data_begin();
+    7714:	0e 94 fc 3a 	call	0x75f8	; 0x75f8 <uart0_get_data_begin>
+    7718:	e3 ea       	ldi	r30, 0xA3	; 163
+    771a:	f0 e0       	ldi	r31, 0x00	; 0
+    771c:	29 e0       	ldi	r18, 0x09	; 9
+    771e:	2e 0f       	add	r18, r30
+		for (i=0; i<9; i++)
+		{
+			TB_bufIn[i] = *ptr;
+    7720:	dc 01       	movw	r26, r24
+    7722:	3d 91       	ld	r19, X+
+    7724:	cd 01       	movw	r24, r26
+    7726:	31 93       	st	Z+, r19
+	byte *ptr;
+	
+	if (uart0_flags.data_received)
+	{
+		ptr = uart0_get_data_begin();
+		for (i=0; i<9; i++)
+    7728:	2e 13       	cpse	r18, r30
+    772a:	fa cf       	rjmp	.-12     	; 0x7720 <try_receive_data+0x14>
+		{
+			TB_bufIn[i] = *ptr;
+			ptr++;
+		}
+		uart0_get_data_end();
+    772c:	0e 94 07 3b 	call	0x760e	; 0x760e <uart0_get_data_end>
+		uart0_flags.data_received = FALSE;
+    7730:	80 91 65 00 	lds	r24, 0x0065
+    7734:	87 7f       	andi	r24, 0xF7	; 247
+    7736:	80 93 65 00 	sts	0x0065, r24
+		if (TB_Read() == 0)
+    773a:	0e 94 c7 38 	call	0x718e	; 0x718e <TB_Read>
+    773e:	81 11       	cpse	r24, r1
+    7740:	02 c0       	rjmp	.+4      	; 0x7746 <try_receive_data+0x3a>
+		{
+			switch (TB_Decode())
+    7742:	0c 94 e6 38 	jmp	0x71cc	; 0x71cc <TB_Decode>
+    7746:	08 95       	ret
+
+00007748 <main>:
+
+int main(void)
+{
+	
+    /* Replace with your application code */
+	cli();
+    7748:	f8 94       	cli
+	
+	
+	//Nastavení Systemového enable pro RS485 pro UART0
+	DDRD |= (1 << DDD1) | (1 << DDD2);
+    774a:	81 b3       	in	r24, 0x11	; 17
+    774c:	86 60       	ori	r24, 0x06	; 6
+    774e:	81 bb       	out	0x11, r24	; 17
+	
+	DDRA |= (1 << DDA7) | (1 << DDA6) | (1 << DDA5);
+    7750:	8a b3       	in	r24, 0x1a	; 26
+    7752:	80 6e       	ori	r24, 0xE0	; 224
+    7754:	8a bb       	out	0x1a, r24	; 26
+	
+	timer_init();
+    7756:	0e 94 54 38 	call	0x70a8	; 0x70a8 <timer_init>
+	
+	uart0_init();
+    775a:	0e 94 56 3a 	call	0x74ac	; 0x74ac <uart0_init>
+	TB_Callback_setBaud = &uart0_set_baud;
+    775e:	83 e4       	ldi	r24, 0x43	; 67
+    7760:	9b e3       	ldi	r25, 0x3B	; 59
+    7762:	90 93 61 00 	sts	0x0061, r25
+    7766:	80 93 60 00 	sts	0x0060, r24
+	TB_Callback_TX = &send_data;
+    776a:	83 e6       	ldi	r24, 0x63	; 99
+    776c:	9b e3       	ldi	r25, 0x3B	; 59
+    776e:	90 93 63 00 	sts	0x0063, r25
+    7772:	80 93 62 00 	sts	0x0062, r24
+	TB_Init((void*) 0x10); // addr in eeprom with settings
+    7776:	80 e1       	ldi	r24, 0x10	; 16
+    7778:	90 e0       	ldi	r25, 0x00	; 0
+    777a:	0e 94 78 38 	call	0x70f0	; 0x70f0 <TB_Init>
+	
+	sei();
+    777e:	78 94       	sei
+	
+    while (1) 
+    {
+		process_timer_100Hz();
+    7780:	0e 94 76 3b 	call	0x76ec	; 0x76ec <process_timer_100Hz>
+		uart0_process();
+    7784:	0e 94 60 3a 	call	0x74c0	; 0x74c0 <uart0_process>
+		try_receive_data();
+    7788:	0e 94 86 3b 	call	0x770c	; 0x770c <try_receive_data>
+		PORTA |= (1 << PA7) | (1 << PA6) | (1 << PA5);
+    778c:	8b b3       	in	r24, 0x1b	; 27
+    778e:	80 6e       	ori	r24, 0xE0	; 224
+    7790:	8b bb       	out	0x1b, r24	; 27
+			{
+				cnt = 0;
+				jumpaddress();
+			}
+		}	*/
+    }
+    7792:	f6 cf       	rjmp	.-20     	; 0x7780 <main+0x38>
+
+00007794 <__tablejump2__>:
+    7794:	ee 0f       	add	r30, r30
+    7796:	ff 1f       	adc	r31, r31
+    7798:	05 90       	lpm	r0, Z+
+    779a:	f4 91       	lpm	r31, Z
+    779c:	e0 2d       	mov	r30, r0
+    779e:	09 94       	ijmp
+
+000077a0 <eeprom_read_block>:
+    77a0:	dc 01       	movw	r26, r24
+    77a2:	cb 01       	movw	r24, r22
+
+000077a4 <eeprom_read_blraw>:
+    77a4:	fc 01       	movw	r30, r24
+    77a6:	e1 99       	sbic	0x1c, 1	; 28
+    77a8:	fe cf       	rjmp	.-4      	; 0x77a6 <eeprom_read_blraw+0x2>
+    77aa:	06 c0       	rjmp	.+12     	; 0x77b8 <eeprom_read_blraw+0x14>
+    77ac:	ff bb       	out	0x1f, r31	; 31
+    77ae:	ee bb       	out	0x1e, r30	; 30
+    77b0:	e0 9a       	sbi	0x1c, 0	; 28
+    77b2:	31 96       	adiw	r30, 0x01	; 1
+    77b4:	0d b2       	in	r0, 0x1d	; 29
+    77b6:	0d 92       	st	X+, r0
+    77b8:	41 50       	subi	r20, 0x01	; 1
+    77ba:	50 40       	sbci	r21, 0x00	; 0
+    77bc:	b8 f7       	brcc	.-18     	; 0x77ac <eeprom_read_blraw+0x8>
+    77be:	08 95       	ret
+
+000077c0 <eeprom_update_byte>:
+    77c0:	26 2f       	mov	r18, r22
+
+000077c2 <eeprom_update_r18>:
+    77c2:	e1 99       	sbic	0x1c, 1	; 28
+    77c4:	fe cf       	rjmp	.-4      	; 0x77c2 <eeprom_update_r18>
+    77c6:	9f bb       	out	0x1f, r25	; 31
+    77c8:	8e bb       	out	0x1e, r24	; 30
+    77ca:	e0 9a       	sbi	0x1c, 0	; 28
+    77cc:	01 97       	sbiw	r24, 0x01	; 1
+    77ce:	0d b2       	in	r0, 0x1d	; 29
+    77d0:	02 16       	cp	r0, r18
+    77d2:	31 f0       	breq	.+12     	; 0x77e0 <eeprom_update_r18+0x1e>
+    77d4:	2d bb       	out	0x1d, r18	; 29
+    77d6:	0f b6       	in	r0, 0x3f	; 63
+    77d8:	f8 94       	cli
+    77da:	e2 9a       	sbi	0x1c, 2	; 28
+    77dc:	e1 9a       	sbi	0x1c, 1	; 28
+    77de:	0f be       	out	0x3f, r0	; 63
+    77e0:	08 95       	ret
+
+000077e2 <eeprom_write_block>:
+    77e2:	dc 01       	movw	r26, r24
+    77e4:	cb 01       	movw	r24, r22
+    77e6:	03 c0       	rjmp	.+6      	; 0x77ee <eeprom_write_block+0xc>
+    77e8:	2d 91       	ld	r18, X+
+    77ea:	0e 94 fc 3b 	call	0x77f8	; 0x77f8 <eeprom_write_r18>
+    77ee:	41 50       	subi	r20, 0x01	; 1
+    77f0:	50 40       	sbci	r21, 0x00	; 0
+    77f2:	d0 f7       	brcc	.-12     	; 0x77e8 <eeprom_write_block+0x6>
+    77f4:	08 95       	ret
+
+000077f6 <eeprom_write_byte>:
+    77f6:	26 2f       	mov	r18, r22
+
+000077f8 <eeprom_write_r18>:
+    77f8:	e1 99       	sbic	0x1c, 1	; 28
+    77fa:	fe cf       	rjmp	.-4      	; 0x77f8 <eeprom_write_r18>
+    77fc:	9f bb       	out	0x1f, r25	; 31
+    77fe:	8e bb       	out	0x1e, r24	; 30
+    7800:	2d bb       	out	0x1d, r18	; 29
+    7802:	0f b6       	in	r0, 0x3f	; 63
+    7804:	f8 94       	cli
+    7806:	e2 9a       	sbi	0x1c, 2	; 28
+    7808:	e1 9a       	sbi	0x1c, 1	; 28
+    780a:	0f be       	out	0x3f, r0	; 63
+    780c:	01 96       	adiw	r24, 0x01	; 1
+    780e:	08 95       	ret
+
+00007810 <_exit>:
+    7810:	f8 94       	cli
+
+00007812 <__stop_program>:
+    7812:	ff cf       	rjmp	.-2      	; 0x7812 <__stop_program>

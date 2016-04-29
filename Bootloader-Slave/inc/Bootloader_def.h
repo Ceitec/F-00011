@@ -1,0 +1,37 @@
+/*
+ * Bootloader_def.h
+ *
+ * Created: 27.4.2016 17:11:55
+ *  Author: atom2
+ */ 
+
+
+#ifndef BOOTLOADER_DEF_H_
+#define BOOTLOADER_DEF_H_
+
+#define	ENTER_BOOTLOADER		1
+#define	READ_LOCK_BITS			11
+#define CHIP_ERASE_FLASH		12
+#define CHIP_ERASE_EEPROM		13
+#define CHIP_ERASE_ALL			14
+#define WRITE_LOCK_BITS			15
+#define READ_LOW_FUSE			16
+#define READ_HIGH_FUSE			17
+#define READ_EXTENDED_FUSE		18
+#define READ_SIGNATURE			19
+#define READ_SOFTWARE_VERSION	20
+#define READ_BOOTLOADER_VERSION	21
+#define VERIFY_FLASH			22
+#define WRITE_FLASH				23
+#define WRITE_EEPROM			24
+#define END_WRITE_ALL			25
+#define	READ_FLASH				26
+#define	READ_EEPROM				27
+#define	EXIT_BOOTLOADER			0xFF
+
+#define ADDRESS_MASK_MSB	(0x0000 - SPM_PAGESIZE)
+#define ADDRESS_MASK_LSB	~ADDRESS_MASK_MSB
+
+
+
+#endif /* BOOTLOADER_DEF_H_ */
