@@ -75,7 +75,6 @@ uint8_t NowEeprom=0, NowFlash=0;
 /************************************************************************/
 /*                         FUNKCE                                       */
 /************************************************************************/
-/*
 
 
 // Skoèení na adresu 0x0000
@@ -178,7 +177,7 @@ void FillBufferData(uint16_t Address)
 	BufferFlash[(uint8_t)(Address & ADDRESS_MASK_LSB) + 3] = TB_bufIn[TB_BUF_DATA4];
 }
 
-*/
+
 
 
 // Init pro Tribus
@@ -236,8 +235,9 @@ void try_receive_data(void)
 		{
 			switch (TB_Decode())
 			{
-				
-				break;
+				case ENTER_BOOTLOADER:
+					TB_SendAck(ACK, ENTER_BOOTLOADER);
+					break;
 			}
 		}
 	}
@@ -257,7 +257,7 @@ int main(void)
 	
 	DDRA |= (1 << DDA7) | (1 << DDA6) | (1 << DDA5);
 	
-	timer_init();
+	//timer_init();
 	
 	uart0_init();
 	TB_Callback_setBaud = &uart0_set_baud;
@@ -268,7 +268,7 @@ int main(void)
 	
     while (1) 
     {
-		process_timer_100Hz();
+		//process_timer_100Hz();
 		uart0_process();
 		try_receive_data();
 		PORTA |= (1 << PA7) | (1 << PA6) | (1 << PA5);
