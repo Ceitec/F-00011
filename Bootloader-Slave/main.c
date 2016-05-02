@@ -154,15 +154,11 @@ void WriteEepromPages(uint16_t address, uint8_t *Buffer)
 // Ètení pamìti Flash
 void ReadFlashPages(uint16_t address)
 {
-	for (uint8_t i=0; i<4; i++)
-	{
-		
-	}
 	uint32_t Data=0;
-	Data = pgm_read_byte(address) << 8;
-	Data |= pgm_read_byte(address + 1) << 8;
-	Data |= pgm_read_byte(address + 2) << 8;
-	Data |= pgm_read_byte(address + 3);
+	Data = ((uint32_t)pgm_read_byte(address) << 24);
+	Data |= ((uint32_t)pgm_read_byte(address + 1) << 16);
+	Data |= ((uint32_t)pgm_read_byte(address + 2) << 8);
+	Data |= ((uint32_t)pgm_read_byte(address + 3));
 	TB_SendAck(100, Data);	
 }
 
@@ -377,20 +373,9 @@ void try_receive_data(void)
 				case READ_FLASH:
 					Address = TB_bufIn[TB_BUF_TYPE] << 8;
 					Address |= TB_bufIn[TB_BUF_MOTOR];
-					TB_SendAck(100, Address);
 					if (Address < (START_BOOT_ADDRESS_BYTES - 4))
 					{
-						uint32_t Data=0;
-						Data = (((uint32_t)pgm_read_byte(Address)) << 24);
-						TB_SendAck(100, Data);
-						Data = (pgm_read_byte(Address) << 8);
-						TB_SendAck(100, Data);
-						Data |= pgm_read_byte(Address + 1) << 16;
-						TB_SendAck(100, Data);
-						Data |= pgm_read_byte(Address + 2) << 8;
-						TB_SendAck(100, Data);
-						Data |= pgm_read_byte(Address + 3);
-						TB_SendAck(100, Data);
+						ReadFlashPages(Address);
 					}
 					else
 					{

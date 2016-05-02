@@ -3,31 +3,31 @@ Bootloader-Slave.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000d5e  00007000  00007000  00000094  2**1
+  0 .text         00000d4a  00007000  00007000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000100  00800060  00007d5e  00000df2  2**0
+  1 .data         00000100  00800060  00007d4a  00000dde  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000216  00800160  00800160  00000ef2  2**0
+  2 .bss          00000216  00800160  00800160  00000ede  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000ef2  2**0
+  3 .comment      00000030  00000000  00000000  00000ede  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000f24  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000f10  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000001d0  00000000  00000000  00000f60  2**0
+  5 .debug_aranges 000001d0  00000000  00000000  00000f4c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   00001c00  00000000  00000000  00001130  2**0
+  6 .debug_info   00001b3d  00000000  00000000  0000111c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000926  00000000  00000000  00002d30  2**0
+  7 .debug_abbrev 00000926  00000000  00000000  00002c59  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000a54  00000000  00000000  00003656  2**0
+  8 .debug_line   00000a52  00000000  00000000  0000357f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000474  00000000  00000000  000040ac  2**2
+  9 .debug_frame  00000474  00000000  00000000  00003fd4  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000819  00000000  00000000  00004520  2**0
+ 10 .debug_str    00000819  00000000  00000000  00004448  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000f41  00000000  00000000  00004d39  2**0
+ 11 .debug_loc    00000de7  00000000  00000000  00004c61  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000001b8  00000000  00000000  00005c7a  2**0
+ 12 .debug_ranges 000001c0  00000000  00000000  00005a48  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -39,7 +39,7 @@ Disassembly of section .text:
     700c:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
     7010:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
     7014:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
-    7018:	0c 94 00 3c 	jmp	0x7800	; 0x7800 <__vector_6>
+    7018:	0c 94 15 3c 	jmp	0x782a	; 0x782a <__vector_6>
     701c:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
     7020:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
     7024:	0c 94 52 38 	jmp	0x70a4	; 0x70a4 <__bad_interrupt>
@@ -78,7 +78,7 @@ Disassembly of section .text:
     7076:	11 e0       	ldi	r17, 0x01	; 1
     7078:	a0 e6       	ldi	r26, 0x60	; 96
     707a:	b0 e0       	ldi	r27, 0x00	; 0
-    707c:	ee e5       	ldi	r30, 0x5E	; 94
+    707c:	ea e4       	ldi	r30, 0x4A	; 74
     707e:	fd e7       	ldi	r31, 0x7D	; 125
     7080:	02 c0       	rjmp	.+4      	; 0x7086 <__do_copy_data+0x10>
     7082:	05 90       	lpm	r0, Z+
@@ -100,8 +100,8 @@ Disassembly of section .text:
     7096:	a6 37       	cpi	r26, 0x76	; 118
     7098:	b2 07       	cpc	r27, r18
     709a:	e1 f7       	brne	.-8      	; 0x7094 <.do_clear_bss_loop>
-    709c:	0e 94 3c 3e 	call	0x7c78	; 0x7c78 <main>
-    70a0:	0c 94 ad 3e 	jmp	0x7d5a	; 0x7d5a <_exit>
+    709c:	0e 94 32 3e 	call	0x7c64	; 0x7c64 <main>
+    70a0:	0c 94 a3 3e 	jmp	0x7d46	; 0x7d46 <_exit>
 
 000070a4 <__bad_interrupt>:
     70a4:	0c 94 00 38 	jmp	0x7000	; 0x7000 <__vectors>
@@ -251,7 +251,7 @@ void TB_Init(void * setting_in_eeprom)
     7136:	bc 01       	movw	r22, r24
     7138:	86 e2       	ldi	r24, 0x26	; 38
     713a:	92 e0       	ldi	r25, 0x02	; 2
-    713c:	0e 94 6d 3e 	call	0x7cda	; 0x7cda <eeprom_read_block>
+    713c:	0e 94 63 3e 	call	0x7cc6	; 0x7cc6 <eeprom_read_block>
   if (TB_gbparam.eemagic != 65) {
     7140:	80 91 26 02 	lds	r24, 0x0226
     7144:	81 34       	cpi	r24, 0x41	; 65
@@ -278,7 +278,7 @@ void TB_Init(void * setting_in_eeprom)
     7168:	be 01       	movw	r22, r28
     716a:	86 e2       	ldi	r24, 0x26	; 38
     716c:	92 e0       	ldi	r25, 0x02	; 2
-    716e:	0e 94 96 3e 	call	0x7d2c	; 0x7d2c <eeprom_write_block>
+    716e:	0e 94 8c 3e 	call	0x7d18	; 0x7d18 <eeprom_write_block>
   }
   // ted mame funkèni konfiguraci naètenou
 
@@ -539,7 +539,7 @@ byte TB_Decode(void)
     72c2:	c9 01       	movw	r24, r18
     72c4:	84 0f       	add	r24, r20
     72c6:	91 1d       	adc	r25, r1
-    72c8:	0e 94 85 3e 	call	0x7d0a	; 0x7d0a <eeprom_update_byte>
+    72c8:	0e 94 7b 3e 	call	0x7cf6	; 0x7cf6 <eeprom_update_byte>
 						}
 						TB_SendAck(TB_ERR_OK, 0);
     72cc:	40 e0       	ldi	r20, 0x00	; 0
@@ -1389,7 +1389,7 @@ void uart0_set_baud(byte baud)
     76c2:	fc 01       	movw	r30, r24
     76c4:	e6 5d       	subi	r30, 0xD6	; 214
     76c6:	f7 4c       	sbci	r31, 0xC7	; 199
-    76c8:	0c 94 60 3e 	jmp	0x7cc0	; 0x7cc0 <__tablejump2__>
+    76c8:	0c 94 56 3e 	jmp	0x7cac	; 0x7cac <__tablejump2__>
     case 0:  
       MACRO_BAUDRATE(9600);
     76cc:	8f e5       	ldi	r24, 0x5F	; 95
@@ -1520,14 +1520,14 @@ void EepromErase(void)
 		// Vymaže pøíslušnou adresu
 		if(eeprom_read_byte(address) != 0xFF)
     772a:	ce 01       	movw	r24, r28
-    772c:	0e 94 7d 3e 	call	0x7cfa	; 0x7cfa <eeprom_read_byte>
+    772c:	0e 94 73 3e 	call	0x7ce6	; 0x7ce6 <eeprom_read_byte>
     7730:	8f 3f       	cpi	r24, 0xFF	; 255
     7732:	21 f0       	breq	.+8      	; 0x773c <EepromErase+0x1a>
 		{
 			eeprom_update_byte(address, 0xFF);
     7734:	6f ef       	ldi	r22, 0xFF	; 255
     7736:	ce 01       	movw	r24, r28
-    7738:	0e 94 85 3e 	call	0x7d0a	; 0x7d0a <eeprom_update_byte>
+    7738:	0e 94 7b 3e 	call	0x7cf6	; 0x7cf6 <eeprom_update_byte>
 		}
 		address++;
     773c:	21 96       	adiw	r28, 0x01	; 1
@@ -1651,7 +1651,7 @@ void WriteEepromPages(uint16_t address, uint8_t *Buffer)
     77b2:	ce 01       	movw	r24, r28
     77b4:	8e 0d       	add	r24, r14
     77b6:	9f 1d       	adc	r25, r15
-    77b8:	0e 94 85 3e 	call	0x7d0a	; 0x7d0a <eeprom_update_byte>
+    77b8:	0e 94 7b 3e 	call	0x7cf6	; 0x7cf6 <eeprom_update_byte>
 
 // Zápis po pages do pamìti EEPROM
 void WriteEepromPages(uint16_t address, uint8_t *Buffer)
@@ -1674,968 +1674,985 @@ void WriteEepromPages(uint16_t address, uint8_t *Buffer)
     77ce:	ef 90       	pop	r14
     77d0:	08 95       	ret
 
-000077d2 <FillBufferData>:
+000077d2 <ReadFlashPages>:
+
+// Ètení pamìti Flash
+void ReadFlashPages(uint16_t address)
+{
+	uint32_t Data=0;
+	Data = ((uint32_t)pgm_read_byte(address) << 24);
+    77d2:	fc 01       	movw	r30, r24
+    77d4:	44 91       	lpm	r20, Z
+    77d6:	50 e0       	ldi	r21, 0x00	; 0
+    77d8:	60 e0       	ldi	r22, 0x00	; 0
+    77da:	70 e0       	ldi	r23, 0x00	; 0
+    77dc:	74 2f       	mov	r23, r20
+    77de:	66 27       	eor	r22, r22
+    77e0:	55 27       	eor	r21, r21
+    77e2:	44 27       	eor	r20, r20
+	Data |= ((uint32_t)pgm_read_byte(address + 1) << 16);
+    77e4:	31 96       	adiw	r30, 0x01	; 1
+    77e6:	34 91       	lpm	r19, Z
+	Data |= ((uint32_t)pgm_read_byte(address + 2) << 8);
+    77e8:	31 96       	adiw	r30, 0x01	; 1
+    77ea:	24 91       	lpm	r18, Z
+	Data |= ((uint32_t)pgm_read_byte(address + 3));
+    77ec:	31 96       	adiw	r30, 0x01	; 1
+    77ee:	84 91       	lpm	r24, Z
+// Ètení pamìti Flash
+void ReadFlashPages(uint16_t address)
+{
+	uint32_t Data=0;
+	Data = ((uint32_t)pgm_read_byte(address) << 24);
+	Data |= ((uint32_t)pgm_read_byte(address + 1) << 16);
+    77f0:	63 2b       	or	r22, r19
+    77f2:	48 2b       	or	r20, r24
+	Data |= ((uint32_t)pgm_read_byte(address + 2) << 8);
+	Data |= ((uint32_t)pgm_read_byte(address + 3));
+    77f4:	52 2b       	or	r21, r18
+	TB_SendAck(100, Data);	
+    77f6:	84 e6       	ldi	r24, 0x64	; 100
+    77f8:	0c 94 cd 38 	jmp	0x719a	; 0x719a <TB_SendAck>
+
+000077fc <FillBufferData>:
 	TB_SendAck(100, eeprom_read_dword(address));
 }
 
 void FillBufferData(uint16_t Address)
 {
 	BufferFlash[(uint8_t)(Address & ADDRESS_MASK_LSB)] = TB_bufIn[TB_BUF_DATA1];
-    77d2:	8f 77       	andi	r24, 0x7F	; 127
-    77d4:	99 27       	eor	r25, r25
-    77d6:	fc 01       	movw	r30, r24
-    77d8:	e5 58       	subi	r30, 0x85	; 133
-    77da:	fe 4f       	sbci	r31, 0xFE	; 254
-    77dc:	ad e2       	ldi	r26, 0x2D	; 45
-    77de:	b2 e0       	ldi	r27, 0x02	; 2
-    77e0:	14 96       	adiw	r26, 0x04	; 4
-    77e2:	8c 91       	ld	r24, X
-    77e4:	14 97       	sbiw	r26, 0x04	; 4
-    77e6:	80 83       	st	Z, r24
+    77fc:	8f 77       	andi	r24, 0x7F	; 127
+    77fe:	99 27       	eor	r25, r25
+    7800:	fc 01       	movw	r30, r24
+    7802:	e5 58       	subi	r30, 0x85	; 133
+    7804:	fe 4f       	sbci	r31, 0xFE	; 254
+    7806:	ad e2       	ldi	r26, 0x2D	; 45
+    7808:	b2 e0       	ldi	r27, 0x02	; 2
+    780a:	14 96       	adiw	r26, 0x04	; 4
+    780c:	8c 91       	ld	r24, X
+    780e:	14 97       	sbiw	r26, 0x04	; 4
+    7810:	80 83       	st	Z, r24
 	BufferFlash[(uint8_t)(Address & ADDRESS_MASK_LSB) + 1] = TB_bufIn[TB_BUF_DATA2];
-    77e8:	15 96       	adiw	r26, 0x05	; 5
-    77ea:	8c 91       	ld	r24, X
-    77ec:	15 97       	sbiw	r26, 0x05	; 5
-    77ee:	81 83       	std	Z+1, r24	; 0x01
+    7812:	15 96       	adiw	r26, 0x05	; 5
+    7814:	8c 91       	ld	r24, X
+    7816:	15 97       	sbiw	r26, 0x05	; 5
+    7818:	81 83       	std	Z+1, r24	; 0x01
 	BufferFlash[(uint8_t)(Address & ADDRESS_MASK_LSB) + 2] = TB_bufIn[TB_BUF_DATA3];
-    77f0:	16 96       	adiw	r26, 0x06	; 6
-    77f2:	8c 91       	ld	r24, X
-    77f4:	16 97       	sbiw	r26, 0x06	; 6
-    77f6:	82 83       	std	Z+2, r24	; 0x02
+    781a:	16 96       	adiw	r26, 0x06	; 6
+    781c:	8c 91       	ld	r24, X
+    781e:	16 97       	sbiw	r26, 0x06	; 6
+    7820:	82 83       	std	Z+2, r24	; 0x02
 	BufferFlash[(uint8_t)(Address & ADDRESS_MASK_LSB) + 3] = TB_bufIn[TB_BUF_DATA4];
-    77f8:	17 96       	adiw	r26, 0x07	; 7
-    77fa:	8c 91       	ld	r24, X
-    77fc:	83 83       	std	Z+3, r24	; 0x03
-    77fe:	08 95       	ret
+    7822:	17 96       	adiw	r26, 0x07	; 7
+    7824:	8c 91       	ld	r24, X
+    7826:	83 83       	std	Z+3, r24	; 0x03
+    7828:	08 95       	ret
 
-00007800 <__vector_6>:
+0000782a <__vector_6>:
 {
 	uart0_put_data((byte *) &TB_bufOut);
 }
 
 //----------------------------------------------------------
 ISR(TIMER1_CAPT_vect) {
-    7800:	1f 92       	push	r1
-    7802:	0f 92       	push	r0
-    7804:	0f b6       	in	r0, 0x3f	; 63
-    7806:	0f 92       	push	r0
-    7808:	11 24       	eor	r1, r1
-    780a:	8f 93       	push	r24
+    782a:	1f 92       	push	r1
+    782c:	0f 92       	push	r0
+    782e:	0f b6       	in	r0, 0x3f	; 63
+    7830:	0f 92       	push	r0
+    7832:	11 24       	eor	r1, r1
+    7834:	8f 93       	push	r24
 	// T = 10ms
 	
 	timer0_flag = TRUE;
-    780c:	81 e0       	ldi	r24, 0x01	; 1
-    780e:	80 93 6f 01 	sts	0x016F, r24
+    7836:	81 e0       	ldi	r24, 0x01	; 1
+    7838:	80 93 6f 01 	sts	0x016F, r24
 	
 }
-    7812:	8f 91       	pop	r24
-    7814:	0f 90       	pop	r0
-    7816:	0f be       	out	0x3f, r0	; 63
-    7818:	0f 90       	pop	r0
-    781a:	1f 90       	pop	r1
-    781c:	18 95       	reti
+    783c:	8f 91       	pop	r24
+    783e:	0f 90       	pop	r0
+    7840:	0f be       	out	0x3f, r0	; 63
+    7842:	0f 90       	pop	r0
+    7844:	1f 90       	pop	r1
+    7846:	18 95       	reti
 
-0000781e <process_timer_100Hz>:
+00007848 <process_timer_100Hz>:
 
 //----------------------------------------------------------
 void process_timer_100Hz(void)
 {
 	if(timer0_flag)
-    781e:	80 91 6f 01 	lds	r24, 0x016F
-    7822:	88 23       	and	r24, r24
-    7824:	21 f0       	breq	.+8      	; 0x782e <process_timer_100Hz+0x10>
+    7848:	80 91 6f 01 	lds	r24, 0x016F
+    784c:	88 23       	and	r24, r24
+    784e:	21 f0       	breq	.+8      	; 0x7858 <process_timer_100Hz+0x10>
 	{ // T = 1ms
 		timer0_flag = FALSE;
-    7826:	10 92 6f 01 	sts	0x016F, r1
+    7850:	10 92 6f 01 	sts	0x016F, r1
 		uart0_ISR_timer();
-    782a:	0c 94 fe 3a 	jmp	0x75fc	; 0x75fc <uart0_ISR_timer>
-    782e:	08 95       	ret
+    7854:	0c 94 fe 3a 	jmp	0x75fc	; 0x75fc <uart0_ISR_timer>
+    7858:	08 95       	ret
 
-00007830 <try_receive_data>:
+0000785a <try_receive_data>:
 }
 
 
 
 void try_receive_data(void)
 {
-    7830:	cf 93       	push	r28
-    7832:	df 93       	push	r29
+    785a:	cf 93       	push	r28
+    785c:	df 93       	push	r29
 	byte i;
 	byte *ptr;
 	
 	if (uart0_flags.data_received)
-    7834:	80 91 65 01 	lds	r24, 0x0165
-    7838:	83 ff       	sbrs	r24, 3
-    783a:	0e c2       	rjmp	.+1052   	; 0x7c58 <try_receive_data+0x428>
+    785e:	80 91 65 01 	lds	r24, 0x0165
+    7862:	83 ff       	sbrs	r24, 3
+    7864:	ef c1       	rjmp	.+990    	; 0x7c44 <try_receive_data+0x3ea>
 	{
 		ptr = uart0_get_data_begin();
-    783c:	0e 94 16 3b 	call	0x762c	; 0x762c <uart0_get_data_begin>
-    7840:	ed e2       	ldi	r30, 0x2D	; 45
-    7842:	f2 e0       	ldi	r31, 0x02	; 2
-    7844:	29 e0       	ldi	r18, 0x09	; 9
-    7846:	2e 0f       	add	r18, r30
+    7866:	0e 94 16 3b 	call	0x762c	; 0x762c <uart0_get_data_begin>
+    786a:	ed e2       	ldi	r30, 0x2D	; 45
+    786c:	f2 e0       	ldi	r31, 0x02	; 2
+    786e:	29 e0       	ldi	r18, 0x09	; 9
+    7870:	2e 0f       	add	r18, r30
 		for (i=0; i<9; i++)
 		{
 			TB_bufIn[i] = *ptr;
-    7848:	dc 01       	movw	r26, r24
-    784a:	3d 91       	ld	r19, X+
-    784c:	cd 01       	movw	r24, r26
-    784e:	31 93       	st	Z+, r19
+    7872:	dc 01       	movw	r26, r24
+    7874:	3d 91       	ld	r19, X+
+    7876:	cd 01       	movw	r24, r26
+    7878:	31 93       	st	Z+, r19
 	byte *ptr;
 	
 	if (uart0_flags.data_received)
 	{
 		ptr = uart0_get_data_begin();
 		for (i=0; i<9; i++)
-    7850:	2e 13       	cpse	r18, r30
-    7852:	fa cf       	rjmp	.-12     	; 0x7848 <try_receive_data+0x18>
+    787a:	2e 13       	cpse	r18, r30
+    787c:	fa cf       	rjmp	.-12     	; 0x7872 <try_receive_data+0x18>
 		{
 			TB_bufIn[i] = *ptr;
 			ptr++;
 		}
 		uart0_get_data_end();
-    7854:	0e 94 21 3b 	call	0x7642	; 0x7642 <uart0_get_data_end>
+    787e:	0e 94 21 3b 	call	0x7642	; 0x7642 <uart0_get_data_end>
 		uart0_flags.data_received = FALSE;
-    7858:	80 91 65 01 	lds	r24, 0x0165
-    785c:	87 7f       	andi	r24, 0xF7	; 247
-    785e:	80 93 65 01 	sts	0x0165, r24
+    7882:	80 91 65 01 	lds	r24, 0x0165
+    7886:	87 7f       	andi	r24, 0xF7	; 247
+    7888:	80 93 65 01 	sts	0x0165, r24
 		if (TB_Read() == 0)
-    7862:	0e 94 e1 38 	call	0x71c2	; 0x71c2 <TB_Read>
-    7866:	81 11       	cpse	r24, r1
-    7868:	f7 c1       	rjmp	.+1006   	; 0x7c58 <try_receive_data+0x428>
+    788c:	0e 94 e1 38 	call	0x71c2	; 0x71c2 <TB_Read>
+    7890:	81 11       	cpse	r24, r1
+    7892:	d8 c1       	rjmp	.+944    	; 0x7c44 <try_receive_data+0x3ea>
 		{
 			switch (TB_Decode())
-    786a:	0e 94 00 39 	call	0x7200	; 0x7200 <TB_Decode>
-    786e:	83 31       	cpi	r24, 0x13	; 19
-    7870:	09 f4       	brne	.+2      	; 0x7874 <try_receive_data+0x44>
-    7872:	7a c0       	rjmp	.+244    	; 0x7968 <try_receive_data+0x138>
-    7874:	78 f5       	brcc	.+94     	; 0x78d4 <try_receive_data+0xa4>
-    7876:	8e 30       	cpi	r24, 0x0E	; 14
-    7878:	09 f4       	brne	.+2      	; 0x787c <try_receive_data+0x4c>
-    787a:	5a c0       	rjmp	.+180    	; 0x7930 <try_receive_data+0x100>
-    787c:	b8 f4       	brcc	.+46     	; 0x78ac <try_receive_data+0x7c>
-    787e:	8b 30       	cpi	r24, 0x0B	; 11
-    7880:	09 f4       	brne	.+2      	; 0x7884 <try_receive_data+0x54>
-    7882:	4c c0       	rjmp	.+152    	; 0x791c <try_receive_data+0xec>
-    7884:	30 f4       	brcc	.+12     	; 0x7892 <try_receive_data+0x62>
-    7886:	81 30       	cpi	r24, 0x01	; 1
-    7888:	09 f0       	breq	.+2      	; 0x788c <try_receive_data+0x5c>
-    788a:	e6 c1       	rjmp	.+972    	; 0x7c58 <try_receive_data+0x428>
+    7894:	0e 94 00 39 	call	0x7200	; 0x7200 <TB_Decode>
+    7898:	83 31       	cpi	r24, 0x13	; 19
+    789a:	09 f4       	brne	.+2      	; 0x789e <try_receive_data+0x44>
+    789c:	7a c0       	rjmp	.+244    	; 0x7992 <try_receive_data+0x138>
+    789e:	78 f5       	brcc	.+94     	; 0x78fe <try_receive_data+0xa4>
+    78a0:	8e 30       	cpi	r24, 0x0E	; 14
+    78a2:	09 f4       	brne	.+2      	; 0x78a6 <try_receive_data+0x4c>
+    78a4:	5a c0       	rjmp	.+180    	; 0x795a <try_receive_data+0x100>
+    78a6:	b8 f4       	brcc	.+46     	; 0x78d6 <try_receive_data+0x7c>
+    78a8:	8b 30       	cpi	r24, 0x0B	; 11
+    78aa:	09 f4       	brne	.+2      	; 0x78ae <try_receive_data+0x54>
+    78ac:	4c c0       	rjmp	.+152    	; 0x7946 <try_receive_data+0xec>
+    78ae:	30 f4       	brcc	.+12     	; 0x78bc <try_receive_data+0x62>
+    78b0:	81 30       	cpi	r24, 0x01	; 1
+    78b2:	09 f0       	breq	.+2      	; 0x78b6 <try_receive_data+0x5c>
+    78b4:	c7 c1       	rjmp	.+910    	; 0x7c44 <try_receive_data+0x3ea>
 			{
 				case ENTER_BOOTLOADER:
 					BootStatus = 1;
-    788c:	80 93 7a 01 	sts	0x017A, r24
-    7890:	81 c0       	rjmp	.+258    	; 0x7994 <try_receive_data+0x164>
+    78b6:	80 93 7a 01 	sts	0x017A, r24
+    78ba:	81 c0       	rjmp	.+258    	; 0x79be <try_receive_data+0x164>
 		}
 		uart0_get_data_end();
 		uart0_flags.data_received = FALSE;
 		if (TB_Read() == 0)
 		{
 			switch (TB_Decode())
-    7892:	8c 30       	cpi	r24, 0x0C	; 12
-    7894:	09 f4       	brne	.+2      	; 0x7898 <try_receive_data+0x68>
-    7896:	45 c0       	rjmp	.+138    	; 0x7922 <try_receive_data+0xf2>
-    7898:	8d 30       	cpi	r24, 0x0D	; 13
-    789a:	09 f0       	breq	.+2      	; 0x789e <try_receive_data+0x6e>
-    789c:	dd c1       	rjmp	.+954    	; 0x7c58 <try_receive_data+0x428>
+    78bc:	8c 30       	cpi	r24, 0x0C	; 12
+    78be:	09 f4       	brne	.+2      	; 0x78c2 <try_receive_data+0x68>
+    78c0:	45 c0       	rjmp	.+138    	; 0x794c <try_receive_data+0xf2>
+    78c2:	8d 30       	cpi	r24, 0x0D	; 13
+    78c4:	09 f0       	breq	.+2      	; 0x78c8 <try_receive_data+0x6e>
+    78c6:	be c1       	rjmp	.+892    	; 0x7c44 <try_receive_data+0x3ea>
 				case CHIP_ERASE_FLASH:
 					ChipErase();
 					TB_SendAck(100, CHIP_ERASE_FLASH);
 					break;
 				case CHIP_ERASE_EEPROM:
 					EepromErase();
-    789e:	0e 94 91 3b 	call	0x7722	; 0x7722 <EepromErase>
+    78c8:	0e 94 91 3b 	call	0x7722	; 0x7722 <EepromErase>
 					TB_SendAck(100, CHIP_ERASE_EEPROM);
-    78a2:	4d e0       	ldi	r20, 0x0D	; 13
-    78a4:	50 e0       	ldi	r21, 0x00	; 0
-    78a6:	60 e0       	ldi	r22, 0x00	; 0
-    78a8:	70 e0       	ldi	r23, 0x00	; 0
-    78aa:	d1 c1       	rjmp	.+930    	; 0x7c4e <try_receive_data+0x41e>
+    78cc:	4d e0       	ldi	r20, 0x0D	; 13
+    78ce:	50 e0       	ldi	r21, 0x00	; 0
+    78d0:	60 e0       	ldi	r22, 0x00	; 0
+    78d2:	70 e0       	ldi	r23, 0x00	; 0
+    78d4:	b2 c1       	rjmp	.+868    	; 0x7c3a <try_receive_data+0x3e0>
 		}
 		uart0_get_data_end();
 		uart0_flags.data_received = FALSE;
 		if (TB_Read() == 0)
 		{
 			switch (TB_Decode())
-    78ac:	80 31       	cpi	r24, 0x10	; 16
-    78ae:	09 f4       	brne	.+2      	; 0x78b2 <try_receive_data+0x82>
-    78b0:	4d c0       	rjmp	.+154    	; 0x794c <try_receive_data+0x11c>
-    78b2:	08 f4       	brcc	.+2      	; 0x78b6 <try_receive_data+0x86>
-    78b4:	46 c0       	rjmp	.+140    	; 0x7942 <try_receive_data+0x112>
-    78b6:	81 31       	cpi	r24, 0x11	; 17
-    78b8:	09 f4       	brne	.+2      	; 0x78bc <try_receive_data+0x8c>
-    78ba:	4b c0       	rjmp	.+150    	; 0x7952 <try_receive_data+0x122>
-    78bc:	82 31       	cpi	r24, 0x12	; 18
-    78be:	09 f0       	breq	.+2      	; 0x78c2 <try_receive_data+0x92>
-    78c0:	cb c1       	rjmp	.+918    	; 0x7c58 <try_receive_data+0x428>
+    78d6:	80 31       	cpi	r24, 0x10	; 16
+    78d8:	09 f4       	brne	.+2      	; 0x78dc <try_receive_data+0x82>
+    78da:	4d c0       	rjmp	.+154    	; 0x7976 <try_receive_data+0x11c>
+    78dc:	08 f4       	brcc	.+2      	; 0x78e0 <try_receive_data+0x86>
+    78de:	46 c0       	rjmp	.+140    	; 0x796c <try_receive_data+0x112>
+    78e0:	81 31       	cpi	r24, 0x11	; 17
+    78e2:	09 f4       	brne	.+2      	; 0x78e6 <try_receive_data+0x8c>
+    78e4:	4b c0       	rjmp	.+150    	; 0x797c <try_receive_data+0x122>
+    78e6:	82 31       	cpi	r24, 0x12	; 18
+    78e8:	09 f0       	breq	.+2      	; 0x78ec <try_receive_data+0x92>
+    78ea:	ac c1       	rjmp	.+856    	; 0x7c44 <try_receive_data+0x3ea>
 					break;
 				case READ_HIGH_FUSE:
 					TB_SendAck(100, boot_lock_fuse_bits_get(GET_HIGH_FUSE_BITS));
 					break;
 				case READ_EXTENDED_FUSE:
 					TB_SendAck(102, boot_lock_fuse_bits_get(GET_EXTENDED_FUSE_BITS));
-    78c2:	e2 e0       	ldi	r30, 0x02	; 2
-    78c4:	f0 e0       	ldi	r31, 0x00	; 0
-    78c6:	89 e0       	ldi	r24, 0x09	; 9
-    78c8:	80 93 57 00 	sts	0x0057, r24
-    78cc:	e4 91       	lpm	r30, Z
-    78ce:	4e 2f       	mov	r20, r30
-    78d0:	50 e0       	ldi	r21, 0x00	; 0
-    78d2:	3e c1       	rjmp	.+636    	; 0x7b50 <try_receive_data+0x320>
+    78ec:	e2 e0       	ldi	r30, 0x02	; 2
+    78ee:	f0 e0       	ldi	r31, 0x00	; 0
+    78f0:	89 e0       	ldi	r24, 0x09	; 9
+    78f2:	80 93 57 00 	sts	0x0057, r24
+    78f6:	e4 91       	lpm	r30, Z
+    78f8:	4e 2f       	mov	r20, r30
+    78fa:	50 e0       	ldi	r21, 0x00	; 0
+    78fc:	3e c1       	rjmp	.+636    	; 0x7b7a <try_receive_data+0x320>
 		}
 		uart0_get_data_end();
 		uart0_flags.data_received = FALSE;
 		if (TB_Read() == 0)
 		{
 			switch (TB_Decode())
-    78d4:	88 31       	cpi	r24, 0x18	; 24
-    78d6:	09 f4       	brne	.+2      	; 0x78da <try_receive_data+0xaa>
-    78d8:	d6 c0       	rjmp	.+428    	; 0x7a86 <try_receive_data+0x256>
-    78da:	60 f4       	brcc	.+24     	; 0x78f4 <try_receive_data+0xc4>
-    78dc:	85 31       	cpi	r24, 0x15	; 21
-    78de:	09 f4       	brne	.+2      	; 0x78e2 <try_receive_data+0xb2>
-    78e0:	59 c0       	rjmp	.+178    	; 0x7994 <try_receive_data+0x164>
-    78e2:	08 f4       	brcc	.+2      	; 0x78e6 <try_receive_data+0xb6>
-    78e4:	52 c0       	rjmp	.+164    	; 0x798a <try_receive_data+0x15a>
-    78e6:	86 31       	cpi	r24, 0x16	; 22
-    78e8:	09 f4       	brne	.+2      	; 0x78ec <try_receive_data+0xbc>
-    78ea:	59 c0       	rjmp	.+178    	; 0x799e <try_receive_data+0x16e>
-    78ec:	87 31       	cpi	r24, 0x17	; 23
-    78ee:	09 f4       	brne	.+2      	; 0x78f2 <try_receive_data+0xc2>
-    78f0:	66 c0       	rjmp	.+204    	; 0x79be <try_receive_data+0x18e>
-    78f2:	b2 c1       	rjmp	.+868    	; 0x7c58 <try_receive_data+0x428>
-    78f4:	8a 31       	cpi	r24, 0x1A	; 26
-    78f6:	09 f4       	brne	.+2      	; 0x78fa <try_receive_data+0xca>
-    78f8:	60 c1       	rjmp	.+704    	; 0x7bba <try_receive_data+0x38a>
-    78fa:	08 f4       	brcc	.+2      	; 0x78fe <try_receive_data+0xce>
-    78fc:	2c c1       	rjmp	.+600    	; 0x7b56 <try_receive_data+0x326>
-    78fe:	8b 31       	cpi	r24, 0x1B	; 27
-    7900:	09 f4       	brne	.+2      	; 0x7904 <try_receive_data+0xd4>
-    7902:	93 c1       	rjmp	.+806    	; 0x7c2a <try_receive_data+0x3fa>
-    7904:	8f 3f       	cpi	r24, 0xFF	; 255
-    7906:	09 f0       	breq	.+2      	; 0x790a <try_receive_data+0xda>
-    7908:	a7 c1       	rjmp	.+846    	; 0x7c58 <try_receive_data+0x428>
+    78fe:	88 31       	cpi	r24, 0x18	; 24
+    7900:	09 f4       	brne	.+2      	; 0x7904 <try_receive_data+0xaa>
+    7902:	d6 c0       	rjmp	.+428    	; 0x7ab0 <try_receive_data+0x256>
+    7904:	60 f4       	brcc	.+24     	; 0x791e <try_receive_data+0xc4>
+    7906:	85 31       	cpi	r24, 0x15	; 21
+    7908:	09 f4       	brne	.+2      	; 0x790c <try_receive_data+0xb2>
+    790a:	59 c0       	rjmp	.+178    	; 0x79be <try_receive_data+0x164>
+    790c:	08 f4       	brcc	.+2      	; 0x7910 <try_receive_data+0xb6>
+    790e:	52 c0       	rjmp	.+164    	; 0x79b4 <try_receive_data+0x15a>
+    7910:	86 31       	cpi	r24, 0x16	; 22
+    7912:	09 f4       	brne	.+2      	; 0x7916 <try_receive_data+0xbc>
+    7914:	59 c0       	rjmp	.+178    	; 0x79c8 <try_receive_data+0x16e>
+    7916:	87 31       	cpi	r24, 0x17	; 23
+    7918:	09 f4       	brne	.+2      	; 0x791c <try_receive_data+0xc2>
+    791a:	66 c0       	rjmp	.+204    	; 0x79e8 <try_receive_data+0x18e>
+    791c:	93 c1       	rjmp	.+806    	; 0x7c44 <try_receive_data+0x3ea>
+    791e:	8a 31       	cpi	r24, 0x1A	; 26
+    7920:	09 f4       	brne	.+2      	; 0x7924 <try_receive_data+0xca>
+    7922:	60 c1       	rjmp	.+704    	; 0x7be4 <try_receive_data+0x38a>
+    7924:	08 f4       	brcc	.+2      	; 0x7928 <try_receive_data+0xce>
+    7926:	2c c1       	rjmp	.+600    	; 0x7b80 <try_receive_data+0x326>
+    7928:	8b 31       	cpi	r24, 0x1B	; 27
+    792a:	09 f4       	brne	.+2      	; 0x792e <try_receive_data+0xd4>
+    792c:	74 c1       	rjmp	.+744    	; 0x7c16 <try_receive_data+0x3bc>
+    792e:	8f 3f       	cpi	r24, 0xFF	; 255
+    7930:	09 f0       	breq	.+2      	; 0x7934 <try_receive_data+0xda>
+    7932:	88 c1       	rjmp	.+784    	; 0x7c44 <try_receive_data+0x3ea>
 					{
 						TB_SendAck(102, 0);
 					}
 					break;
 				case EXIT_BOOTLOADER:
 					TB_SendAck(100, EXIT_BOOTLOADER);
-    790a:	4f ef       	ldi	r20, 0xFF	; 255
-    790c:	50 e0       	ldi	r21, 0x00	; 0
-    790e:	60 e0       	ldi	r22, 0x00	; 0
-    7910:	70 e0       	ldi	r23, 0x00	; 0
-    7912:	84 e6       	ldi	r24, 0x64	; 100
-    7914:	0e 94 cd 38 	call	0x719a	; 0x719a <TB_SendAck>
+    7934:	4f ef       	ldi	r20, 0xFF	; 255
+    7936:	50 e0       	ldi	r21, 0x00	; 0
+    7938:	60 e0       	ldi	r22, 0x00	; 0
+    793a:	70 e0       	ldi	r23, 0x00	; 0
+    793c:	84 e6       	ldi	r24, 0x64	; 100
+    793e:	0e 94 cd 38 	call	0x719a	; 0x719a <TB_SendAck>
 
 
 // Skoèení na adresu 0x0000
 void jumpaddress(void)
 {
 	asm("rjmp 0x0000");
-    7918:	8b cf       	rjmp	.-234    	; 0x7830 <try_receive_data>
-    791a:	9e c1       	rjmp	.+828    	; 0x7c58 <try_receive_data+0x428>
+    7942:	8b cf       	rjmp	.-234    	; 0x785a <try_receive_data>
+    7944:	7f c1       	rjmp	.+766    	; 0x7c44 <try_receive_data+0x3ea>
 				case ENTER_BOOTLOADER:
 					BootStatus = 1;
 					TB_SendAck(100, ENTER_BOOTLOADER);
 					break;
 				case READ_LOCK_BITS:
 					TB_SendAck(100, boot_lock_fuse_bits_get(GET_LOCK_BITS));
-    791c:	e1 e0       	ldi	r30, 0x01	; 1
-    791e:	f0 e0       	ldi	r31, 0x00	; 0
-    7920:	1a c0       	rjmp	.+52     	; 0x7956 <try_receive_data+0x126>
+    7946:	e1 e0       	ldi	r30, 0x01	; 1
+    7948:	f0 e0       	ldi	r31, 0x00	; 0
+    794a:	1a c0       	rjmp	.+52     	; 0x7980 <try_receive_data+0x126>
 					break;
 				case CHIP_ERASE_FLASH:
 					ChipErase();
-    7922:	0e 94 81 3b 	call	0x7702	; 0x7702 <ChipErase>
+    794c:	0e 94 81 3b 	call	0x7702	; 0x7702 <ChipErase>
 					TB_SendAck(100, CHIP_ERASE_FLASH);
-    7926:	4c e0       	ldi	r20, 0x0C	; 12
-    7928:	50 e0       	ldi	r21, 0x00	; 0
-    792a:	60 e0       	ldi	r22, 0x00	; 0
-    792c:	70 e0       	ldi	r23, 0x00	; 0
-    792e:	8f c1       	rjmp	.+798    	; 0x7c4e <try_receive_data+0x41e>
+    7950:	4c e0       	ldi	r20, 0x0C	; 12
+    7952:	50 e0       	ldi	r21, 0x00	; 0
+    7954:	60 e0       	ldi	r22, 0x00	; 0
+    7956:	70 e0       	ldi	r23, 0x00	; 0
+    7958:	70 c1       	rjmp	.+736    	; 0x7c3a <try_receive_data+0x3e0>
 				case CHIP_ERASE_EEPROM:
 					EepromErase();
 					TB_SendAck(100, CHIP_ERASE_EEPROM);
 					break;
 				case CHIP_ERASE_ALL:
 					ChipErase();
-    7930:	0e 94 81 3b 	call	0x7702	; 0x7702 <ChipErase>
+    795a:	0e 94 81 3b 	call	0x7702	; 0x7702 <ChipErase>
 					EepromErase();
-    7934:	0e 94 91 3b 	call	0x7722	; 0x7722 <EepromErase>
+    795e:	0e 94 91 3b 	call	0x7722	; 0x7722 <EepromErase>
 					TB_SendAck(100, CHIP_ERASE_ALL);
-    7938:	4e e0       	ldi	r20, 0x0E	; 14
-    793a:	50 e0       	ldi	r21, 0x00	; 0
-    793c:	60 e0       	ldi	r22, 0x00	; 0
-    793e:	70 e0       	ldi	r23, 0x00	; 0
-    7940:	86 c1       	rjmp	.+780    	; 0x7c4e <try_receive_data+0x41e>
+    7962:	4e e0       	ldi	r20, 0x0E	; 14
+    7964:	50 e0       	ldi	r21, 0x00	; 0
+    7966:	60 e0       	ldi	r22, 0x00	; 0
+    7968:	70 e0       	ldi	r23, 0x00	; 0
+    796a:	67 c1       	rjmp	.+718    	; 0x7c3a <try_receive_data+0x3e0>
 					break;
 				case WRITE_LOCK_BITS:
 					TB_SendAck(102, WRITE_LOCK_BITS);
-    7942:	4f e0       	ldi	r20, 0x0F	; 15
-    7944:	50 e0       	ldi	r21, 0x00	; 0
-    7946:	60 e0       	ldi	r22, 0x00	; 0
-    7948:	70 e0       	ldi	r23, 0x00	; 0
-    794a:	6d c1       	rjmp	.+730    	; 0x7c26 <try_receive_data+0x3f6>
+    796c:	4f e0       	ldi	r20, 0x0F	; 15
+    796e:	50 e0       	ldi	r21, 0x00	; 0
+    7970:	60 e0       	ldi	r22, 0x00	; 0
+    7972:	70 e0       	ldi	r23, 0x00	; 0
+    7974:	4e c1       	rjmp	.+668    	; 0x7c12 <try_receive_data+0x3b8>
 					break;
 				case READ_LOW_FUSE:
 					TB_SendAck(100, boot_lock_fuse_bits_get(GET_LOW_FUSE_BITS));
-    794c:	e0 e0       	ldi	r30, 0x00	; 0
-    794e:	f0 e0       	ldi	r31, 0x00	; 0
-    7950:	02 c0       	rjmp	.+4      	; 0x7956 <try_receive_data+0x126>
+    7976:	e0 e0       	ldi	r30, 0x00	; 0
+    7978:	f0 e0       	ldi	r31, 0x00	; 0
+    797a:	02 c0       	rjmp	.+4      	; 0x7980 <try_receive_data+0x126>
 					break;
 				case READ_HIGH_FUSE:
 					TB_SendAck(100, boot_lock_fuse_bits_get(GET_HIGH_FUSE_BITS));
-    7952:	e3 e0       	ldi	r30, 0x03	; 3
-    7954:	f0 e0       	ldi	r31, 0x00	; 0
-    7956:	89 e0       	ldi	r24, 0x09	; 9
-    7958:	80 93 57 00 	sts	0x0057, r24
-    795c:	e4 91       	lpm	r30, Z
-    795e:	4e 2f       	mov	r20, r30
-    7960:	50 e0       	ldi	r21, 0x00	; 0
-    7962:	60 e0       	ldi	r22, 0x00	; 0
-    7964:	70 e0       	ldi	r23, 0x00	; 0
-    7966:	73 c1       	rjmp	.+742    	; 0x7c4e <try_receive_data+0x41e>
+    797c:	e3 e0       	ldi	r30, 0x03	; 3
+    797e:	f0 e0       	ldi	r31, 0x00	; 0
+    7980:	89 e0       	ldi	r24, 0x09	; 9
+    7982:	80 93 57 00 	sts	0x0057, r24
+    7986:	e4 91       	lpm	r30, Z
+    7988:	4e 2f       	mov	r20, r30
+    798a:	50 e0       	ldi	r21, 0x00	; 0
+    798c:	60 e0       	ldi	r22, 0x00	; 0
+    798e:	70 e0       	ldi	r23, 0x00	; 0
+    7990:	54 c1       	rjmp	.+680    	; 0x7c3a <try_receive_data+0x3e0>
 					break;
 				case READ_EXTENDED_FUSE:
 					TB_SendAck(102, boot_lock_fuse_bits_get(GET_EXTENDED_FUSE_BITS));
 					break;
 				case READ_SIGNATURE:
 					Signature = 0x1E9502;
-    7968:	82 e0       	ldi	r24, 0x02	; 2
-    796a:	95 e9       	ldi	r25, 0x95	; 149
-    796c:	ae e1       	ldi	r26, 0x1E	; 30
-    796e:	b0 e0       	ldi	r27, 0x00	; 0
-    7970:	80 93 72 03 	sts	0x0372, r24
-    7974:	90 93 73 03 	sts	0x0373, r25
-    7978:	a0 93 74 03 	sts	0x0374, r26
-    797c:	b0 93 75 03 	sts	0x0375, r27
+    7992:	82 e0       	ldi	r24, 0x02	; 2
+    7994:	95 e9       	ldi	r25, 0x95	; 149
+    7996:	ae e1       	ldi	r26, 0x1E	; 30
+    7998:	b0 e0       	ldi	r27, 0x00	; 0
+    799a:	80 93 72 03 	sts	0x0372, r24
+    799e:	90 93 73 03 	sts	0x0373, r25
+    79a2:	a0 93 74 03 	sts	0x0374, r26
+    79a6:	b0 93 75 03 	sts	0x0375, r27
 // 					Signature |= 0x95 << 8;
 // 					Signature |= 0x02;
 					TB_SendAck(100, Signature);
-    7980:	42 e0       	ldi	r20, 0x02	; 2
-    7982:	55 e9       	ldi	r21, 0x95	; 149
-    7984:	6e e1       	ldi	r22, 0x1E	; 30
-    7986:	70 e0       	ldi	r23, 0x00	; 0
-    7988:	62 c1       	rjmp	.+708    	; 0x7c4e <try_receive_data+0x41e>
+    79aa:	42 e0       	ldi	r20, 0x02	; 2
+    79ac:	55 e9       	ldi	r21, 0x95	; 149
+    79ae:	6e e1       	ldi	r22, 0x1E	; 30
+    79b0:	70 e0       	ldi	r23, 0x00	; 0
+    79b2:	43 c1       	rjmp	.+646    	; 0x7c3a <try_receive_data+0x3e0>
 					break;
 				case READ_SOFTWARE_VERSION:
 					TB_SendAck(100, SOFTWARE_IDENTIFIER);
-    798a:	40 e0       	ldi	r20, 0x00	; 0
-    798c:	5d e7       	ldi	r21, 0x7D	; 125
-    798e:	60 e0       	ldi	r22, 0x00	; 0
-    7990:	70 e0       	ldi	r23, 0x00	; 0
-    7992:	5d c1       	rjmp	.+698    	; 0x7c4e <try_receive_data+0x41e>
+    79b4:	40 e0       	ldi	r20, 0x00	; 0
+    79b6:	5d e7       	ldi	r21, 0x7D	; 125
+    79b8:	60 e0       	ldi	r22, 0x00	; 0
+    79ba:	70 e0       	ldi	r23, 0x00	; 0
+    79bc:	3e c1       	rjmp	.+636    	; 0x7c3a <try_receive_data+0x3e0>
 					break;
 				case READ_BOOTLOADER_VERSION:
 					TB_SendAck(100, BOOTLOADER_VERSION);
-    7994:	41 e0       	ldi	r20, 0x01	; 1
-    7996:	50 e0       	ldi	r21, 0x00	; 0
-    7998:	60 e0       	ldi	r22, 0x00	; 0
-    799a:	70 e0       	ldi	r23, 0x00	; 0
-    799c:	58 c1       	rjmp	.+688    	; 0x7c4e <try_receive_data+0x41e>
+    79be:	41 e0       	ldi	r20, 0x01	; 1
+    79c0:	50 e0       	ldi	r21, 0x00	; 0
+    79c2:	60 e0       	ldi	r22, 0x00	; 0
+    79c4:	70 e0       	ldi	r23, 0x00	; 0
+    79c6:	39 c1       	rjmp	.+626    	; 0x7c3a <try_receive_data+0x3e0>
 					break;
 				case VERIFY_FLASH:
 					Address = TB_bufIn[TB_BUF_TYPE] << 8;
-    799e:	80 91 2f 02 	lds	r24, 0x022F
-    79a2:	90 e0       	ldi	r25, 0x00	; 0
-    79a4:	98 2f       	mov	r25, r24
-    79a6:	88 27       	eor	r24, r24
+    79c8:	80 91 2f 02 	lds	r24, 0x022F
+    79cc:	90 e0       	ldi	r25, 0x00	; 0
+    79ce:	98 2f       	mov	r25, r24
+    79d0:	88 27       	eor	r24, r24
 					Address |= TB_bufIn[TB_BUF_MOTOR];
-    79a8:	20 91 30 02 	lds	r18, 0x0230
-    79ac:	82 2b       	or	r24, r18
-    79ae:	90 93 79 01 	sts	0x0179, r25
-    79b2:	80 93 78 01 	sts	0x0178, r24
+    79d2:	20 91 30 02 	lds	r18, 0x0230
+    79d6:	82 2b       	or	r24, r18
+    79d8:	90 93 79 01 	sts	0x0179, r25
+    79dc:	80 93 78 01 	sts	0x0178, r24
 					jumpaddress();
 					break;
 			}
 		}
 	}
 }
-    79b6:	df 91       	pop	r29
-    79b8:	cf 91       	pop	r28
+    79e0:	df 91       	pop	r29
+    79e2:	cf 91       	pop	r28
 					TB_SendAck(100, BOOTLOADER_VERSION);
 					break;
 				case VERIFY_FLASH:
 					Address = TB_bufIn[TB_BUF_TYPE] << 8;
 					Address |= TB_bufIn[TB_BUF_MOTOR];
 					VerifyFlash(Address);
-    79ba:	0c 94 54 38 	jmp	0x70a8	; 0x70a8 <VerifyFlash>
+    79e4:	0c 94 54 38 	jmp	0x70a8	; 0x70a8 <VerifyFlash>
 					break;
 				case WRITE_FLASH:
 					Address = TB_bufIn[TB_BUF_TYPE] << 8;
-    79be:	40 91 2f 02 	lds	r20, 0x022F
-    79c2:	50 e0       	ldi	r21, 0x00	; 0
-    79c4:	54 2f       	mov	r21, r20
-    79c6:	44 27       	eor	r20, r20
+    79e8:	40 91 2f 02 	lds	r20, 0x022F
+    79ec:	50 e0       	ldi	r21, 0x00	; 0
+    79ee:	54 2f       	mov	r21, r20
+    79f0:	44 27       	eor	r20, r20
 					Address |= TB_bufIn[TB_BUF_MOTOR];
-    79c8:	80 91 30 02 	lds	r24, 0x0230
-    79cc:	ea 01       	movw	r28, r20
-    79ce:	c8 2b       	or	r28, r24
-    79d0:	d0 93 79 01 	sts	0x0179, r29
-    79d4:	c0 93 78 01 	sts	0x0178, r28
+    79f2:	80 91 30 02 	lds	r24, 0x0230
+    79f6:	ea 01       	movw	r28, r20
+    79f8:	c8 2b       	or	r28, r24
+    79fa:	d0 93 79 01 	sts	0x0179, r29
+    79fe:	c0 93 78 01 	sts	0x0178, r28
 					Aktualni = (Address & ADDRESS_MASK_MSB);
-    79d8:	9e 01       	movw	r18, r28
-    79da:	20 78       	andi	r18, 0x80	; 128
-    79dc:	30 93 77 01 	sts	0x0177, r19
-    79e0:	20 93 76 01 	sts	0x0176, r18
+    7a02:	9e 01       	movw	r18, r28
+    7a04:	20 78       	andi	r18, 0x80	; 128
+    7a06:	30 93 77 01 	sts	0x0177, r19
+    7a0a:	20 93 76 01 	sts	0x0176, r18
 					if (Address < (START_BOOT_ADDRESS_BYTES - 4))
-    79e4:	cc 3f       	cpi	r28, 0xFC	; 252
-    79e6:	bf e6       	ldi	r27, 0x6F	; 111
-    79e8:	db 07       	cpc	r29, r27
-    79ea:	08 f0       	brcs	.+2      	; 0x79ee <try_receive_data+0x1be>
-    79ec:	b0 c0       	rjmp	.+352    	; 0x7b4e <try_receive_data+0x31e>
+    7a0e:	cc 3f       	cpi	r28, 0xFC	; 252
+    7a10:	bf e6       	ldi	r27, 0x6F	; 111
+    7a12:	db 07       	cpc	r29, r27
+    7a14:	08 f0       	brcs	.+2      	; 0x7a18 <try_receive_data+0x1be>
+    7a16:	b0 c0       	rjmp	.+352    	; 0x7b78 <try_receive_data+0x31e>
 					{
 						if (Aktualni == Predchozi)
-    79ee:	80 91 74 01 	lds	r24, 0x0174
-    79f2:	90 91 75 01 	lds	r25, 0x0175
-    79f6:	28 17       	cp	r18, r24
-    79f8:	39 07       	cpc	r19, r25
-    79fa:	39 f4       	brne	.+14     	; 0x7a0a <try_receive_data+0x1da>
+    7a18:	80 91 74 01 	lds	r24, 0x0174
+    7a1c:	90 91 75 01 	lds	r25, 0x0175
+    7a20:	28 17       	cp	r18, r24
+    7a22:	39 07       	cpc	r19, r25
+    7a24:	39 f4       	brne	.+14     	; 0x7a34 <try_receive_data+0x1da>
 						{
 							FillBufferData(Address);
-    79fc:	ce 01       	movw	r24, r28
-    79fe:	0e 94 e9 3b 	call	0x77d2	; 0x77d2 <FillBufferData>
+    7a26:	ce 01       	movw	r24, r28
+    7a28:	0e 94 fe 3b 	call	0x77fc	; 0x77fc <FillBufferData>
 							EndComFlash = 1;
-    7a02:	81 e0       	ldi	r24, 0x01	; 1
-    7a04:	80 93 73 01 	sts	0x0173, r24
-    7a08:	33 c0       	rjmp	.+102    	; 0x7a70 <try_receive_data+0x240>
+    7a2c:	81 e0       	ldi	r24, 0x01	; 1
+    7a2e:	80 93 73 01 	sts	0x0173, r24
+    7a32:	33 c0       	rjmp	.+102    	; 0x7a9a <try_receive_data+0x240>
 							TB_SendAck(100, WRITE_FLASH);
 						} 
 						else
 						{
 							if (EndComFlash)
-    7a0a:	20 91 73 01 	lds	r18, 0x0173
-    7a0e:	22 23       	and	r18, r18
-    7a10:	21 f1       	breq	.+72     	; 0x7a5a <try_receive_data+0x22a>
+    7a34:	20 91 73 01 	lds	r18, 0x0173
+    7a38:	22 23       	and	r18, r18
+    7a3a:	21 f1       	breq	.+72     	; 0x7a84 <try_receive_data+0x22a>
 							{
 								WriteFlashPages(Predchozi, BufferFlash);
-    7a12:	6b e7       	ldi	r22, 0x7B	; 123
-    7a14:	71 e0       	ldi	r23, 0x01	; 1
-    7a16:	0e 94 a6 3b 	call	0x774c	; 0x774c <WriteFlashPages>
+    7a3c:	6b e7       	ldi	r22, 0x7B	; 123
+    7a3e:	71 e0       	ldi	r23, 0x01	; 1
+    7a40:	0e 94 a6 3b 	call	0x774c	; 0x774c <WriteFlashPages>
 								memset(BufferFlash, 0xFF, SPM_PAGESIZE);
-    7a1a:	40 e8       	ldi	r20, 0x80	; 128
-    7a1c:	50 e0       	ldi	r21, 0x00	; 0
-    7a1e:	6f ef       	ldi	r22, 0xFF	; 255
-    7a20:	70 e0       	ldi	r23, 0x00	; 0
-    7a22:	8b e7       	ldi	r24, 0x7B	; 123
-    7a24:	91 e0       	ldi	r25, 0x01	; 1
-    7a26:	0e 94 66 3e 	call	0x7ccc	; 0x7ccc <memset>
+    7a44:	40 e8       	ldi	r20, 0x80	; 128
+    7a46:	50 e0       	ldi	r21, 0x00	; 0
+    7a48:	6f ef       	ldi	r22, 0xFF	; 255
+    7a4a:	70 e0       	ldi	r23, 0x00	; 0
+    7a4c:	8b e7       	ldi	r24, 0x7B	; 123
+    7a4e:	91 e0       	ldi	r25, 0x01	; 1
+    7a50:	0e 94 5c 3e 	call	0x7cb8	; 0x7cb8 <memset>
 								FillBufferData(Address);
-    7a2a:	80 91 78 01 	lds	r24, 0x0178
-    7a2e:	90 91 79 01 	lds	r25, 0x0179
-    7a32:	0e 94 e9 3b 	call	0x77d2	; 0x77d2 <FillBufferData>
+    7a54:	80 91 78 01 	lds	r24, 0x0178
+    7a58:	90 91 79 01 	lds	r25, 0x0179
+    7a5c:	0e 94 fe 3b 	call	0x77fc	; 0x77fc <FillBufferData>
 								TB_SendAck(100, Address);
-    7a36:	40 91 78 01 	lds	r20, 0x0178
-    7a3a:	50 91 79 01 	lds	r21, 0x0179
-    7a3e:	60 e0       	ldi	r22, 0x00	; 0
-    7a40:	70 e0       	ldi	r23, 0x00	; 0
-    7a42:	84 e6       	ldi	r24, 0x64	; 100
-    7a44:	0e 94 cd 38 	call	0x719a	; 0x719a <TB_SendAck>
+    7a60:	40 91 78 01 	lds	r20, 0x0178
+    7a64:	50 91 79 01 	lds	r21, 0x0179
+    7a68:	60 e0       	ldi	r22, 0x00	; 0
+    7a6a:	70 e0       	ldi	r23, 0x00	; 0
+    7a6c:	84 e6       	ldi	r24, 0x64	; 100
+    7a6e:	0e 94 cd 38 	call	0x719a	; 0x719a <TB_SendAck>
 								Predchozi = Address;
-    7a48:	80 91 78 01 	lds	r24, 0x0178
-    7a4c:	90 91 79 01 	lds	r25, 0x0179
-    7a50:	90 93 75 01 	sts	0x0175, r25
-    7a54:	80 93 74 01 	sts	0x0174, r24
-    7a58:	12 c0       	rjmp	.+36     	; 0x7a7e <try_receive_data+0x24e>
+    7a72:	80 91 78 01 	lds	r24, 0x0178
+    7a76:	90 91 79 01 	lds	r25, 0x0179
+    7a7a:	90 93 75 01 	sts	0x0175, r25
+    7a7e:	80 93 74 01 	sts	0x0174, r24
+    7a82:	12 c0       	rjmp	.+36     	; 0x7aa8 <try_receive_data+0x24e>
 							}
 							else
 							{
 								memset(BufferFlash, 0xFF, SPM_PAGESIZE);
-    7a5a:	40 e8       	ldi	r20, 0x80	; 128
-    7a5c:	50 e0       	ldi	r21, 0x00	; 0
-    7a5e:	6f ef       	ldi	r22, 0xFF	; 255
-    7a60:	70 e0       	ldi	r23, 0x00	; 0
-    7a62:	8b e7       	ldi	r24, 0x7B	; 123
-    7a64:	91 e0       	ldi	r25, 0x01	; 1
-    7a66:	0e 94 66 3e 	call	0x7ccc	; 0x7ccc <memset>
+    7a84:	40 e8       	ldi	r20, 0x80	; 128
+    7a86:	50 e0       	ldi	r21, 0x00	; 0
+    7a88:	6f ef       	ldi	r22, 0xFF	; 255
+    7a8a:	70 e0       	ldi	r23, 0x00	; 0
+    7a8c:	8b e7       	ldi	r24, 0x7B	; 123
+    7a8e:	91 e0       	ldi	r25, 0x01	; 1
+    7a90:	0e 94 5c 3e 	call	0x7cb8	; 0x7cb8 <memset>
 								FillBufferData(Address);
-    7a6a:	ce 01       	movw	r24, r28
-    7a6c:	0e 94 e9 3b 	call	0x77d2	; 0x77d2 <FillBufferData>
+    7a94:	ce 01       	movw	r24, r28
+    7a96:	0e 94 fe 3b 	call	0x77fc	; 0x77fc <FillBufferData>
 								TB_SendAck(100, WRITE_FLASH);
-    7a70:	47 e1       	ldi	r20, 0x17	; 23
-    7a72:	50 e0       	ldi	r21, 0x00	; 0
-    7a74:	60 e0       	ldi	r22, 0x00	; 0
-    7a76:	70 e0       	ldi	r23, 0x00	; 0
-    7a78:	84 e6       	ldi	r24, 0x64	; 100
-    7a7a:	0e 94 cd 38 	call	0x719a	; 0x719a <TB_SendAck>
+    7a9a:	47 e1       	ldi	r20, 0x17	; 23
+    7a9c:	50 e0       	ldi	r21, 0x00	; 0
+    7a9e:	60 e0       	ldi	r22, 0x00	; 0
+    7aa0:	70 e0       	ldi	r23, 0x00	; 0
+    7aa2:	84 e6       	ldi	r24, 0x64	; 100
+    7aa4:	0e 94 cd 38 	call	0x719a	; 0x719a <TB_SendAck>
 							}
 						}
 						NowFlash = 1;
-    7a7e:	81 e0       	ldi	r24, 0x01	; 1
-    7a80:	80 93 70 01 	sts	0x0170, r24
-    7a84:	e9 c0       	rjmp	.+466    	; 0x7c58 <try_receive_data+0x428>
+    7aa8:	81 e0       	ldi	r24, 0x01	; 1
+    7aaa:	80 93 70 01 	sts	0x0170, r24
+    7aae:	ca c0       	rjmp	.+404    	; 0x7c44 <try_receive_data+0x3ea>
 					{
 						TB_SendAck(102, Address);	
 					}
 					break;
 				case WRITE_EEPROM:
 					Address = TB_bufIn[TB_BUF_TYPE] << 8;
-    7a86:	40 91 2f 02 	lds	r20, 0x022F
-    7a8a:	50 e0       	ldi	r21, 0x00	; 0
-    7a8c:	54 2f       	mov	r21, r20
-    7a8e:	44 27       	eor	r20, r20
+    7ab0:	40 91 2f 02 	lds	r20, 0x022F
+    7ab4:	50 e0       	ldi	r21, 0x00	; 0
+    7ab6:	54 2f       	mov	r21, r20
+    7ab8:	44 27       	eor	r20, r20
 					Address |= TB_bufIn[TB_BUF_MOTOR];
-    7a90:	80 91 30 02 	lds	r24, 0x0230
-    7a94:	ea 01       	movw	r28, r20
-    7a96:	c8 2b       	or	r28, r24
-    7a98:	d0 93 79 01 	sts	0x0179, r29
-    7a9c:	c0 93 78 01 	sts	0x0178, r28
+    7aba:	80 91 30 02 	lds	r24, 0x0230
+    7abe:	ea 01       	movw	r28, r20
+    7ac0:	c8 2b       	or	r28, r24
+    7ac2:	d0 93 79 01 	sts	0x0179, r29
+    7ac6:	c0 93 78 01 	sts	0x0178, r28
 					Aktualni = (Address & ADDRESS_MASK_MSB);
-    7aa0:	9e 01       	movw	r18, r28
-    7aa2:	20 78       	andi	r18, 0x80	; 128
-    7aa4:	30 93 77 01 	sts	0x0177, r19
-    7aa8:	20 93 76 01 	sts	0x0176, r18
+    7aca:	9e 01       	movw	r18, r28
+    7acc:	20 78       	andi	r18, 0x80	; 128
+    7ace:	30 93 77 01 	sts	0x0177, r19
+    7ad2:	20 93 76 01 	sts	0x0176, r18
 					if (Address < (START_EEPROM_ADDRESS - 4))
-    7aac:	cc 3f       	cpi	r28, 0xFC	; 252
-    7aae:	8f ef       	ldi	r24, 0xFF	; 255
-    7ab0:	d8 07       	cpc	r29, r24
-    7ab2:	08 f0       	brcs	.+2      	; 0x7ab6 <try_receive_data+0x286>
-    7ab4:	4c c0       	rjmp	.+152    	; 0x7b4e <try_receive_data+0x31e>
+    7ad6:	cc 3f       	cpi	r28, 0xFC	; 252
+    7ad8:	8f ef       	ldi	r24, 0xFF	; 255
+    7ada:	d8 07       	cpc	r29, r24
+    7adc:	08 f0       	brcs	.+2      	; 0x7ae0 <try_receive_data+0x286>
+    7ade:	4c c0       	rjmp	.+152    	; 0x7b78 <try_receive_data+0x31e>
 					{
 						if (Aktualni == Predchozi)
-    7ab6:	80 91 74 01 	lds	r24, 0x0174
-    7aba:	90 91 75 01 	lds	r25, 0x0175
-    7abe:	28 17       	cp	r18, r24
-    7ac0:	39 07       	cpc	r19, r25
-    7ac2:	39 f4       	brne	.+14     	; 0x7ad2 <try_receive_data+0x2a2>
+    7ae0:	80 91 74 01 	lds	r24, 0x0174
+    7ae4:	90 91 75 01 	lds	r25, 0x0175
+    7ae8:	28 17       	cp	r18, r24
+    7aea:	39 07       	cpc	r19, r25
+    7aec:	39 f4       	brne	.+14     	; 0x7afc <try_receive_data+0x2a2>
 						{
 							FillBufferData(Address);
-    7ac4:	ce 01       	movw	r24, r28
-    7ac6:	0e 94 e9 3b 	call	0x77d2	; 0x77d2 <FillBufferData>
+    7aee:	ce 01       	movw	r24, r28
+    7af0:	0e 94 fe 3b 	call	0x77fc	; 0x77fc <FillBufferData>
 							EndComEeprom = 1;
-    7aca:	81 e0       	ldi	r24, 0x01	; 1
-    7acc:	80 93 72 01 	sts	0x0172, r24
-    7ad0:	33 c0       	rjmp	.+102    	; 0x7b38 <try_receive_data+0x308>
+    7af4:	81 e0       	ldi	r24, 0x01	; 1
+    7af6:	80 93 72 01 	sts	0x0172, r24
+    7afa:	33 c0       	rjmp	.+102    	; 0x7b62 <try_receive_data+0x308>
 							TB_SendAck(100, WRITE_EEPROM);
 						}
 						else
 						{
 							if (EndComEeprom)
-    7ad2:	20 91 72 01 	lds	r18, 0x0172
-    7ad6:	22 23       	and	r18, r18
-    7ad8:	21 f1       	breq	.+72     	; 0x7b22 <try_receive_data+0x2f2>
+    7afc:	20 91 72 01 	lds	r18, 0x0172
+    7b00:	22 23       	and	r18, r18
+    7b02:	21 f1       	breq	.+72     	; 0x7b4c <try_receive_data+0x2f2>
 							{
 								WriteEepromPages(Predchozi, BufferFlash);
-    7ada:	6b e7       	ldi	r22, 0x7B	; 123
-    7adc:	71 e0       	ldi	r23, 0x01	; 1
-    7ade:	0e 94 cc 3b 	call	0x7798	; 0x7798 <WriteEepromPages>
+    7b04:	6b e7       	ldi	r22, 0x7B	; 123
+    7b06:	71 e0       	ldi	r23, 0x01	; 1
+    7b08:	0e 94 cc 3b 	call	0x7798	; 0x7798 <WriteEepromPages>
 								memset(BufferFlash, 0xFF, SPM_PAGESIZE);
-    7ae2:	40 e8       	ldi	r20, 0x80	; 128
-    7ae4:	50 e0       	ldi	r21, 0x00	; 0
-    7ae6:	6f ef       	ldi	r22, 0xFF	; 255
-    7ae8:	70 e0       	ldi	r23, 0x00	; 0
-    7aea:	8b e7       	ldi	r24, 0x7B	; 123
-    7aec:	91 e0       	ldi	r25, 0x01	; 1
-    7aee:	0e 94 66 3e 	call	0x7ccc	; 0x7ccc <memset>
+    7b0c:	40 e8       	ldi	r20, 0x80	; 128
+    7b0e:	50 e0       	ldi	r21, 0x00	; 0
+    7b10:	6f ef       	ldi	r22, 0xFF	; 255
+    7b12:	70 e0       	ldi	r23, 0x00	; 0
+    7b14:	8b e7       	ldi	r24, 0x7B	; 123
+    7b16:	91 e0       	ldi	r25, 0x01	; 1
+    7b18:	0e 94 5c 3e 	call	0x7cb8	; 0x7cb8 <memset>
 								FillBufferData(Address);
-    7af2:	80 91 78 01 	lds	r24, 0x0178
-    7af6:	90 91 79 01 	lds	r25, 0x0179
-    7afa:	0e 94 e9 3b 	call	0x77d2	; 0x77d2 <FillBufferData>
+    7b1c:	80 91 78 01 	lds	r24, 0x0178
+    7b20:	90 91 79 01 	lds	r25, 0x0179
+    7b24:	0e 94 fe 3b 	call	0x77fc	; 0x77fc <FillBufferData>
 								TB_SendAck(100, Address);
-    7afe:	40 91 78 01 	lds	r20, 0x0178
-    7b02:	50 91 79 01 	lds	r21, 0x0179
-    7b06:	60 e0       	ldi	r22, 0x00	; 0
-    7b08:	70 e0       	ldi	r23, 0x00	; 0
-    7b0a:	84 e6       	ldi	r24, 0x64	; 100
-    7b0c:	0e 94 cd 38 	call	0x719a	; 0x719a <TB_SendAck>
+    7b28:	40 91 78 01 	lds	r20, 0x0178
+    7b2c:	50 91 79 01 	lds	r21, 0x0179
+    7b30:	60 e0       	ldi	r22, 0x00	; 0
+    7b32:	70 e0       	ldi	r23, 0x00	; 0
+    7b34:	84 e6       	ldi	r24, 0x64	; 100
+    7b36:	0e 94 cd 38 	call	0x719a	; 0x719a <TB_SendAck>
 								Predchozi = Address;
-    7b10:	80 91 78 01 	lds	r24, 0x0178
-    7b14:	90 91 79 01 	lds	r25, 0x0179
-    7b18:	90 93 75 01 	sts	0x0175, r25
-    7b1c:	80 93 74 01 	sts	0x0174, r24
-    7b20:	12 c0       	rjmp	.+36     	; 0x7b46 <try_receive_data+0x316>
+    7b3a:	80 91 78 01 	lds	r24, 0x0178
+    7b3e:	90 91 79 01 	lds	r25, 0x0179
+    7b42:	90 93 75 01 	sts	0x0175, r25
+    7b46:	80 93 74 01 	sts	0x0174, r24
+    7b4a:	12 c0       	rjmp	.+36     	; 0x7b70 <try_receive_data+0x316>
 							}
 							else
 							{
 								memset(BufferFlash, 0xFF, SPM_PAGESIZE);
-    7b22:	40 e8       	ldi	r20, 0x80	; 128
-    7b24:	50 e0       	ldi	r21, 0x00	; 0
-    7b26:	6f ef       	ldi	r22, 0xFF	; 255
-    7b28:	70 e0       	ldi	r23, 0x00	; 0
-    7b2a:	8b e7       	ldi	r24, 0x7B	; 123
-    7b2c:	91 e0       	ldi	r25, 0x01	; 1
-    7b2e:	0e 94 66 3e 	call	0x7ccc	; 0x7ccc <memset>
+    7b4c:	40 e8       	ldi	r20, 0x80	; 128
+    7b4e:	50 e0       	ldi	r21, 0x00	; 0
+    7b50:	6f ef       	ldi	r22, 0xFF	; 255
+    7b52:	70 e0       	ldi	r23, 0x00	; 0
+    7b54:	8b e7       	ldi	r24, 0x7B	; 123
+    7b56:	91 e0       	ldi	r25, 0x01	; 1
+    7b58:	0e 94 5c 3e 	call	0x7cb8	; 0x7cb8 <memset>
 								FillBufferData(Address);
-    7b32:	ce 01       	movw	r24, r28
-    7b34:	0e 94 e9 3b 	call	0x77d2	; 0x77d2 <FillBufferData>
+    7b5c:	ce 01       	movw	r24, r28
+    7b5e:	0e 94 fe 3b 	call	0x77fc	; 0x77fc <FillBufferData>
 								TB_SendAck(100, WRITE_EEPROM);
-    7b38:	48 e1       	ldi	r20, 0x18	; 24
-    7b3a:	50 e0       	ldi	r21, 0x00	; 0
-    7b3c:	60 e0       	ldi	r22, 0x00	; 0
-    7b3e:	70 e0       	ldi	r23, 0x00	; 0
-    7b40:	84 e6       	ldi	r24, 0x64	; 100
-    7b42:	0e 94 cd 38 	call	0x719a	; 0x719a <TB_SendAck>
+    7b62:	48 e1       	ldi	r20, 0x18	; 24
+    7b64:	50 e0       	ldi	r21, 0x00	; 0
+    7b66:	60 e0       	ldi	r22, 0x00	; 0
+    7b68:	70 e0       	ldi	r23, 0x00	; 0
+    7b6a:	84 e6       	ldi	r24, 0x64	; 100
+    7b6c:	0e 94 cd 38 	call	0x719a	; 0x719a <TB_SendAck>
 							}
 						}
 						NowEeprom = 1;
-    7b46:	81 e0       	ldi	r24, 0x01	; 1
-    7b48:	80 93 71 01 	sts	0x0171, r24
-    7b4c:	85 c0       	rjmp	.+266    	; 0x7c58 <try_receive_data+0x428>
+    7b70:	81 e0       	ldi	r24, 0x01	; 1
+    7b72:	80 93 71 01 	sts	0x0171, r24
+    7b76:	66 c0       	rjmp	.+204    	; 0x7c44 <try_receive_data+0x3ea>
 					}
 					else
 					{
 						TB_SendAck(102, Address);
-    7b4e:	ae 01       	movw	r20, r28
-    7b50:	60 e0       	ldi	r22, 0x00	; 0
-    7b52:	70 e0       	ldi	r23, 0x00	; 0
-    7b54:	68 c0       	rjmp	.+208    	; 0x7c26 <try_receive_data+0x3f6>
+    7b78:	ae 01       	movw	r20, r28
+    7b7a:	60 e0       	ldi	r22, 0x00	; 0
+    7b7c:	70 e0       	ldi	r23, 0x00	; 0
+    7b7e:	49 c0       	rjmp	.+146    	; 0x7c12 <try_receive_data+0x3b8>
 					}
 					break;
 				case END_WRITE_ALL:
 					if (NowFlash)
-    7b56:	80 91 70 01 	lds	r24, 0x0170
-    7b5a:	88 23       	and	r24, r24
-    7b5c:	59 f0       	breq	.+22     	; 0x7b74 <try_receive_data+0x344>
+    7b80:	80 91 70 01 	lds	r24, 0x0170
+    7b84:	88 23       	and	r24, r24
+    7b86:	59 f0       	breq	.+22     	; 0x7b9e <try_receive_data+0x344>
 					{
 						WriteFlashPages(Predchozi, BufferFlash);
-    7b5e:	6b e7       	ldi	r22, 0x7B	; 123
-    7b60:	71 e0       	ldi	r23, 0x01	; 1
-    7b62:	80 91 74 01 	lds	r24, 0x0174
-    7b66:	90 91 75 01 	lds	r25, 0x0175
-    7b6a:	0e 94 a6 3b 	call	0x774c	; 0x774c <WriteFlashPages>
+    7b88:	6b e7       	ldi	r22, 0x7B	; 123
+    7b8a:	71 e0       	ldi	r23, 0x01	; 1
+    7b8c:	80 91 74 01 	lds	r24, 0x0174
+    7b90:	90 91 75 01 	lds	r25, 0x0175
+    7b94:	0e 94 a6 3b 	call	0x774c	; 0x774c <WriteFlashPages>
 						EndComFlash=0;
-    7b6e:	10 92 73 01 	sts	0x0173, r1
-    7b72:	0e c0       	rjmp	.+28     	; 0x7b90 <try_receive_data+0x360>
+    7b98:	10 92 73 01 	sts	0x0173, r1
+    7b9c:	0e c0       	rjmp	.+28     	; 0x7bba <try_receive_data+0x360>
 						TB_SendAck(100, END_WRITE_ALL);
 					}
 					else if(NowEeprom)
-    7b74:	80 91 71 01 	lds	r24, 0x0171
-    7b78:	88 23       	and	r24, r24
-    7b7a:	81 f0       	breq	.+32     	; 0x7b9c <try_receive_data+0x36c>
+    7b9e:	80 91 71 01 	lds	r24, 0x0171
+    7ba2:	88 23       	and	r24, r24
+    7ba4:	81 f0       	breq	.+32     	; 0x7bc6 <try_receive_data+0x36c>
 					{
 						WriteEepromPages(Predchozi, BufferFlash);
-    7b7c:	6b e7       	ldi	r22, 0x7B	; 123
-    7b7e:	71 e0       	ldi	r23, 0x01	; 1
-    7b80:	80 91 74 01 	lds	r24, 0x0174
-    7b84:	90 91 75 01 	lds	r25, 0x0175
-    7b88:	0e 94 cc 3b 	call	0x7798	; 0x7798 <WriteEepromPages>
+    7ba6:	6b e7       	ldi	r22, 0x7B	; 123
+    7ba8:	71 e0       	ldi	r23, 0x01	; 1
+    7baa:	80 91 74 01 	lds	r24, 0x0174
+    7bae:	90 91 75 01 	lds	r25, 0x0175
+    7bb2:	0e 94 cc 3b 	call	0x7798	; 0x7798 <WriteEepromPages>
 						EndComEeprom = 0;
-    7b8c:	10 92 72 01 	sts	0x0172, r1
+    7bb6:	10 92 72 01 	sts	0x0172, r1
 						TB_SendAck(100, END_WRITE_ALL);
-    7b90:	49 e1       	ldi	r20, 0x19	; 25
-    7b92:	50 e0       	ldi	r21, 0x00	; 0
-    7b94:	60 e0       	ldi	r22, 0x00	; 0
-    7b96:	70 e0       	ldi	r23, 0x00	; 0
-    7b98:	84 e6       	ldi	r24, 0x64	; 100
-    7b9a:	04 c0       	rjmp	.+8      	; 0x7ba4 <try_receive_data+0x374>
+    7bba:	49 e1       	ldi	r20, 0x19	; 25
+    7bbc:	50 e0       	ldi	r21, 0x00	; 0
+    7bbe:	60 e0       	ldi	r22, 0x00	; 0
+    7bc0:	70 e0       	ldi	r23, 0x00	; 0
+    7bc2:	84 e6       	ldi	r24, 0x64	; 100
+    7bc4:	04 c0       	rjmp	.+8      	; 0x7bce <try_receive_data+0x374>
 					}
 					else
 					{
 						TB_SendAck(102, 0);
-    7b9c:	40 e0       	ldi	r20, 0x00	; 0
-    7b9e:	50 e0       	ldi	r21, 0x00	; 0
-    7ba0:	ba 01       	movw	r22, r20
-    7ba2:	86 e6       	ldi	r24, 0x66	; 102
-    7ba4:	0e 94 cd 38 	call	0x719a	; 0x719a <TB_SendAck>
+    7bc6:	40 e0       	ldi	r20, 0x00	; 0
+    7bc8:	50 e0       	ldi	r21, 0x00	; 0
+    7bca:	ba 01       	movw	r22, r20
+    7bcc:	86 e6       	ldi	r24, 0x66	; 102
+    7bce:	0e 94 cd 38 	call	0x719a	; 0x719a <TB_SendAck>
 					}
 					Predchozi = 0;
-    7ba8:	10 92 75 01 	sts	0x0175, r1
-    7bac:	10 92 74 01 	sts	0x0174, r1
+    7bd2:	10 92 75 01 	sts	0x0175, r1
+    7bd6:	10 92 74 01 	sts	0x0174, r1
 					Aktualni = 0;
-    7bb0:	10 92 77 01 	sts	0x0177, r1
-    7bb4:	10 92 76 01 	sts	0x0176, r1
-    7bb8:	4f c0       	rjmp	.+158    	; 0x7c58 <try_receive_data+0x428>
+    7bda:	10 92 77 01 	sts	0x0177, r1
+    7bde:	10 92 76 01 	sts	0x0176, r1
+    7be2:	30 c0       	rjmp	.+96     	; 0x7c44 <try_receive_data+0x3ea>
 					break;
 				case READ_FLASH:
 					Address = TB_bufIn[TB_BUF_TYPE] << 8;
-    7bba:	40 91 2f 02 	lds	r20, 0x022F
-    7bbe:	50 e0       	ldi	r21, 0x00	; 0
-    7bc0:	54 2f       	mov	r21, r20
-    7bc2:	44 27       	eor	r20, r20
+    7be4:	80 91 2f 02 	lds	r24, 0x022F
+    7be8:	90 e0       	ldi	r25, 0x00	; 0
+    7bea:	98 2f       	mov	r25, r24
+    7bec:	88 27       	eor	r24, r24
 					Address |= TB_bufIn[TB_BUF_MOTOR];
-    7bc4:	80 91 30 02 	lds	r24, 0x0230
-    7bc8:	48 2b       	or	r20, r24
-    7bca:	50 93 79 01 	sts	0x0179, r21
-    7bce:	40 93 78 01 	sts	0x0178, r20
-					TB_SendAck(100, Address);
-    7bd2:	60 e0       	ldi	r22, 0x00	; 0
-    7bd4:	70 e0       	ldi	r23, 0x00	; 0
-    7bd6:	84 e6       	ldi	r24, 0x64	; 100
-    7bd8:	0e 94 cd 38 	call	0x719a	; 0x719a <TB_SendAck>
+    7bee:	20 91 30 02 	lds	r18, 0x0230
+    7bf2:	82 2b       	or	r24, r18
+    7bf4:	90 93 79 01 	sts	0x0179, r25
+    7bf8:	80 93 78 01 	sts	0x0178, r24
 					if (Address < (START_BOOT_ADDRESS_BYTES - 4))
-    7bdc:	e0 91 78 01 	lds	r30, 0x0178
-    7be0:	f0 91 79 01 	lds	r31, 0x0179
-    7be4:	ec 3f       	cpi	r30, 0xFC	; 252
-    7be6:	af e6       	ldi	r26, 0x6F	; 111
-    7be8:	fa 07       	cpc	r31, r26
-    7bea:	d0 f4       	brcc	.+52     	; 0x7c20 <try_receive_data+0x3f0>
+    7bfc:	8c 3f       	cpi	r24, 0xFC	; 252
+    7bfe:	af e6       	ldi	r26, 0x6F	; 111
+    7c00:	9a 07       	cpc	r25, r26
+    7c02:	20 f4       	brcc	.+8      	; 0x7c0c <try_receive_data+0x3b2>
+					jumpaddress();
+					break;
+			}
+		}
+	}
+}
+    7c04:	df 91       	pop	r29
+    7c06:	cf 91       	pop	r28
+				case READ_FLASH:
+					Address = TB_bufIn[TB_BUF_TYPE] << 8;
+					Address |= TB_bufIn[TB_BUF_MOTOR];
+					if (Address < (START_BOOT_ADDRESS_BYTES - 4))
 					{
-						uint32_t Data=0;
-						Data = (((uint32_t)pgm_read_byte(Address)) << 24);
-    7bec:	e4 91       	lpm	r30, Z
-    7bee:	4e 2f       	mov	r20, r30
-    7bf0:	50 e0       	ldi	r21, 0x00	; 0
-    7bf2:	60 e0       	ldi	r22, 0x00	; 0
-    7bf4:	70 e0       	ldi	r23, 0x00	; 0
-    7bf6:	74 2f       	mov	r23, r20
-    7bf8:	66 27       	eor	r22, r22
-    7bfa:	55 27       	eor	r21, r21
-    7bfc:	44 27       	eor	r20, r20
-						TB_SendAck(100, Data);
-    7bfe:	84 e6       	ldi	r24, 0x64	; 100
-    7c00:	0e 94 cd 38 	call	0x719a	; 0x719a <TB_SendAck>
-						Data = (pgm_read_byte(Address) << 8);
-    7c04:	e0 91 78 01 	lds	r30, 0x0178
-    7c08:	f0 91 79 01 	lds	r31, 0x0179
-    7c0c:	e4 91       	lpm	r30, Z
-    7c0e:	4e 2f       	mov	r20, r30
-    7c10:	50 e0       	ldi	r21, 0x00	; 0
-    7c12:	f4 2f       	mov	r31, r20
-    7c14:	ee 27       	eor	r30, r30
-						TB_SendAck(100, Data);
-    7c16:	af 01       	movw	r20, r30
-    7c18:	ff 0f       	add	r31, r31
-    7c1a:	66 0b       	sbc	r22, r22
-    7c1c:	77 0b       	sbc	r23, r23
-    7c1e:	17 c0       	rjmp	.+46     	; 0x7c4e <try_receive_data+0x41e>
-// 						Data |= pgm_read_byte(Address + 3);
-// 						TB_SendAck(100, Data);
+						ReadFlashPages(Address);
+    7c08:	0c 94 e9 3b 	jmp	0x77d2	; 0x77d2 <ReadFlashPages>
 					}
 					else
 					{
 						TB_SendAck(102, 0);	
-    7c20:	40 e0       	ldi	r20, 0x00	; 0
-    7c22:	50 e0       	ldi	r21, 0x00	; 0
-    7c24:	ba 01       	movw	r22, r20
-    7c26:	86 e6       	ldi	r24, 0x66	; 102
-    7c28:	13 c0       	rjmp	.+38     	; 0x7c50 <try_receive_data+0x420>
+    7c0c:	40 e0       	ldi	r20, 0x00	; 0
+    7c0e:	50 e0       	ldi	r21, 0x00	; 0
+    7c10:	ba 01       	movw	r22, r20
+    7c12:	86 e6       	ldi	r24, 0x66	; 102
+    7c14:	13 c0       	rjmp	.+38     	; 0x7c3c <try_receive_data+0x3e2>
 					}
 					break;
 				case READ_EEPROM:
 					Address = TB_bufIn[TB_BUF_TYPE] << 8;
-    7c2a:	80 91 2f 02 	lds	r24, 0x022F
-    7c2e:	90 e0       	ldi	r25, 0x00	; 0
-    7c30:	98 2f       	mov	r25, r24
-    7c32:	88 27       	eor	r24, r24
+    7c16:	80 91 2f 02 	lds	r24, 0x022F
+    7c1a:	90 e0       	ldi	r25, 0x00	; 0
+    7c1c:	98 2f       	mov	r25, r24
+    7c1e:	88 27       	eor	r24, r24
 					Address |= TB_bufIn[TB_BUF_MOTOR];
-    7c34:	20 91 30 02 	lds	r18, 0x0230
-    7c38:	82 2b       	or	r24, r18
-    7c3a:	90 93 79 01 	sts	0x0179, r25
-    7c3e:	80 93 78 01 	sts	0x0178, r24
+    7c20:	20 91 30 02 	lds	r18, 0x0230
+    7c24:	82 2b       	or	r24, r18
+    7c26:	90 93 79 01 	sts	0x0179, r25
+    7c2a:	80 93 78 01 	sts	0x0178, r24
 					if (Address < (START_EEPROM_ADDRESS - 4))
-    7c42:	8c 3f       	cpi	r24, 0xFC	; 252
-    7c44:	9f 4f       	sbci	r25, 0xFF	; 255
-    7c46:	60 f7       	brcc	.-40     	; 0x7c20 <try_receive_data+0x3f0>
+    7c2e:	8c 3f       	cpi	r24, 0xFC	; 252
+    7c30:	9f 4f       	sbci	r25, 0xFF	; 255
+    7c32:	60 f7       	brcc	.-40     	; 0x7c0c <try_receive_data+0x3b2>
 						uint32_t Data=0;
 //						Data = pgm_read_byte(Address) << 8;
 // 						Data |= pgm_read_byte(address + 1) << 8;
 // 						Data |= pgm_read_byte(address + 2) << 8;
 // 						Data |= pgm_read_byte(address + 3);
 						TB_SendAck(100, Data);
-    7c48:	40 e0       	ldi	r20, 0x00	; 0
-    7c4a:	50 e0       	ldi	r21, 0x00	; 0
-    7c4c:	ba 01       	movw	r22, r20
-    7c4e:	84 e6       	ldi	r24, 0x64	; 100
+    7c34:	40 e0       	ldi	r20, 0x00	; 0
+    7c36:	50 e0       	ldi	r21, 0x00	; 0
+    7c38:	ba 01       	movw	r22, r20
+    7c3a:	84 e6       	ldi	r24, 0x64	; 100
 					jumpaddress();
 					break;
 			}
 		}
 	}
 }
-    7c50:	df 91       	pop	r29
-    7c52:	cf 91       	pop	r28
+    7c3c:	df 91       	pop	r29
+    7c3e:	cf 91       	pop	r28
 						uint32_t Data=0;
 //						Data = pgm_read_byte(Address) << 8;
 // 						Data |= pgm_read_byte(address + 1) << 8;
 // 						Data |= pgm_read_byte(address + 2) << 8;
 // 						Data |= pgm_read_byte(address + 3);
 						TB_SendAck(100, Data);
-    7c54:	0c 94 cd 38 	jmp	0x719a	; 0x719a <TB_SendAck>
+    7c40:	0c 94 cd 38 	jmp	0x719a	; 0x719a <TB_SendAck>
 					jumpaddress();
 					break;
 			}
 		}
 	}
 }
-    7c58:	df 91       	pop	r29
-    7c5a:	cf 91       	pop	r28
-    7c5c:	08 95       	ret
+    7c44:	df 91       	pop	r29
+    7c46:	cf 91       	pop	r28
+    7c48:	08 95       	ret
 
-00007c5e <Move_interrupts>:
+00007c4a <Move_interrupts>:
 
 void Move_interrupts(void)
 {
 	/* Enable change of interrupt vectors */
 	GICR = (1<<IVCE);
-    7c5e:	81 e0       	ldi	r24, 0x01	; 1
-    7c60:	8b bf       	out	0x3b, r24	; 59
+    7c4a:	81 e0       	ldi	r24, 0x01	; 1
+    7c4c:	8b bf       	out	0x3b, r24	; 59
 	/* Move interrupts to boot Flash section */
 	GICR = (1<<IVSEL);
-    7c62:	82 e0       	ldi	r24, 0x02	; 2
-    7c64:	8b bf       	out	0x3b, r24	; 59
-    7c66:	08 95       	ret
+    7c4e:	82 e0       	ldi	r24, 0x02	; 2
+    7c50:	8b bf       	out	0x3b, r24	; 59
+    7c52:	08 95       	ret
 
-00007c68 <Bootloader_Init>:
+00007c54 <Bootloader_Init>:
 }
 
 void Bootloader_Init(void)
 {
 	memset(BufferFlash, 0xFF, SPM_PAGESIZE);
-    7c68:	40 e8       	ldi	r20, 0x80	; 128
-    7c6a:	50 e0       	ldi	r21, 0x00	; 0
-    7c6c:	6f ef       	ldi	r22, 0xFF	; 255
-    7c6e:	70 e0       	ldi	r23, 0x00	; 0
-    7c70:	8b e7       	ldi	r24, 0x7B	; 123
-    7c72:	91 e0       	ldi	r25, 0x01	; 1
-    7c74:	0c 94 66 3e 	jmp	0x7ccc	; 0x7ccc <memset>
+    7c54:	40 e8       	ldi	r20, 0x80	; 128
+    7c56:	50 e0       	ldi	r21, 0x00	; 0
+    7c58:	6f ef       	ldi	r22, 0xFF	; 255
+    7c5a:	70 e0       	ldi	r23, 0x00	; 0
+    7c5c:	8b e7       	ldi	r24, 0x7B	; 123
+    7c5e:	91 e0       	ldi	r25, 0x01	; 1
+    7c60:	0c 94 5c 3e 	jmp	0x7cb8	; 0x7cb8 <memset>
 
-00007c78 <main>:
+00007c64 <main>:
 }
 
 int main(void)
 {
 	// Interrupty pøesunuty na jinou adresu pro Bootloader.
 	Move_interrupts();
-    7c78:	0e 94 2f 3e 	call	0x7c5e	; 0x7c5e <Move_interrupts>
+    7c64:	0e 94 25 3e 	call	0x7c4a	; 0x7c4a <Move_interrupts>
     /* Replace with your application code */
 	cli();
-    7c7c:	f8 94       	cli
+    7c68:	f8 94       	cli
 
 	//Nastavení Systemového enable pro RS485 pro UART0
 	DDRD |= (1 << DDD1) | (1 << DDD2);
-    7c7e:	81 b3       	in	r24, 0x11	; 17
-    7c80:	86 60       	ori	r24, 0x06	; 6
-    7c82:	81 bb       	out	0x11, r24	; 17
+    7c6a:	81 b3       	in	r24, 0x11	; 17
+    7c6c:	86 60       	ori	r24, 0x06	; 6
+    7c6e:	81 bb       	out	0x11, r24	; 17
 
 	timer_init();
-    7c84:	0e 94 6e 38 	call	0x70dc	; 0x70dc <timer_init>
+    7c70:	0e 94 6e 38 	call	0x70dc	; 0x70dc <timer_init>
 	
 	uart0_init();
-    7c88:	0e 94 70 3a 	call	0x74e0	; 0x74e0 <uart0_init>
+    7c74:	0e 94 70 3a 	call	0x74e0	; 0x74e0 <uart0_init>
 	TB_Callback_setBaud = &uart0_set_baud;
-    7c8c:	8d e5       	ldi	r24, 0x5D	; 93
-    7c8e:	9b e3       	ldi	r25, 0x3B	; 59
-    7c90:	90 93 61 01 	sts	0x0161, r25
-    7c94:	80 93 60 01 	sts	0x0160, r24
+    7c78:	8d e5       	ldi	r24, 0x5D	; 93
+    7c7a:	9b e3       	ldi	r25, 0x3B	; 59
+    7c7c:	90 93 61 01 	sts	0x0161, r25
+    7c80:	80 93 60 01 	sts	0x0160, r24
 	TB_Callback_TX = &send_data;
-    7c98:	8d e7       	ldi	r24, 0x7D	; 125
-    7c9a:	9b e3       	ldi	r25, 0x3B	; 59
-    7c9c:	90 93 63 01 	sts	0x0163, r25
-    7ca0:	80 93 62 01 	sts	0x0162, r24
+    7c84:	8d e7       	ldi	r24, 0x7D	; 125
+    7c86:	9b e3       	ldi	r25, 0x3B	; 59
+    7c88:	90 93 63 01 	sts	0x0163, r25
+    7c8c:	80 93 62 01 	sts	0x0162, r24
 	TB_Init((void*) 0x10); // addr in eeprom with settings
-    7ca4:	80 e1       	ldi	r24, 0x10	; 16
-    7ca6:	90 e0       	ldi	r25, 0x00	; 0
-    7ca8:	0e 94 92 38 	call	0x7124	; 0x7124 <TB_Init>
+    7c90:	80 e1       	ldi	r24, 0x10	; 16
+    7c92:	90 e0       	ldi	r25, 0x00	; 0
+    7c94:	0e 94 92 38 	call	0x7124	; 0x7124 <TB_Init>
 	Bootloader_Init();
-    7cac:	0e 94 34 3e 	call	0x7c68	; 0x7c68 <Bootloader_Init>
+    7c98:	0e 94 2a 3e 	call	0x7c54	; 0x7c54 <Bootloader_Init>
 	sei();
-    7cb0:	78 94       	sei
+    7c9c:	78 94       	sei
 		
     while (1) 
     {
 		process_timer_100Hz();
-    7cb2:	0e 94 0f 3c 	call	0x781e	; 0x781e <process_timer_100Hz>
+    7c9e:	0e 94 24 3c 	call	0x7848	; 0x7848 <process_timer_100Hz>
 		uart0_process();
-    7cb6:	0e 94 7a 3a 	call	0x74f4	; 0x74f4 <uart0_process>
+    7ca2:	0e 94 7a 3a 	call	0x74f4	; 0x74f4 <uart0_process>
 		try_receive_data();
-    7cba:	0e 94 18 3c 	call	0x7830	; 0x7830 <try_receive_data>
+    7ca6:	0e 94 2d 3c 	call	0x785a	; 0x785a <try_receive_data>
 			{
 				cnt = 0;
 				jumpaddress();
 			}
 		}*/	
     }
-    7cbe:	f9 cf       	rjmp	.-14     	; 0x7cb2 <main+0x3a>
+    7caa:	f9 cf       	rjmp	.-14     	; 0x7c9e <main+0x3a>
 
-00007cc0 <__tablejump2__>:
-    7cc0:	ee 0f       	add	r30, r30
-    7cc2:	ff 1f       	adc	r31, r31
-    7cc4:	05 90       	lpm	r0, Z+
-    7cc6:	f4 91       	lpm	r31, Z
-    7cc8:	e0 2d       	mov	r30, r0
-    7cca:	09 94       	ijmp
+00007cac <__tablejump2__>:
+    7cac:	ee 0f       	add	r30, r30
+    7cae:	ff 1f       	adc	r31, r31
+    7cb0:	05 90       	lpm	r0, Z+
+    7cb2:	f4 91       	lpm	r31, Z
+    7cb4:	e0 2d       	mov	r30, r0
+    7cb6:	09 94       	ijmp
 
-00007ccc <memset>:
-    7ccc:	dc 01       	movw	r26, r24
-    7cce:	01 c0       	rjmp	.+2      	; 0x7cd2 <memset+0x6>
-    7cd0:	6d 93       	st	X+, r22
-    7cd2:	41 50       	subi	r20, 0x01	; 1
-    7cd4:	50 40       	sbci	r21, 0x00	; 0
-    7cd6:	e0 f7       	brcc	.-8      	; 0x7cd0 <memset+0x4>
-    7cd8:	08 95       	ret
+00007cb8 <memset>:
+    7cb8:	dc 01       	movw	r26, r24
+    7cba:	01 c0       	rjmp	.+2      	; 0x7cbe <memset+0x6>
+    7cbc:	6d 93       	st	X+, r22
+    7cbe:	41 50       	subi	r20, 0x01	; 1
+    7cc0:	50 40       	sbci	r21, 0x00	; 0
+    7cc2:	e0 f7       	brcc	.-8      	; 0x7cbc <memset+0x4>
+    7cc4:	08 95       	ret
 
-00007cda <eeprom_read_block>:
-    7cda:	dc 01       	movw	r26, r24
-    7cdc:	cb 01       	movw	r24, r22
+00007cc6 <eeprom_read_block>:
+    7cc6:	dc 01       	movw	r26, r24
+    7cc8:	cb 01       	movw	r24, r22
 
-00007cde <eeprom_read_blraw>:
-    7cde:	fc 01       	movw	r30, r24
-    7ce0:	e1 99       	sbic	0x1c, 1	; 28
-    7ce2:	fe cf       	rjmp	.-4      	; 0x7ce0 <eeprom_read_blraw+0x2>
-    7ce4:	06 c0       	rjmp	.+12     	; 0x7cf2 <eeprom_read_blraw+0x14>
-    7ce6:	ff bb       	out	0x1f, r31	; 31
-    7ce8:	ee bb       	out	0x1e, r30	; 30
-    7cea:	e0 9a       	sbi	0x1c, 0	; 28
-    7cec:	31 96       	adiw	r30, 0x01	; 1
-    7cee:	0d b2       	in	r0, 0x1d	; 29
-    7cf0:	0d 92       	st	X+, r0
-    7cf2:	41 50       	subi	r20, 0x01	; 1
-    7cf4:	50 40       	sbci	r21, 0x00	; 0
-    7cf6:	b8 f7       	brcc	.-18     	; 0x7ce6 <eeprom_read_blraw+0x8>
-    7cf8:	08 95       	ret
+00007cca <eeprom_read_blraw>:
+    7cca:	fc 01       	movw	r30, r24
+    7ccc:	e1 99       	sbic	0x1c, 1	; 28
+    7cce:	fe cf       	rjmp	.-4      	; 0x7ccc <eeprom_read_blraw+0x2>
+    7cd0:	06 c0       	rjmp	.+12     	; 0x7cde <eeprom_read_blraw+0x14>
+    7cd2:	ff bb       	out	0x1f, r31	; 31
+    7cd4:	ee bb       	out	0x1e, r30	; 30
+    7cd6:	e0 9a       	sbi	0x1c, 0	; 28
+    7cd8:	31 96       	adiw	r30, 0x01	; 1
+    7cda:	0d b2       	in	r0, 0x1d	; 29
+    7cdc:	0d 92       	st	X+, r0
+    7cde:	41 50       	subi	r20, 0x01	; 1
+    7ce0:	50 40       	sbci	r21, 0x00	; 0
+    7ce2:	b8 f7       	brcc	.-18     	; 0x7cd2 <eeprom_read_blraw+0x8>
+    7ce4:	08 95       	ret
 
-00007cfa <eeprom_read_byte>:
-    7cfa:	e1 99       	sbic	0x1c, 1	; 28
-    7cfc:	fe cf       	rjmp	.-4      	; 0x7cfa <eeprom_read_byte>
-    7cfe:	9f bb       	out	0x1f, r25	; 31
-    7d00:	8e bb       	out	0x1e, r24	; 30
-    7d02:	e0 9a       	sbi	0x1c, 0	; 28
-    7d04:	99 27       	eor	r25, r25
-    7d06:	8d b3       	in	r24, 0x1d	; 29
-    7d08:	08 95       	ret
+00007ce6 <eeprom_read_byte>:
+    7ce6:	e1 99       	sbic	0x1c, 1	; 28
+    7ce8:	fe cf       	rjmp	.-4      	; 0x7ce6 <eeprom_read_byte>
+    7cea:	9f bb       	out	0x1f, r25	; 31
+    7cec:	8e bb       	out	0x1e, r24	; 30
+    7cee:	e0 9a       	sbi	0x1c, 0	; 28
+    7cf0:	99 27       	eor	r25, r25
+    7cf2:	8d b3       	in	r24, 0x1d	; 29
+    7cf4:	08 95       	ret
 
-00007d0a <eeprom_update_byte>:
-    7d0a:	26 2f       	mov	r18, r22
+00007cf6 <eeprom_update_byte>:
+    7cf6:	26 2f       	mov	r18, r22
 
-00007d0c <eeprom_update_r18>:
-    7d0c:	e1 99       	sbic	0x1c, 1	; 28
-    7d0e:	fe cf       	rjmp	.-4      	; 0x7d0c <eeprom_update_r18>
-    7d10:	9f bb       	out	0x1f, r25	; 31
-    7d12:	8e bb       	out	0x1e, r24	; 30
-    7d14:	e0 9a       	sbi	0x1c, 0	; 28
-    7d16:	01 97       	sbiw	r24, 0x01	; 1
-    7d18:	0d b2       	in	r0, 0x1d	; 29
-    7d1a:	02 16       	cp	r0, r18
-    7d1c:	31 f0       	breq	.+12     	; 0x7d2a <eeprom_update_r18+0x1e>
-    7d1e:	2d bb       	out	0x1d, r18	; 29
-    7d20:	0f b6       	in	r0, 0x3f	; 63
-    7d22:	f8 94       	cli
-    7d24:	e2 9a       	sbi	0x1c, 2	; 28
-    7d26:	e1 9a       	sbi	0x1c, 1	; 28
-    7d28:	0f be       	out	0x3f, r0	; 63
+00007cf8 <eeprom_update_r18>:
+    7cf8:	e1 99       	sbic	0x1c, 1	; 28
+    7cfa:	fe cf       	rjmp	.-4      	; 0x7cf8 <eeprom_update_r18>
+    7cfc:	9f bb       	out	0x1f, r25	; 31
+    7cfe:	8e bb       	out	0x1e, r24	; 30
+    7d00:	e0 9a       	sbi	0x1c, 0	; 28
+    7d02:	01 97       	sbiw	r24, 0x01	; 1
+    7d04:	0d b2       	in	r0, 0x1d	; 29
+    7d06:	02 16       	cp	r0, r18
+    7d08:	31 f0       	breq	.+12     	; 0x7d16 <eeprom_update_r18+0x1e>
+    7d0a:	2d bb       	out	0x1d, r18	; 29
+    7d0c:	0f b6       	in	r0, 0x3f	; 63
+    7d0e:	f8 94       	cli
+    7d10:	e2 9a       	sbi	0x1c, 2	; 28
+    7d12:	e1 9a       	sbi	0x1c, 1	; 28
+    7d14:	0f be       	out	0x3f, r0	; 63
+    7d16:	08 95       	ret
+
+00007d18 <eeprom_write_block>:
+    7d18:	dc 01       	movw	r26, r24
+    7d1a:	cb 01       	movw	r24, r22
+    7d1c:	03 c0       	rjmp	.+6      	; 0x7d24 <eeprom_write_block+0xc>
+    7d1e:	2d 91       	ld	r18, X+
+    7d20:	0e 94 97 3e 	call	0x7d2e	; 0x7d2e <eeprom_write_r18>
+    7d24:	41 50       	subi	r20, 0x01	; 1
+    7d26:	50 40       	sbci	r21, 0x00	; 0
+    7d28:	d0 f7       	brcc	.-12     	; 0x7d1e <eeprom_write_block+0x6>
     7d2a:	08 95       	ret
 
-00007d2c <eeprom_write_block>:
-    7d2c:	dc 01       	movw	r26, r24
-    7d2e:	cb 01       	movw	r24, r22
-    7d30:	03 c0       	rjmp	.+6      	; 0x7d38 <eeprom_write_block+0xc>
-    7d32:	2d 91       	ld	r18, X+
-    7d34:	0e 94 a1 3e 	call	0x7d42	; 0x7d42 <eeprom_write_r18>
-    7d38:	41 50       	subi	r20, 0x01	; 1
-    7d3a:	50 40       	sbci	r21, 0x00	; 0
-    7d3c:	d0 f7       	brcc	.-12     	; 0x7d32 <eeprom_write_block+0x6>
-    7d3e:	08 95       	ret
+00007d2c <eeprom_write_byte>:
+    7d2c:	26 2f       	mov	r18, r22
 
-00007d40 <eeprom_write_byte>:
-    7d40:	26 2f       	mov	r18, r22
+00007d2e <eeprom_write_r18>:
+    7d2e:	e1 99       	sbic	0x1c, 1	; 28
+    7d30:	fe cf       	rjmp	.-4      	; 0x7d2e <eeprom_write_r18>
+    7d32:	9f bb       	out	0x1f, r25	; 31
+    7d34:	8e bb       	out	0x1e, r24	; 30
+    7d36:	2d bb       	out	0x1d, r18	; 29
+    7d38:	0f b6       	in	r0, 0x3f	; 63
+    7d3a:	f8 94       	cli
+    7d3c:	e2 9a       	sbi	0x1c, 2	; 28
+    7d3e:	e1 9a       	sbi	0x1c, 1	; 28
+    7d40:	0f be       	out	0x3f, r0	; 63
+    7d42:	01 96       	adiw	r24, 0x01	; 1
+    7d44:	08 95       	ret
 
-00007d42 <eeprom_write_r18>:
-    7d42:	e1 99       	sbic	0x1c, 1	; 28
-    7d44:	fe cf       	rjmp	.-4      	; 0x7d42 <eeprom_write_r18>
-    7d46:	9f bb       	out	0x1f, r25	; 31
-    7d48:	8e bb       	out	0x1e, r24	; 30
-    7d4a:	2d bb       	out	0x1d, r18	; 29
-    7d4c:	0f b6       	in	r0, 0x3f	; 63
-    7d4e:	f8 94       	cli
-    7d50:	e2 9a       	sbi	0x1c, 2	; 28
-    7d52:	e1 9a       	sbi	0x1c, 1	; 28
-    7d54:	0f be       	out	0x3f, r0	; 63
-    7d56:	01 96       	adiw	r24, 0x01	; 1
-    7d58:	08 95       	ret
+00007d46 <_exit>:
+    7d46:	f8 94       	cli
 
-00007d5a <_exit>:
-    7d5a:	f8 94       	cli
-
-00007d5c <__stop_program>:
-    7d5c:	ff cf       	rjmp	.-2      	; 0x7d5c <__stop_program>
+00007d48 <__stop_program>:
+    7d48:	ff cf       	rjmp	.-2      	; 0x7d48 <__stop_program>
