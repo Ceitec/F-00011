@@ -49,6 +49,5 @@ void VerifyFlash(uint16_t Address)
 		Data = pgm_read_byte ( Address + i );
 		remainder = (crc_table[Data^remainder] ^ (remainder << 8) ) & 0xFF;
 	}
-	TB_SendAck(ACK, ~remainder);
-	Address+=SPM_PAGESIZE;
+	TB_SendAck(100, (~remainder & 0x000000FF));
 }

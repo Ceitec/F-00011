@@ -23,7 +23,8 @@ void timer_init(void)
   
   OCR1A = 0;
   OCR1B = 0;
-  ICR1 = 575; 
+	//ICR1 = 575;
+  ICR1 = 57; 
   TCCR1A = BV(WGM11) | BV(COM1A1) | BV(COM1B1); // Fast PWM
   TCCR1B = BV(WGM12) | BV(WGM13) | 4; // Fast PWM + presca = 1024
   TIMSK |= BV(TICIE1); // capt int enabled

@@ -68,7 +68,7 @@ static uint8_t	BootStatus=0;
 uint16_t Address=0;
 uint16_t Aktualni=0;
 uint16_t Predchozi=0;
-uint8_t	EndCom=0;
+uint8_t	EndComFlash=0, EndComEeprom=0;
 long int Signature;
 uint8_t NowEeprom=0, NowFlash=0;
 
@@ -145,7 +145,7 @@ void WriteFlashPages(uint16_t address, uint8_t *Buffer)
 void WriteEepromPages(uint16_t address, uint8_t *Buffer)
 {
 	uint16_t cnt=0;
-	for (cnt = 0; cnt < PAGE_SIZE_EEPROM; cnt++)
+	for (cnt = 0; cnt < SPM_PAGESIZE; cnt++)
 	{
 		eeprom_update_byte(address++, *Buffer++);
 	}
@@ -154,19 +154,22 @@ void WriteEepromPages(uint16_t address, uint8_t *Buffer)
 // Ètení pamìti Flash
 void ReadFlashPages(uint16_t address)
 {
-	for (uint8_t x=0; x < 4; x++)
+	for (uint8_t i=0; i<4; i++)
 	{
-		TB_SendAck(ACK, pgm_read_byte(address + x));	
+		
 	}
+	uint32_t Data=0;
+	Data = pgm_read_byte(address) << 8;
+	Data |= pgm_read_byte(address + 1) << 8;
+	Data |= pgm_read_byte(address + 2) << 8;
+	Data |= pgm_read_byte(address + 3);
+	TB_SendAck(100, Data);	
 }
 
 // Ètení pamìti EEPROM
 void ReadEepromPages(uint16_t address)
 {
-	for (uint8_t x=0; x < 4; x++)
-	{
-		TB_SendAck(ACK, eeprom_read_byte(address + x));
-	}
+	TB_SendAck(100, eeprom_read_dword(address));
 }
 
 void FillBufferData(uint16_t Address)
@@ -202,15 +205,10 @@ ISR(TIMER1_CAPT_vect) {
 //----------------------------------------------------------
 void process_timer_100Hz(void)
 {
-	if (timer0_flag) { // T = 10ms
+	if(timer0_flag)
+	{ // T = 1ms
 		timer0_flag = FALSE;
 		uart0_ISR_timer();
-		if (led_timer > 0) {
-			led_timer--;
-			if (led_timer == 0) {
-				//PORTA ^= (1 << PINA6);
-			}
-		}
 	}
 }
 
@@ -236,43 +234,236 @@ void try_receive_data(void)
 			switch (TB_Decode())
 			{
 				case ENTER_BOOTLOADER:
-					TB_SendAck(ACK, ENTER_BOOTLOADER);
+					BootStatus = 1;
+					TB_SendAck(100, ENTER_BOOTLOADER);
+					break;
+				case READ_LOCK_BITS:
+					TB_SendAck(100, boot_lock_fuse_bits_get(GET_LOCK_BITS));
+					break;
+				case CHIP_ERASE_FLASH:
+					ChipErase();
+					TB_SendAck(100, CHIP_ERASE_FLASH);
+					break;
+				case CHIP_ERASE_EEPROM:
+					EepromErase();
+					TB_SendAck(100, CHIP_ERASE_EEPROM);
+					break;
+				case CHIP_ERASE_ALL:
+					ChipErase();
+					EepromErase();
+					TB_SendAck(100, CHIP_ERASE_ALL);
+					break;
+				case WRITE_LOCK_BITS:
+					TB_SendAck(102, WRITE_LOCK_BITS);
+					break;
+				case READ_LOW_FUSE:
+					TB_SendAck(100, boot_lock_fuse_bits_get(GET_LOW_FUSE_BITS));
+					break;
+				case READ_HIGH_FUSE:
+					TB_SendAck(100, boot_lock_fuse_bits_get(GET_HIGH_FUSE_BITS));
+					break;
+				case READ_EXTENDED_FUSE:
+					TB_SendAck(102, boot_lock_fuse_bits_get(GET_EXTENDED_FUSE_BITS));
+					break;
+				case READ_SIGNATURE:
+					Signature = 0x1E9502;
+// 					Signature |= 0x95 << 8;
+// 					Signature |= 0x02;
+					TB_SendAck(100, Signature);
+					break;
+				case READ_SOFTWARE_VERSION:
+					TB_SendAck(100, SOFTWARE_IDENTIFIER);
+					break;
+				case READ_BOOTLOADER_VERSION:
+					TB_SendAck(100, BOOTLOADER_VERSION);
+					break;
+				case VERIFY_FLASH:
+					Address = TB_bufIn[TB_BUF_TYPE] << 8;
+					Address |= TB_bufIn[TB_BUF_MOTOR];
+					VerifyFlash(Address);
+					break;
+				case WRITE_FLASH:
+					Address = TB_bufIn[TB_BUF_TYPE] << 8;
+					Address |= TB_bufIn[TB_BUF_MOTOR];
+					Aktualni = (Address & ADDRESS_MASK_MSB);
+					if (Address < (START_BOOT_ADDRESS_BYTES - 4))
+					{
+						if (Aktualni == Predchozi)
+						{
+							FillBufferData(Address);
+							EndComFlash = 1;
+							TB_SendAck(100, WRITE_FLASH);
+						} 
+						else
+						{
+							if (EndComFlash)
+							{
+								WriteFlashPages(Predchozi, BufferFlash);
+								memset(BufferFlash, 0xFF, SPM_PAGESIZE);
+								FillBufferData(Address);
+								TB_SendAck(100, Address);
+								Predchozi = Address;
+							}
+							else
+							{
+								memset(BufferFlash, 0xFF, SPM_PAGESIZE);
+								FillBufferData(Address);
+								TB_SendAck(100, WRITE_FLASH);
+							}
+						}
+						NowFlash = 1;
+					}
+					else
+					{
+						TB_SendAck(102, Address);	
+					}
+					break;
+				case WRITE_EEPROM:
+					Address = TB_bufIn[TB_BUF_TYPE] << 8;
+					Address |= TB_bufIn[TB_BUF_MOTOR];
+					Aktualni = (Address & ADDRESS_MASK_MSB);
+					if (Address < (START_EEPROM_ADDRESS - 4))
+					{
+						if (Aktualni == Predchozi)
+						{
+							FillBufferData(Address);
+							EndComEeprom = 1;
+							TB_SendAck(100, WRITE_EEPROM);
+						}
+						else
+						{
+							if (EndComEeprom)
+							{
+								WriteEepromPages(Predchozi, BufferFlash);
+								memset(BufferFlash, 0xFF, SPM_PAGESIZE);
+								FillBufferData(Address);
+								TB_SendAck(100, Address);
+								Predchozi = Address;
+							}
+							else
+							{
+								memset(BufferFlash, 0xFF, SPM_PAGESIZE);
+								FillBufferData(Address);
+								TB_SendAck(100, WRITE_EEPROM);
+							}
+						}
+						NowEeprom = 1;
+					}
+					else
+					{
+						TB_SendAck(102, Address);
+					}
+					break;
+				case END_WRITE_ALL:
+					if (NowFlash)
+					{
+						WriteFlashPages(Predchozi, BufferFlash);
+						EndComFlash=0;
+						TB_SendAck(100, END_WRITE_ALL);
+					}
+					else if(NowEeprom)
+					{
+						WriteEepromPages(Predchozi, BufferFlash);
+						EndComEeprom = 0;
+						TB_SendAck(100, END_WRITE_ALL);
+					}
+					else
+					{
+						TB_SendAck(102, 0);
+					}
+					Predchozi = 0;
+					Aktualni = 0;
+					break;
+				case READ_FLASH:
+					Address = TB_bufIn[TB_BUF_TYPE] << 8;
+					Address |= TB_bufIn[TB_BUF_MOTOR];
+					TB_SendAck(100, Address);
+					if (Address < (START_BOOT_ADDRESS_BYTES - 4))
+					{
+						uint32_t Data=0;
+						Data = (((uint32_t)pgm_read_byte(Address)) << 24);
+						TB_SendAck(100, Data);
+						Data = (pgm_read_byte(Address) << 8);
+						TB_SendAck(100, Data);
+						Data |= pgm_read_byte(Address + 1) << 16;
+						TB_SendAck(100, Data);
+						Data |= pgm_read_byte(Address + 2) << 8;
+						TB_SendAck(100, Data);
+						Data |= pgm_read_byte(Address + 3);
+						TB_SendAck(100, Data);
+					}
+					else
+					{
+						TB_SendAck(102, 0);	
+					}
+					break;
+				case READ_EEPROM:
+					Address = TB_bufIn[TB_BUF_TYPE] << 8;
+					Address |= TB_bufIn[TB_BUF_MOTOR];
+					if (Address < (START_EEPROM_ADDRESS - 4))
+					{
+						uint32_t Data=0;
+//						Data = pgm_read_byte(Address) << 8;
+// 						Data |= pgm_read_byte(address + 1) << 8;
+// 						Data |= pgm_read_byte(address + 2) << 8;
+// 						Data |= pgm_read_byte(address + 3);
+						TB_SendAck(100, Data);
+						//ReadEepromPages(Address);
+					}
+					else
+					{
+						TB_SendAck(102, 0);
+					}
+					break;
+				case EXIT_BOOTLOADER:
+					TB_SendAck(100, EXIT_BOOTLOADER);
+					jumpaddress();
 					break;
 			}
 		}
 	}
 }
 
+void Move_interrupts(void)
+{
+	/* Enable change of interrupt vectors */
+	GICR = (1<<IVCE);
+	/* Move interrupts to boot Flash section */
+	GICR = (1<<IVSEL);
+}
 
+void Bootloader_Init(void)
+{
+	memset(BufferFlash, 0xFF, SPM_PAGESIZE);
+}
 
 int main(void)
 {
-	
+	// Interrupty pøesunuty na jinou adresu pro Bootloader.
+	Move_interrupts();
     /* Replace with your application code */
 	cli();
-	
-	
+
 	//Nastavení Systemového enable pro RS485 pro UART0
 	DDRD |= (1 << DDD1) | (1 << DDD2);
-	
-	DDRA |= (1 << DDA7) | (1 << DDA6) | (1 << DDA5);
-	
-	//timer_init();
+
+	timer_init();
 	
 	uart0_init();
 	TB_Callback_setBaud = &uart0_set_baud;
 	TB_Callback_TX = &send_data;
 	TB_Init((void*) 0x10); // addr in eeprom with settings
-	
+	Bootloader_Init();
 	sei();
-	
+		
     while (1) 
     {
-		//process_timer_100Hz();
+		process_timer_100Hz();
 		uart0_process();
 		try_receive_data();
-		PORTA |= (1 << PA7) | (1 << PA6) | (1 << PA5);
-		/*if(cnt < 25)
+	
+		// 250 ms - V Bootloader režimu.
+		/*if(cnt < 250)
 		{
 			cnt++;
 		}
@@ -283,7 +474,7 @@ int main(void)
 				cnt = 0;
 				jumpaddress();
 			}
-		}	*/
+		}*/	
     }
 }
 
