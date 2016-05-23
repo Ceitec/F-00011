@@ -29,13 +29,37 @@
 //#define	START_ADDRESS	0x7800
 //#define	PAGES	16
 
-
+#if (defined __AVR_ATmega8_)
+	#warning "Tento typ není podporován kvùli malé Bootloader èásti"
+#elif (defined __AVR_ATmega8A_)
+	#warning "Tento typ není podporován kvùli malé Bootloader èásti"
+#elif (defined __AVR_ATmega32__)
+	#define	BOOTLOADER	2048
+	#define FLASH		32768
+#elif (defined __AVR_ATmega32A__)
+	#define	BOOTLOADER	2048
+	#define FLASH		32768
+#elif (defined __AVR_ATmega328P__)
+	#define	BOOTLOADER	2048
+	#define FLASH		32768
+#elif (defined __AVR_ATmega328__)
+	#define	BOOTLOADER	2048
+	#define FLASH		32768
+#elif (defined __AVR_ATmega644__)
+	#define	BOOTLOADER	4096
+	#define FLASH		65536
+#elif (defined __AVR_ATmega644P__)
+	#define	BOOTLOADER	4096
+	#define FLASH		65536
+#else
+	#error "Pozor Bootloader nepodporuje tento typ MCU."
+#endif
 // Velikost BOOTLOADER sekce pøi urèitém nastavení (Datasheet str.290)
 /*Bootloader pro Atmega644p*///	#define	BOOTLOADER	4096
-/*Bootloader pro Atmega32*/		#define	BOOTLOADER	2048
+/*Bootloader pro Atmega32*///	#define	BOOTLOADER	2048
 // Velikost celé FLASH pamìti 64kBytes
 /*Bootloader pro Atmega644p*///	#define FLASH		65536
-/*Bootloader pro Atmega32*/		#define FLASH		32768
+/*Bootloader pro Atmega32*///	#define FLASH		32768
 
 // Jedno slovo je veliké 16 bitù (2 BYTES)
 #define ONE_WORDS	2

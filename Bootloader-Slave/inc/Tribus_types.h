@@ -107,15 +107,15 @@
 
 
 // error codes
-#define TB_ERR_OK           100
-#define TB_ERR_EEPROM_OK    101
-#define TB_ERR_NOK			102
-#define TB_ERR_SUM            1
-#define TB_ERR_COMMAND        2
-#define TB_ERR_TYPE           3
-#define TB_ERR_VALUE          4
-#define TB_ERR_EEPROM_LOCK    5
-#define TB_ERR_NA             6
+#define TB_ERR_OK				100
+#define TB_ERR_EEPROM_OK		101
+#define TB_ERR_NOK				102
+#define TB_ERR_SUM				1
+#define TB_ERR_COMMAND			2
+#define TB_ERR_TYPE				3
+#define TB_ERR_VALUE			4
+#define TB_ERR_EEPROM_LOCK		5
+#define TB_ERR_NOTEVALUABLE		6
 #define TB_I2C_SEND_OK				7
 #define TB_I2C_SLAVE_NOT_RESPOND	8
 #define TB_NOT_KNOW					9

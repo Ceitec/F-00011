@@ -27,6 +27,8 @@
 #define END_WRITE_ALL			25
 #define	READ_FLASH				26
 #define	READ_EEPROM				27
+#define CMD_SPM_PAGE_SIZE		28
+#define CMD_ALL_PAGE_SIZE		29
 #define	EXIT_BOOTLOADER			0xFF
 
 #define ADDRESS_MASK_MSB	(0x0000 - SPM_PAGESIZE)

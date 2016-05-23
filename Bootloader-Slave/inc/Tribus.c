@@ -61,10 +61,10 @@ void TB_Init(void * setting_in_eeprom)
   addr_setting_in_eeprom = setting_in_eeprom;
   //                 DST,   SRC, size
   eeprom_read_block((void *) &TB_gbparam, setting_in_eeprom, sizeof(struct TB_GBPARAM));
-  if (TB_gbparam.eemagic != 65) {
+  if (TB_gbparam.eemagic != 66) {
     // not valid data in eeprom
     TB_gbparam.eemagic = 66;
-    TB_gbparam.baud = 4;
+    TB_gbparam.baud = 7;
     TB_gbparam.address = SC_MODUL;
     TB_gbparam.telegram_pause_time = 0;
     TB_gbparam.host_address = 2;
@@ -176,6 +176,12 @@ byte TB_Decode(void)
 			break;
 		case READ_EEPROM:
 			return READ_EEPROM;
+			break;
+		case CMD_SPM_PAGE_SIZE:
+			return CMD_SPM_PAGE_SIZE;
+			break;	
+		case CMD_ALL_PAGE_SIZE:
+			return CMD_ALL_PAGE_SIZE;
 			break;
 		case TB_CMD_SGP:
 			if (TB_bufIn[TB_BUF_MOTOR] != 0)

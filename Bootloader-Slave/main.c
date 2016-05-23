@@ -159,13 +159,18 @@ void ReadFlashPages(uint16_t address)
 	Data |= ((uint32_t)pgm_read_byte(address + 1) << 16);
 	Data |= ((uint32_t)pgm_read_byte(address + 2) << 8);
 	Data |= ((uint32_t)pgm_read_byte(address + 3));
-	TB_SendAck(100, Data);	
+	TB_SendAck(TB_ERR_OK, Data);	
 }
 
 // Ètení pamìti EEPROM
 void ReadEepromPages(uint16_t address)
 {
-	TB_SendAck(100, eeprom_read_dword(address));
+	uint32_t Data=0;
+	Data = ((uint32_t)eeprom_read_byte(address) << 24);
+	Data |= ((uint32_t)eeprom_read_byte(address + 1) << 16);
+	Data |= ((uint32_t)eeprom_read_byte(address + 2) << 8);
+	Data |= ((uint32_t)eeprom_read_byte(address + 3));
+	TB_SendAck(TB_ERR_OK, Data);
 }
 
 void FillBufferData(uint16_t Address)
@@ -192,7 +197,7 @@ void send_data(void)
 
 //----------------------------------------------------------
 ISR(TIMER1_CAPT_vect) {
-	// T = 10ms
+	// T = 1ms
 	
 	timer0_flag = TRUE;
 	
@@ -207,8 +212,6 @@ void process_timer_100Hz(void)
 		uart0_ISR_timer();
 	}
 }
-
-
 
 void try_receive_data(void)
 {
@@ -231,52 +234,57 @@ void try_receive_data(void)
 			{
 				case ENTER_BOOTLOADER:
 					BootStatus = 1;
-					TB_SendAck(100, ENTER_BOOTLOADER);
+					TB_SendAck(TB_ERR_OK, ENTER_BOOTLOADER);
 					break;
 				case READ_LOCK_BITS:
-					TB_SendAck(100, boot_lock_fuse_bits_get(GET_LOCK_BITS));
+					TB_SendAck(TB_ERR_OK, boot_lock_fuse_bits_get(GET_LOCK_BITS));
 					break;
 				case CHIP_ERASE_FLASH:
 					ChipErase();
-					TB_SendAck(100, CHIP_ERASE_FLASH);
+					TB_SendAck(TB_ERR_OK, CHIP_ERASE_FLASH);
 					break;
 				case CHIP_ERASE_EEPROM:
 					EepromErase();
-					TB_SendAck(100, CHIP_ERASE_EEPROM);
+					TB_SendAck(TB_ERR_OK, CHIP_ERASE_EEPROM);
 					break;
 				case CHIP_ERASE_ALL:
 					ChipErase();
 					EepromErase();
-					TB_SendAck(100, CHIP_ERASE_ALL);
+					TB_SendAck(TB_ERR_OK, CHIP_ERASE_ALL);
 					break;
 				case WRITE_LOCK_BITS:
-					TB_SendAck(102, WRITE_LOCK_BITS);
+					TB_SendAck(TB_ERR_NOTEVALUABLE, WRITE_LOCK_BITS);
 					break;
 				case READ_LOW_FUSE:
-					TB_SendAck(100, boot_lock_fuse_bits_get(GET_LOW_FUSE_BITS));
+					TB_SendAck(TB_ERR_OK, boot_lock_fuse_bits_get(GET_LOW_FUSE_BITS));
 					break;
 				case READ_HIGH_FUSE:
-					TB_SendAck(100, boot_lock_fuse_bits_get(GET_HIGH_FUSE_BITS));
+					TB_SendAck(TB_ERR_OK, boot_lock_fuse_bits_get(GET_HIGH_FUSE_BITS));
 					break;
 				case READ_EXTENDED_FUSE:
-					TB_SendAck(102, boot_lock_fuse_bits_get(GET_EXTENDED_FUSE_BITS));
+					TB_SendAck(TB_ERR_NOTEVALUABLE, boot_lock_fuse_bits_get(GET_EXTENDED_FUSE_BITS));
 					break;
 				case READ_SIGNATURE:
 					Signature = 0x1E9502;
-// 					Signature |= 0x95 << 8;
-// 					Signature |= 0x02;
-					TB_SendAck(100, Signature);
+					TB_SendAck(TB_ERR_OK, Signature);
 					break;
 				case READ_SOFTWARE_VERSION:
-					TB_SendAck(100, SOFTWARE_IDENTIFIER);
+					TB_SendAck(TB_ERR_OK, SOFTWARE_IDENTIFIER);
 					break;
 				case READ_BOOTLOADER_VERSION:
-					TB_SendAck(100, BOOTLOADER_VERSION);
+					TB_SendAck(TB_ERR_OK, BOOTLOADER_VERSION);
 					break;
 				case VERIFY_FLASH:
 					Address = TB_bufIn[TB_BUF_TYPE] << 8;
 					Address |= TB_bufIn[TB_BUF_MOTOR];
-					VerifyFlash(Address);
+					if (Address < (START_BOOT_ADDRESS_BYTES - 4))
+					{
+						VerifyFlash(Address);
+					}
+					else
+					{
+						TB_SendAck(TB_ERR_VALUE, Address);
+					}
 					break;
 				case WRITE_FLASH:
 					Address = TB_bufIn[TB_BUF_TYPE] << 8;
@@ -288,7 +296,7 @@ void try_receive_data(void)
 						{
 							FillBufferData(Address);
 							EndComFlash = 1;
-							TB_SendAck(100, WRITE_FLASH);
+							TB_SendAck(TB_ERR_OK, WRITE_FLASH);
 						} 
 						else
 						{
@@ -297,21 +305,22 @@ void try_receive_data(void)
 								WriteFlashPages(Predchozi, BufferFlash);
 								memset(BufferFlash, 0xFF, SPM_PAGESIZE);
 								FillBufferData(Address);
-								TB_SendAck(100, Address);
+								TB_SendAck(TB_ERR_OK, Address);
 								Predchozi = Address;
 							}
 							else
 							{
 								memset(BufferFlash, 0xFF, SPM_PAGESIZE);
 								FillBufferData(Address);
-								TB_SendAck(100, WRITE_FLASH);
+								TB_SendAck(TB_ERR_OK, WRITE_FLASH);
+								Predchozi = Address;
 							}
 						}
 						NowFlash = 1;
 					}
 					else
 					{
-						TB_SendAck(102, Address);	
+						TB_SendAck(TB_ERR_VALUE, Address);	
 					}
 					break;
 				case WRITE_EEPROM:
@@ -324,7 +333,7 @@ void try_receive_data(void)
 						{
 							FillBufferData(Address);
 							EndComEeprom = 1;
-							TB_SendAck(100, WRITE_EEPROM);
+							TB_SendAck(TB_ERR_OK, WRITE_EEPROM);
 						}
 						else
 						{
@@ -333,21 +342,21 @@ void try_receive_data(void)
 								WriteEepromPages(Predchozi, BufferFlash);
 								memset(BufferFlash, 0xFF, SPM_PAGESIZE);
 								FillBufferData(Address);
-								TB_SendAck(100, Address);
+								TB_SendAck(TB_ERR_OK, Address);
 								Predchozi = Address;
 							}
 							else
 							{
 								memset(BufferFlash, 0xFF, SPM_PAGESIZE);
 								FillBufferData(Address);
-								TB_SendAck(100, WRITE_EEPROM);
+								TB_SendAck(TB_ERR_OK, WRITE_EEPROM);
 							}
 						}
 						NowEeprom = 1;
 					}
 					else
 					{
-						TB_SendAck(102, Address);
+						TB_SendAck(TB_ERR_VALUE, Address);
 					}
 					break;
 				case END_WRITE_ALL:
@@ -355,18 +364,19 @@ void try_receive_data(void)
 					{
 						WriteFlashPages(Predchozi, BufferFlash);
 						EndComFlash=0;
-						TB_SendAck(100, END_WRITE_ALL);
+						TB_SendAck(TB_ERR_OK, END_WRITE_ALL);
 					}
 					else if(NowEeprom)
 					{
 						WriteEepromPages(Predchozi, BufferFlash);
 						EndComEeprom = 0;
-						TB_SendAck(100, END_WRITE_ALL);
+						TB_SendAck(TB_ERR_OK, END_WRITE_ALL);
 					}
 					else
 					{
-						TB_SendAck(102, 0);
+						TB_SendAck(TB_ERR_VALUE, 0);
 					}
+					memset(BufferFlash, 0xFF, SPM_PAGESIZE);
 					Predchozi = 0;
 					Aktualni = 0;
 					break;
@@ -379,7 +389,7 @@ void try_receive_data(void)
 					}
 					else
 					{
-						TB_SendAck(102, 0);	
+						TB_SendAck(TB_ERR_VALUE, 0);	
 					}
 					break;
 				case READ_EEPROM:
@@ -387,21 +397,21 @@ void try_receive_data(void)
 					Address |= TB_bufIn[TB_BUF_MOTOR];
 					if (Address < (START_EEPROM_ADDRESS - 4))
 					{
-						uint32_t Data=0;
-//						Data = pgm_read_byte(Address) << 8;
-// 						Data |= pgm_read_byte(address + 1) << 8;
-// 						Data |= pgm_read_byte(address + 2) << 8;
-// 						Data |= pgm_read_byte(address + 3);
-						TB_SendAck(100, Data);
-						//ReadEepromPages(Address);
+						ReadEepromPages(Address);
 					}
 					else
 					{
-						TB_SendAck(102, 0);
+						TB_SendAck(TB_ERR_VALUE, READ_EEPROM);
 					}
 					break;
+				case CMD_SPM_PAGE_SIZE:
+					TB_SendAck(TB_ERR_OK, SPM_PAGESIZE);
+					break;
+				case CMD_ALL_PAGE_SIZE:	
+					TB_SendAck(TB_ERR_OK, PAGE_SIZE);
+					break;
 				case EXIT_BOOTLOADER:
-					TB_SendAck(100, EXIT_BOOTLOADER);
+					TB_SendAck(TB_ERR_OK, EXIT_BOOTLOADER);
 					jumpaddress();
 					break;
 			}
@@ -440,7 +450,7 @@ int main(void)
 	TB_Init((void*) 0x10); // addr in eeprom with settings
 	Bootloader_Init();
 	sei();
-		
+	
     while (1) 
     {
 		process_timer_100Hz();
@@ -448,7 +458,7 @@ int main(void)
 		try_receive_data();
 	
 		// 250 ms - V Bootloader reimu.
-		/*if(cnt < 250)
+		if(cnt < 250)
 		{
 			cnt++;
 		}
@@ -459,7 +469,7 @@ int main(void)
 				cnt = 0;
 				jumpaddress();
 			}
-		}*/	
+		}
     }
 }
 
